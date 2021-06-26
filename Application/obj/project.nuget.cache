@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2CD0kFkuw+hKEXtTt+lPUpRVwtwYeccVQPiAWQyVn0VYHJy/zkm/khT65/LwE0MauOeHXF1tMz1HUz8B4Cd2ig==",
+  "dgSpecHash": "7fhrtuSaAzogV9qu6luUjb3qwVYFCgfyaPmGj0Jh9QMXtrd0nyVJ0ple+AtNtzWUAKEcUeRxspJ3Ag0A841RNQ==",
   "success": true,
-  "projectFilePath": "C:\\ExercicioCrud\\ApiCrud\\Application\\Application.csproj",
+  "projectFilePath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Application\\Application.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yXCJCdW4G2u5V/+e8jg4IQNSuinA94HhtNZ8shJCVJjuZQSE8zNmGzCeFkKAArfG70+y/rJFVGR8jpxLyT8wxQ==",
+  "dgSpecHash": "2qdOu3WGyX6Z7rIwMoNRLWcaxSwpfPEhETYc6Wn4SeQdK3BjEwmLwpGDij/3AdaObSpdT6Gn111UGKRSTFyuzg==",
   "success": true,
-  "projectFilePath": "C:\\ExercicioCrud\\ApiCrud\\IoC\\IoC.csproj",
+  "projectFilePath": "C:\\IdentityProjeto\\Identity_Api\\identity\\IoC\\IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1513 IRON\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",

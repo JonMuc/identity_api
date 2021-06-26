@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\ExercicioCrud\\ApiCrud\\Data\\Data.csproj": {}
+    "C:\\IdentityProjeto\\Identity_Api\\identity\\Data\\Data.csproj": {}
   },
   "projects": {
-    "C:\\ExercicioCrud\\ApiCrud\\Data\\Data.csproj": {
+    "C:\\IdentityProjeto\\Identity_Api\\identity\\Data\\Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ExercicioCrud\\ApiCrud\\Data\\Data.csproj",
+        "projectUniqueName": "C:\\IdentityProjeto\\Identity_Api\\identity\\Data\\Data.csproj",
         "projectName": "Data",
-        "projectPath": "C:\\ExercicioCrud\\ApiCrud\\Data\\Data.csproj",
+        "projectPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Data\\Data.csproj",
         "packagesPath": "C:\\Users\\1513 IRON\\.nuget\\packages\\",
-        "outputPath": "C:\\ExercicioCrud\\ApiCrud\\Data\\obj\\",
+        "outputPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -31,8 +31,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\ExercicioCrud\\ApiCrud\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\ExercicioCrud\\ApiCrud\\Domain\\Domain.csproj"
+              "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj"
               }
             }
           }
@@ -75,14 +75,14 @@
         }
       }
     },
-    "C:\\ExercicioCrud\\ApiCrud\\Domain\\Domain.csproj": {
+    "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\ExercicioCrud\\ApiCrud\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\ExercicioCrud\\ApiCrud\\Domain\\Domain.csproj",
+        "projectPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\1513 IRON\\.nuget\\packages\\",
-        "outputPath": "C:\\ExercicioCrud\\ApiCrud\\Domain\\obj\\",
+        "outputPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
