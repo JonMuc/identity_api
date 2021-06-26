@@ -1,0 +1,15 @@
+C:\ExercicioCrud\ApiCrud\Application\bin\Debug\net5.0\Application.deps.json
+C:\ExercicioCrud\ApiCrud\Application\bin\Debug\net5.0\Application.dll
+C:\ExercicioCrud\ApiCrud\Application\bin\Debug\net5.0\ref\Application.dll
+C:\ExercicioCrud\ApiCrud\Application\bin\Debug\net5.0\Application.pdb
+C:\ExercicioCrud\ApiCrud\Application\bin\Debug\net5.0\Domain.dll
+C:\ExercicioCrud\ApiCrud\Application\bin\Debug\net5.0\Domain.pdb
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.csprojAssemblyReference.cache
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.AssemblyInfoInputs.cache
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.AssemblyInfo.cs
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.csproj.CoreCompileInputs.cache
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.csproj.CopyComplete
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.dll
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\ref\Application.dll
+C:\ExercicioCrud\ApiCrud\Application\obj\Debug\net5.0\Application.pdb
