@@ -1,0 +1,13 @@
+
+.vs/ApiCrud/DesignTimeBuild/.dtbcache.v2
+.vs/IdentityApi/DesignTimeBuild/.dtbcache.v2
+.vs/IdentityApi/v16/.suo
+Api/bin/Debug/net5.0/Api.deps.json
+*.dll
+*.dll
+Api/bin/Debug/net5.0/Api.deps.json
+*.dll
+*.exe
+IoC/obj/project.nuget.cache
+*.exe
+Api/bin/Debug/net5.0/Application.dll
