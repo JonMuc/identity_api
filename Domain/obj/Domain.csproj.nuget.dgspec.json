@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {}
+    "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {
+    "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
+        "projectPath": "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\1513 IRON\\.nuget\\packages\\",
-        "outputPath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\obj\\",
+        "outputPath": "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -42,6 +42,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.34, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -57,7 +63,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.206\\RuntimeIdentifierGraph.json"
         }
       }
     }

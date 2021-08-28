@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "UfUq+2ux7Pm3HYaKdXPcZdXAj0PUVxdLJGW4u6Yqc13NrbIn3vyT/zOPbAdd7G8HK2Ai/rr0hXdF5fG30R/Fcw==",
+  "dgSpecHash": "k1uIitMUwyKkPpSdrYQZ56k3BqewEFvkgQx/xLAZTTrRYSlE2Xc5+iuK4Mhnh6XEFbzLOYX5FfjkKgJ+0EdWgA==",
   "success": true,
-  "projectFilePath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Api\\Api.csproj",
+  "projectFilePath": "C:\\identity_projeto\\Identity_Api\\identity\\Api\\Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1513 IRON\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\1513 IRON\\.nuget\\packages\\htmlagilitypack\\1.11.34\\htmlagilitypack.1.11.34.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",

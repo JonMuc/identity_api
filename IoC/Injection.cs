@@ -22,14 +22,17 @@ namespace IoC
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 
             // Services
+            services.AddTransient<ICrawlingGoogleService, CrawlingGoogleService>();
             services.AddTransient<IPessoaFisicaService, PessoaFisicaService>();
             services.AddTransient<IPessoaJuridicaService, PessoaJuridicaService>();
+            services.AddTransient<ICrawlingG1Service, CrawlingG1Service>();
 
             // Validations
             services.AddTransient<PessoaFisicaValidation>();
             services.AddTransient<PessoaJuridicaValidation>();
 
             // AppServices
+            services.AddTransient<NoticiaAppService>();
             services.AddTransient<PessoaFisicaAppService>();
             services.AddTransient<PessoaJuridicaAppService>();
         }

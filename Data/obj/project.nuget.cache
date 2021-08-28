@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "kSQjvlBJEGPUO188LC2IM0Afs1xppTBA69boikIiMzIZYl7BQjACOaLXWt1pWldQbH4YNcXQikfsvlwXVTP1Fg==",
+  "dgSpecHash": "RTFBS0bc7uj0fB/lbX1V/gbsLiIQB/ZCMG/haRDv39q+78bqbUMZiE+O4KqkYIKpBi3vX+/bvV57sAP7IF9snw==",
   "success": true,
-  "projectFilePath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Data\\Data.csproj",
+  "projectFilePath": "C:\\identity_projeto\\Identity_Api\\identity\\Data\\Data.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1513 IRON\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\1513 IRON\\.nuget\\packages\\htmlagilitypack\\1.11.34\\htmlagilitypack.1.11.34.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",

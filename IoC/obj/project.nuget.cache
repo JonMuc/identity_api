@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "2qdOu3WGyX6Z7rIwMoNRLWcaxSwpfPEhETYc6Wn4SeQdK3BjEwmLwpGDij/3AdaObSpdT6Gn111UGKRSTFyuzg==",
+  "dgSpecHash": "ynLIWBEVj4IeVHnZUOKtLcZk2WeC3rSeCt9aYPFNPbsZ2wnybNKCf0ViUDqKfnJU0dwNTqC8PLOF9Eu+3O1GLg==",
   "success": true,
-  "projectFilePath": "C:\\IdentityProjeto\\Identity_Api\\identity\\IoC\\IoC.csproj",
+  "projectFilePath": "C:\\identity_projeto\\Identity_Api\\identity\\IoC\\IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\1513 IRON\\.nuget\\packages\\dapper\\2.0.90\\dapper.2.0.90.nupkg.sha512",
+    "C:\\Users\\1513 IRON\\.nuget\\packages\\htmlagilitypack\\1.11.34\\htmlagilitypack.1.11.34.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\1513 IRON\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

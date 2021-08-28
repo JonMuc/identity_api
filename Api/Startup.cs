@@ -65,8 +65,8 @@ namespace Api
             //Middlewares
             app.UseMiddleware<ExceptionMiddleware>();
 
-
-            app.UseHttpsRedirection();
+            //DESABILITA HTTPS
+            //app.UseHttpsRedirection();
 
             app.UseRouting();
 

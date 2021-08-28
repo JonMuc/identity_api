@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "Mg7DlT0pDplg4FE/HX8suc/N76mlDHquot9oL8sTuwAcHIABRIW7PGSiqJXyfjNjtM2GVyQXOVSgWGvFPM9lgg==",
+  "dgSpecHash": "OL10TlpdFJ2kJqYIXnZvcta95lXxYtGVeJDrcoYtVSE3Rvjt4y6owGfspJlt4P2gqA0RQ6r8OYG98olrnT4xEQ==",
   "success": true,
-  "projectFilePath": "C:\\IdentityProjeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\1513 IRON\\.nuget\\packages\\htmlagilitypack\\1.11.34\\htmlagilitypack.1.11.34.nupkg.sha512"
+  ],
   "logs": []
 }
