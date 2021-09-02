@@ -13,3 +13,8 @@ IoC/obj/project.nuget.cache
 Api/bin/Debug/net5.0/Application.dll
 .vs/IdentityApi/DesignTimeBuild/.dtbcache.v2
 .vs/IdentityApi/config/applicationhost.config
+Data/obj/Debug/net5.0/Data.pdb
+*.dll
+*.pdb
+*.cache
+.vs/IdentityApi/v16/.suo
