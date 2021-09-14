@@ -35,6 +35,7 @@ namespace IoC
             services.AddTransient<NoticiaAppService>();
             services.AddTransient<PessoaFisicaAppService>();
             services.AddTransient<PessoaJuridicaAppService>();
+            services.AddTransient<UsuarioAppService>();
         }
     }
 }
