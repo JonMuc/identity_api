@@ -1,20 +1,28 @@
-﻿using Domain.Models;
+﻿using Domain.Interfaces.Repository;
+using Domain.Models;
 using Domain.Services;
+using System.Threading.Tasks;
 
 namespace Application.AppServices
 {
-    public class UsuarioAppService
+    public class UsuarioAppService : BaseAppService
     {
         private readonly IUsuarioService _usuarioService;
 
-        public UsuarioAppService(IUsuarioService usuarioService)
+        public UsuarioAppService(IUnitOfWork unitOfWork, IUsuarioService usuarioService) : base(unitOfWork)
         {
             _usuarioService = usuarioService;
         }
 
-        public ResponseViewModel AdicionarUsuario(Usuario usuario)
+        public async Task<ResponseViewModel> AdicionarUsuario(Usuario usuario)
         {
-            return _usuarioService.AdicionarUsuario(usuario);
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var result = await _usuarioService.AdicionarUsuario(usuario);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = result };
+            }               
         }
 
     }

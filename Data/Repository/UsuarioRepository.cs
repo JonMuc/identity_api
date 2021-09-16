@@ -5,6 +5,7 @@ using Domain.Models;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Data.Repository
 {
@@ -13,11 +14,13 @@ namespace Data.Repository
         public static List<Usuario> _listaUsuario = new List<Usuario>();
         public UsuarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public Usuario AdicionarUsuario(Usuario usuario)
+        public async Task<int> AdicionarUsuarioAsync(Usuario request)
         {
-            usuario.Id = _listaUsuario.Count() == 0 ? 1 : _listaUsuario.OrderByDescending(x => x.Id).First().Id + 1;
-            _listaUsuario.Add(usuario);
-            return usuario;
+            var sql = @" INSERT INTO tbl_usuario (Nome, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilInstagram, PerfilTwitter, Descricao)
+                                    VALUES (@Nome, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilInstagram, @PerfilTwitter, @Descricao)
+                         SELECT @@IDENTITY";
+            
+            return await _unitOfWork.Connection.ExecuteScalarAsync<int>(sql, request, _unitOfWork?.Transaction);
         }
 
         //public PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa)

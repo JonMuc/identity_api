@@ -13,7 +13,8 @@ namespace Data.Repository
 
         public UnitOfWork(IDbConnection connection)
         {
-            Connection = new SqlConnection("Data Source=JOAOLUIZ;Initial Catalog=identityDB;Integrated Security=True");
+            //Connection = new SqlConnection("Data Source=JOAOLUIZ;Initial Catalog=identityDB;Integrated Security=True");
+            Connection = new SqlConnection("Server=tcp:noticia-bd.database.windows.net,1433;Initial Catalog=noticia-base;Persist Security Info=False;User ID=user157923admin;Password=nOv5vMJ&n!@cH2l;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         public void BeginTransaction()

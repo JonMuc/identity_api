@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
 using Domain.Validations;
+using System.Threading.Tasks;
 
 namespace Domain.Services
 {
@@ -15,11 +16,11 @@ namespace Domain.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public ResponseViewModel AdicionarUsuario(Usuario usuario)
+        public async Task<int> AdicionarUsuario(Usuario usuario)
         {
             _usuarioValidation.ValidarSalvarUsuario(usuario);
-            var result = _usuarioRepository.AdicionarUsuario(usuario);
-            return new ResponseViewModel { Sucesso = true, Objeto = result };            
+            var result = await _usuarioRepository.AdicionarUsuarioAsync(usuario);
+            return result;           
         }
 
         //public ResponseViewModel ListarPessoaFisica()

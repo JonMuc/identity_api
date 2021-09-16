@@ -2,6 +2,7 @@
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
+using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
@@ -19,9 +20,9 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult SalvarUsuario([FromBody] Usuario usuario)
+        public async Task<IActionResult> SalvarUsuario([FromBody] Usuario usuario)
         {
-            var response = _usuarioAppService.AdicionarUsuario(usuario);
+            var response = await _usuarioAppService.AdicionarUsuario(usuario);
             return Ok(response);
         }
     }

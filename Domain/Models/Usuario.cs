@@ -10,7 +10,7 @@
         public string IdGoogle { get; set; }
         public string IdFacebook { get; set; }
         public string PerfilLinkedin { get; set; }
-        public string PerfilInstagran { get; set; }
+        public string PerfilInstagram { get; set; }
         public string PerfilTwitter { get; set; }
         public string Descricao { get; set; }
     }

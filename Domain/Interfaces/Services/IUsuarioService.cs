@@ -1,10 +1,11 @@
 ﻿using Domain.Models;
+using System.Threading.Tasks;
 
 namespace Domain.Services
 {
     public interface IUsuarioService
     {
-        ResponseViewModel AdicionarUsuario(Usuario usuario);
+        Task<int> AdicionarUsuario(Usuario usuario);
         //ResponseViewModel ListarPessoaFisica();
         //ResponseViewModel AtualizarPessoaFisica(PessoaFisica pessoa);
         //ResponseViewModel DeletarPessoaFisica(PessoaFisica pessoa);
