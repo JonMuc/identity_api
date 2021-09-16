@@ -1,6 +1,4 @@
 --------
-Segue Deafio Técnico
 
-- Utilizei .Net Core 5.0
-- Removi todas as pastas 'bin' e 'obj' para comprimir
+- .Net Core 5.0
 - Adicionei o swagger para testes dos endpoints
