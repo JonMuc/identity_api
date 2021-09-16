@@ -17,3 +17,14 @@ Api/obj/Debug/net5.0/Api.csproj.FileListAbsolute.txt
 Data/obj/Debug/net5.0/Data.csproj.FileListAbsolute.txt
 Domain/obj/Debug/net5.0/Domain.csproj.FileListAbsolute.txt
 IoC/obj/Debug/net5.0/IoC.csproj.FileListAbsolute.txt
+IoC/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+Domain/obj/Debug/net5.0/Domain.AssemblyInfo.cs
+Data/obj/Debug/net5.0/Data.AssemblyInfo.cs
+Data/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+Application/obj/Debug/net5.0/Application.AssemblyInfo.cs
+Application/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+Api/obj/Debug/net5.0/Api.MvcApplicationPartsAssemblyInfo.cs
+Api/obj/Debug/net5.0/Api.AssemblyInfo.cs
+Domain/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+Api/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+IoC/obj/Debug/net5.0/IoC.AssemblyInfo.cs
