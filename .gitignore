@@ -1,7 +1,6 @@
 
 *.v2
 .vs/IdentityApi/v16/.suo
-*.cs
 *.cache
 *.editorconfig
 *.dll
