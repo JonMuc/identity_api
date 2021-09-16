@@ -16,7 +16,7 @@ namespace IoC
         {
             // Repository
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-            services.AddTransient<IDbConnection>(_ => new SqlConnection("Data Source=JOAOLUIZ;Initial Catalog=identityDB;Integrated Security=True"));
+            services.AddTransient<IDbConnection>(_ => new SqlConnection("Server=tcp:noticia-bd.database.windows.net,1433;Initial Catalog=noticia-base;Persist Security Info=False;User ID=user157923admin;Password=nOv5vMJ&n!@cH2l;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
             services.AddTransient<IPessoaFisicaRepository, PessoaFisicaRepository>();
             services.AddTransient<IPessoaJuridicaRepository, PessoaJuridicaRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
@@ -35,6 +35,7 @@ namespace IoC
             services.AddTransient<NoticiaAppService>();
             services.AddTransient<PessoaFisicaAppService>();
             services.AddTransient<PessoaJuridicaAppService>();
+            services.AddTransient<UsuarioAppService>();
         }
     }
 }

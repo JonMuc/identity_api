@@ -6,5 +6,12 @@
         public string Email { get; set; }
         public string Senha { get; set; }
         public string Telefone { get; set; }
+        public string Foto { get; set; }
+        public string IdGoogle { get; set; }
+        public string IdFacebook { get; set; }
+        public string PerfilLinkedin { get; set; }
+        public string PerfilInstagran { get; set; }
+        public string PerfilTwitter { get; set; }
+        public string Descricao { get; set; }
     }
 }
