@@ -29,3 +29,11 @@ Data/obj/Debug/net5.0/Data.pdb
 *.pdb
 *.dll
 *.pdb
+*.json
+IoC/obj/project.assets.json
+.vs/IdentityApi/v16/.suo
+Api/bin/Debug/net5.0/Api.deps.json
+*.dll
+Api/bin/Debug/net5.0/Api.exe
+*.dll
+Api/bin/Debug/net5.0/Application.dll

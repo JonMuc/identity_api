@@ -8,7 +8,7 @@ namespace Domain.Interfaces
         Usuario AdicionarUsuario(Usuario usuario);
         //PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa);
         //bool DeletarPessoaFisica(PessoaFisica pessoa);
-        //IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
+        IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
         //List<PessoaFisica> ListarPessoaFisica();
     }
 }
