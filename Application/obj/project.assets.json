@@ -87,23 +87,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\1513 IRON\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\JoaoVictor\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\identity_projeto\\Identity_Api\\identity\\Application\\Application.csproj",
+      "projectUniqueName": "C:\\ProjetoJonas\\identity_api\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "C:\\identity_projeto\\Identity_Api\\identity\\Application\\Application.csproj",
-      "packagesPath": "C:\\Users\\1513 IRON\\.nuget\\packages\\",
-      "outputPath": "C:\\identity_projeto\\Identity_Api\\identity\\Application\\obj\\",
+      "projectPath": "C:\\ProjetoJonas\\identity_api\\Application\\Application.csproj",
+      "packagesPath": "C:\\Users\\JoaoVictor\\.nuget\\packages\\",
+      "outputPath": "C:\\ProjetoJonas\\identity_api\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\1513 IRON\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JoaoVictor\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -117,8 +118,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\identity_projeto\\Identity_Api\\identity\\Domain\\Domain.csproj"
+            "C:\\ProjetoJonas\\identity_api\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\ProjetoJonas\\identity_api\\Domain\\Domain.csproj"
             }
           }
         }
@@ -147,7 +148,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.206\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
