@@ -15,29 +15,29 @@ namespace Application.AppServices
             _usuarioService = usuarioService;
         }
 
-        public ResponseViewModel AdicionarPessoaFisica(PessoaFisica pessoa)
+        public ResponseViewModel AdicionarUsuario(Usuario usuario)
         {
-            return _usuarioService.AdicionarPessoaFisica(pessoa);
+            return _usuarioService.AdicionarUsuario(usuario);
         }
 
-        public ResponseViewModel ListarPessoaFisica()
-        {
-            return _usuarioService.ListarPessoaFisica();
-        }
+        //public ResponseViewModel ListarPessoaFisica()
+        //{
+        //    return _usuarioService.ListarPessoaFisica();
+        //}
 
-        public ResponseViewModel AtualizarPessoaFisica(PessoaFisica pessoa)
-        {
-            return _usuarioService.AtualizarPessoaFisica(pessoa);
-        }
+        //public ResponseViewModel AtualizarPessoaFisica(PessoaFisica pessoa)
+        //{
+        //    return _usuarioService.AtualizarPessoaFisica(pessoa);
+        //}
 
-        public ResponseViewModel DeletarPessoaFisica(PessoaFisica pessoa)
-        {
-            return _usuarioService.DeletarPessoaFisica(pessoa);
-        }
+        //public ResponseViewModel DeletarPessoaFisica(PessoaFisica pessoa)
+        //{
+        //    return _usuarioService.DeletarPessoaFisica(pessoa);
+        //}
 
-        public ResponseViewModel BuscarPessoaFisica(long idPessoa)
-        {
-            return _usuarioService.BuscarPessoaFisica(idPessoa);
-        }
+        //public ResponseViewModel BuscarPessoaFisica(long idPessoa)
+        //{
+        //    return _usuarioService.BuscarPessoaFisica(idPessoa);
+        //}
     }
 }

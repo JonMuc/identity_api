@@ -10,33 +10,33 @@ namespace Data.Repository
 {
     public class UsuarioRepository : BaseRepository, IUsuarioRepository
     {
-        public static List<PessoaFisica> _listaPessoasFisica = new List<PessoaFisica>();
+        public static List<Usuario> _listaUsuario = new List<Usuario>();
         public UsuarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public PessoaFisica AdicionarPessoaFisica(PessoaFisica pessoa)
+        public Usuario AdicionarUsuario(Usuario usuario)
         {
-            pessoa.Id = _listaPessoasFisica.Count() == 0 ? 1 : _listaPessoasFisica.OrderByDescending(x => x.Id).First().Id + 1;
-            _listaPessoasFisica.Add(pessoa);
-            return pessoa;
+            usuario.Id = _listaUsuario.Count() == 0 ? 1 : _listaUsuario.OrderByDescending(x => x.Id).First().Id + 1;
+            _listaUsuario.Add(usuario);
+            return usuario;
         }
 
-        public PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa)
-        {
-            var index = _listaPessoasFisica.FindIndex(x => x.Id == pessoa.Id);
-            _listaPessoasFisica[index] = pessoa;
-            return pessoa;
-        }
+        //public PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa)
+        //{
+        //    var index = _listaPessoasFisica.FindIndex(x => x.Id == pessoa.Id);
+        //    _listaPessoasFisica[index] = pessoa;
+        //    return pessoa;
+        //}
 
-        public bool DeletarPessoaFisica(PessoaFisica pessoa)
-        {
-            var index = _listaPessoasFisica.FindIndex(x => x.Id == pessoa.Id);
-            if (index == -1)
-            {
-                return false;
-            }
-            _listaPessoasFisica.RemoveAt(index);
-            return true;
-        }
+        //public bool DeletarPessoaFisica(PessoaFisica pessoa)
+        //{
+        //    var index = _listaPessoasFisica.FindIndex(x => x.Id == pessoa.Id);
+        //    if (index == -1)
+        //    {
+        //        return false;
+        //    }
+        //    _listaPessoasFisica.RemoveAt(index);
+        //    return true;
+        //}
 
         public IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario)
         {
@@ -45,9 +45,9 @@ namespace Data.Repository
             return conexao.Query<Usuario>(sql);
         }
 
-        public List<PessoaFisica> ListarPessoaFisica()
-        {
-            return _listaPessoasFisica;
-        }
+        //public List<PessoaFisica> ListarPessoaFisica()
+        //{
+        //    return _listaPessoasFisica;
+        //}
     }
 }

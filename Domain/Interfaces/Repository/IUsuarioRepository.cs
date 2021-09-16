@@ -5,10 +5,10 @@ namespace Domain.Interfaces
 {
     public interface IUsuarioRepository
     {
-        PessoaFisica AdicionarPessoaFisica(PessoaFisica pessoa);
-        PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa);
-        bool DeletarPessoaFisica(PessoaFisica pessoa);
-        IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
-        List<PessoaFisica> ListarPessoaFisica();
+        Usuario AdicionarUsuario(Usuario usuario);
+        //PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa);
+        //bool DeletarPessoaFisica(PessoaFisica pessoa);
+        //IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
+        //List<PessoaFisica> ListarPessoaFisica();
     }
 }

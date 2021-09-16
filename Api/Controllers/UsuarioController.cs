@@ -8,20 +8,20 @@ namespace ApiCrud.Controllers
     [ApiController, Route("usuario")]
     public class UsuarioController : ControllerBase
     {
-        private readonly NoticiaAppService _informacaoGoogleAppService;
+        private readonly UsuarioAppService _usuarioAppService;
 
-        public UsuarioController(NoticiaAppService informacaoGoogleAppService)
+        public UsuarioController(UsuarioAppService usuarioAppService)
         {
-            _informacaoGoogleAppService = informacaoGoogleAppService;
+            _usuarioAppService = usuarioAppService;
         }
 
         [HttpPost("salvar-usuario")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult SalvarUsuario([FromBody] Usuario requestViewModel)
+        public IActionResult SalvarUsuario([FromBody] Usuario usuario)
         {
-            var response = _informacaoGoogleAppService.ListarManchete();
+            var response = _usuarioAppService.AdicionarUsuario(usuario);
             return Ok(response);
         }
     }
