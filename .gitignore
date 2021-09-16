@@ -349,3 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 /Src/Tio.Digital.Api/.config/dotnet-tools.json
+.vs/IdentityApi/v16/.suo

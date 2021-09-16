@@ -26,10 +26,12 @@ namespace IoC
             services.AddTransient<IPessoaFisicaService, PessoaFisicaService>();
             services.AddTransient<IPessoaJuridicaService, PessoaJuridicaService>();
             services.AddTransient<ICrawlingG1Service, CrawlingG1Service>();
+            services.AddTransient<IUsuarioService, UsuarioService>();
 
             // Validations
             services.AddTransient<PessoaFisicaValidation>();
             services.AddTransient<PessoaJuridicaValidation>();
+            services.AddTransient<UsuarioValidation>();
 
             // AppServices
             services.AddTransient<NoticiaAppService>();
