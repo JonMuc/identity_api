@@ -1,3 +1,20 @@
 
 *.v2
 .vs/IdentityApi/v16/.suo
+*.cs
+*.cache
+*.editorconfig
+*.dll
+*.exe
+*.pdb
+*.targets
+Application/obj/Debug/net5.0/Application.csproj.FileListAbsolute.txt
+*.props
+*.json
+.vs/IdentityApi/config/applicationhost.config
+*.CopyComplete
+Api/obj/Debug/net5.0/Api.csproj.FileListAbsolute.txt
+*.xml
+Data/obj/Debug/net5.0/Data.csproj.FileListAbsolute.txt
+Domain/obj/Debug/net5.0/Domain.csproj.FileListAbsolute.txt
+IoC/obj/Debug/net5.0/IoC.csproj.FileListAbsolute.txt
