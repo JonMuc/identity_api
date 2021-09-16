@@ -350,3 +350,8 @@ MigrationBackup/
 .ionide/
 /Src/Tio.Digital.Api/.config/dotnet-tools.json
 .vs/IdentityApi/v16/.suo
+.vs/IdentityApi/v16/.suo
+Api/bin/Debug/net5.0/Api.dll
+Api/bin/Debug/net5.0/Application.dll
+Api/bin/Debug/net5.0/Data.pdb
+Api/bin/Debug/net5.0/IoC.pdb
