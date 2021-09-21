@@ -28,3 +28,7 @@ Api/obj/Debug/net5.0/Api.AssemblyInfo.cs
 Domain/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
 Api/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
 IoC/obj/Debug/net5.0/IoC.AssemblyInfo.cs
+Job/Job.csproj.user
+Job/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
+Job/obj/Debug/net5.0/Job.AssemblyInfo.cs
+Job/obj/Debug/net5.0/Job.csproj.FileListAbsolute.txt
