@@ -6,10 +6,10 @@ namespace Domain.Interfaces
 {
     public interface IUsuarioRepository
     {
-        Task<int> AdicionarUsuarioAsync(Usuario usuario);
-        //PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa);
-        //bool DeletarPessoaFisica(PessoaFisica pessoa);
+        Task<long> AdicionarUsuarioAsync(Usuario usuario);
+        Task<Usuario> GetUsuarioById(long idUsuarioa);
+        Task DeletarUsuarioAsync(long idUsuario);
         IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
-        //List<PessoaFisica> ListarPessoaFisica();
+        Task<Usuario> AtualizarUsuarioAsync(Usuario usuario);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
+using Domain.Util;
 using Domain.Validations;
 using System.Threading.Tasks;
 
@@ -16,37 +17,40 @@ namespace Domain.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<int> AdicionarUsuario(Usuario usuario)
+        public async Task<long> AdicionarUsuario(Usuario usuario)
         {
             _usuarioValidation.ValidarSalvarUsuario(usuario);
             var result = await _usuarioRepository.AdicionarUsuarioAsync(usuario);
             return result;           
         }
 
-        //public ResponseViewModel ListarPessoaFisica()
-        //{
-        //    var result = _usuarioRepository.BuscarUsuarioPorId(1);
-        //    // var result = _pessoaFisicaRepository.ListarPessoaFisica();
-        //    return new ResponseViewModel { Sucesso = true, Objeto = result };
-        //}
+        public async Task<Usuario> AtualizarUsuario(Usuario edit)
+        {
+            
+            var user = await _usuarioRepository.GetUsuarioById(edit.Id);
+            _usuarioValidation.VerificarExistenciaUsuario(user);
 
-        //public ResponseViewModel AtualizarPessoaFisica(PessoaFisica pessoa)
-        //{
-        //    _pessoaFisicaValidation.ValidarSalvarPessoaFisica(pessoa);
-        //    var result = _pessoaFisicaRepository.AtualizarPessoaFisica(pessoa);
-        //    return new ResponseViewModel { Sucesso = true, Objeto = result };
-        //}
+            var usuario = _usuarioValidation.CompararUsuario(edit, user);
+            _usuarioValidation.ValidarSalvarUsuario(usuario);
 
-        //public ResponseViewModel DeletarPessoaFisica(PessoaFisica pessoa)
-        //{
-        //    var result = _pessoaFisicaRepository.DeletarPessoaFisica(pessoa);
-        //    return new ResponseViewModel { Sucesso = result, Objeto = pessoa };
-        //}
+            var result = await _usuarioRepository.AtualizarUsuarioAsync(usuario);
 
-        //public ResponseViewModel BuscarPessoaFisica(long idPessoa)
-        //{
-        //    var result = _pessoaFisicaRepository.BuscarPessoaFisica(idPessoa);
-        //    return new ResponseViewModel { Sucesso = true, Objeto = result };
-        //}
+            return result;
+        }
+
+        public async Task DeletarUsuarioById(long idUsuario)
+        {
+            var result = await _usuarioRepository.GetUsuarioById(idUsuario);
+            _usuarioValidation.VerificarExistenciaUsuario(result);
+
+            await _usuarioRepository.DeletarUsuarioAsync(idUsuario);            
+        }
+
+        public async Task<Usuario> VisualizarUsuarioById(long idUsuario)
+        {            
+            var result = await _usuarioRepository.GetUsuarioById(idUsuario);
+            _usuarioValidation.VerificarExistenciaUsuario(result);
+            return result;
+        }
     }
 }

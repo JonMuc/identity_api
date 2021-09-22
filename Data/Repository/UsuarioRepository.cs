@@ -14,43 +14,54 @@ namespace Data.Repository
         public static List<Usuario> _listaUsuario = new List<Usuario>();
         public UsuarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-        public async Task<int> AdicionarUsuarioAsync(Usuario request)
+        public async Task<long> AdicionarUsuarioAsync(Usuario request)
         {
             var sql = @" INSERT INTO tbl_usuario (Nome, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilInstagram, PerfilTwitter, Descricao)
                                     VALUES (@Nome, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilInstagram, @PerfilTwitter, @Descricao)
                          SELECT @@IDENTITY";
             
-            return await _unitOfWork.Connection.ExecuteScalarAsync<int>(sql, request, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
         }
 
-        //public PessoaFisica AtualizarPessoaFisica(PessoaFisica pessoa)
-        //{
-        //    var index = _listaPessoasFisica.FindIndex(x => x.Id == pessoa.Id);
-        //    _listaPessoasFisica[index] = pessoa;
-        //    return pessoa;
-        //}
+        public async Task<Usuario> AtualizarUsuarioAsync(Usuario user)
+        {
+            var sql = @" UPDATE tbl_usuario
+                            SET Nome = @Nome, Email = @Email, Senha = @Senha, Telefone = @Telefone, CriadoEm = @CriadoEm, AtualizadoEm = @AtualizadoEm, IdAtualizadoPor = @IdAtualizadoPor, IdCriadoPor = @IdCriadoPor,
+                                Foto = @Foto, IdGoogle = @IdGoogle, IdFacebook = @IdFacebook, PerfilLinkedin = @PerfilLinkedin, PerfilInstagram = @PerfilInstagram, PerfilTwitter = @PerfilTwitter, Descricao = @Descricao
+                            WHERE Id = @Id";
+            
+            await _unitOfWork.Connection.ExecuteAsync(sql, user, _unitOfWork?.Transaction);
+            return user;
+        }
 
-        //public bool DeletarPessoaFisica(PessoaFisica pessoa)
-        //{
-        //    var index = _listaPessoasFisica.FindIndex(x => x.Id == pessoa.Id);
-        //    if (index == -1)
-        //    {
-        //        return false;
-        //    }
-        //    _listaPessoasFisica.RemoveAt(index);
-        //    return true;
-        //}
+        public async Task DeletarUsuarioAsync(long idUsuario)
+        {
+            var sql = @" DELETE FROM tbl_usuario WHERE Id = @Id";
+            var obj = new
+            {
+                Id = idUsuario
+            };
+
+           await _unitOfWork.Connection.ExecuteAsync(sql, obj , _unitOfWork?.Transaction);
+
+        }
+
+        public async Task<Usuario> GetUsuarioById(long idUsuario)
+        {
+            var sql = @" SELECT * FROM tbl_usuario WHERE Id = @Id";
+            var obj = new Usuario
+            {
+                Id = idUsuario
+            };
+
+            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);            
+        }
 
         public IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario)
         {
             using SqlConnection conexao = new(_connectionString);
             string sql = @"SELECT * FROM TBL_USUARIOS";
             return conexao.Query<Usuario>(sql);
-        }
-
-        //public List<PessoaFisica> ListarPessoaFisica()
-        //{
-        //    return _listaPessoasFisica;
-        //}
+        }       
     }
 }

@@ -5,10 +5,10 @@ namespace Domain.Services
 {
     public interface IUsuarioService
     {
-        Task<int> AdicionarUsuario(Usuario usuario);
-        //ResponseViewModel ListarPessoaFisica();
-        //ResponseViewModel AtualizarPessoaFisica(PessoaFisica pessoa);
-        //ResponseViewModel DeletarPessoaFisica(PessoaFisica pessoa);
+        Task<long> AdicionarUsuario(Usuario usuario);
+        Task<Usuario> VisualizarUsuarioById(long idUsuario);
+        Task<Usuario> AtualizarUsuario(Usuario usuario);
+        Task DeletarUsuarioById(long idUsuario);
         //ResponseViewModel BuscarPessoaFisica(long idPessoa);
     }
 }

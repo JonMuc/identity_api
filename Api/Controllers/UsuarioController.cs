@@ -20,9 +20,39 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> SalvarUsuario([FromBody] Usuario usuario)
+        public async Task<IActionResult> Salvar([FromBody] Usuario usuario)
         {
             var response = await _usuarioAppService.AdicionarUsuario(usuario);
+            return Ok(response);
+        }
+
+        [HttpPost("atualizar-usuario")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Atualizar([FromBody] Usuario usuario)
+        {
+            var response = await _usuarioAppService.AtualizarUsuario(usuario);
+            return Ok(response);
+        }
+
+        [HttpDelete("excluir-usuario/{idUsuario:int}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Deletar(int idUsuario)
+        {
+            var response = await _usuarioAppService.DeletarUsuarioById(idUsuario);
+            return Ok(response);
+        }
+
+        [HttpGet("visualizar-usuario/{idUsuario:int}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Visualizar(int idUsuario)
+        {
+            var response = await _usuarioAppService.VisualizarUsuarioById(idUsuario);
             return Ok(response);
         }
     }
