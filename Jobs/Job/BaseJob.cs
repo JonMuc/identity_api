@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Quartz;
-using Quartz.Spi;
 using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
@@ -40,30 +39,6 @@ namespace Jobs.Job
                 IsRunning = false;
                 throw e;
             }
-        }
-
-        public IJob NewJob(TriggerFiredBundle bundle, IScheduler scheduler)
-        {
-            var scope = _serviceProvider.CreateScope();
-            IJob job;
-
-            try
-            {
-                job = scope.ServiceProvider.GetRequiredService(bundle.JobDetail.JobType) as IJob;
-            }
-            catch
-            {
-                scope.Dispose();
-                throw;
-            }
-
-            if (!_scopes.TryAdd(job, scope))
-            {
-                scope.Dispose();
-                throw new Exception("Failed to track DI scope");
-            }
-
-            return job;
         }
     }
 }

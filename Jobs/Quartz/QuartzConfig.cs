@@ -10,9 +10,7 @@ namespace Jobs.Quartz
         private static IServiceProvider _serviceProvider;
 
 
-        public QuartzConfig()
-        {
-        }
+        public QuartzConfig() { }
 
 
         public static void Config(IServiceProvider serviceProvider)
@@ -42,6 +40,22 @@ namespace Jobs.Quartz
                     .RepeatForever())
                 .Build();
             scheduler.Result.ScheduleJob(job, trigger);
+
+            IJobDetail job2 = JobBuilder.Create<ImportarNoticiasGooglePrincipaisJob>()
+                .WithIdentity("myJob2", "group2")
+                .Build();
+
+            ITrigger trigger2 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger2", "group2")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job2, trigger2);
+
+
+
             scheduler.Result.Start();
         }
     }
