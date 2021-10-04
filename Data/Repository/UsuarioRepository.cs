@@ -15,8 +15,8 @@ namespace Data.Repository
 
         public async Task<long> AdicionarUsuarioAsync(Usuario request)
         {
-            var sql = @" INSERT INTO tbl_usuario (Nome, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilInstagram, PerfilTwitter, Descricao)
-                                    VALUES (@Nome, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilInstagram, @PerfilTwitter, @Descricao)
+            var sql = @" INSERT INTO tbl_usuario (Nome, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilInstagram, PerfilTwitter, Descricao)
+                                    VALUES (@Nome, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilInstagram, @PerfilTwitter, @Descricao)
                          SELECT @@IDENTITY";
 
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
@@ -26,7 +26,7 @@ namespace Data.Repository
         {
             var sql = @" UPDATE tbl_usuario
                             SET Nome = @Nome, Email = @Email, Senha = @Senha, Telefone = @Telefone, CriadoEm = @CriadoEm, AtualizadoEm = @AtualizadoEm, IdAtualizadoPor = @IdAtualizadoPor, IdCriadoPor = @IdCriadoPor,
-                                Foto = @Foto, IdGoogle = @IdGoogle, IdFacebook = @IdFacebook, PerfilLinkedin = @PerfilLinkedin, PerfilInstagram = @PerfilInstagram, PerfilTwitter = @PerfilTwitter, Descricao = @Descricao
+                                StatusRegistro = @StatusRegistro, Foto = @Foto, IdGoogle = @IdGoogle, IdFacebook = @IdFacebook, PerfilLinkedin = @PerfilLinkedin, PerfilInstagram = @PerfilInstagram, PerfilTwitter = @PerfilTwitter, Descricao = @Descricao
                             WHERE Id = @Id";
 
             await _unitOfWork.Connection.ExecuteAsync(sql, user, _unitOfWork?.Transaction);
@@ -35,7 +35,9 @@ namespace Data.Repository
 
         public async Task DeletarUsuarioAsync(long idUsuario)
         {
-            var sql = @" DELETE FROM tbl_usuario WHERE Id = @Id";
+            var sql = @" UPDATE tbl_usuario
+                            SET StatusRegistro = 1
+                            WHERE Id = @Id";
             var obj = new
             {
                 Id = idUsuario

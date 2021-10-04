@@ -10,6 +10,6 @@ namespace Domain.Interfaces.Models
         DateTime? AtualizadoEm { get; set; }
         long IdAtualizadoPor { get; set; }
         long IdCriadoPor { get; set; }
-        StatusRegistro Status { get; set; }
+        StatusRegistro StatusRegistro { get; set; }
     }
 }

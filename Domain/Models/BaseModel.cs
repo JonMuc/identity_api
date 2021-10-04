@@ -11,6 +11,6 @@ namespace Domain.Models
         public DateTime? AtualizadoEm { get; set; }
         public long IdAtualizadoPor { get; set; }
         public long IdCriadoPor { get; set; }
-        public StatusRegistro Status { get; set; }
+        public StatusRegistro StatusRegistro { get; set; }
     }
 }

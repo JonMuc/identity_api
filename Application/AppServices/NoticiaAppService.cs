@@ -1,20 +1,25 @@
-﻿using Domain.Models;
+﻿using Domain.Interfaces.Repository;
+using Domain.Models;
+using Domain.Models.Enums;
 using Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Application.AppServices
 {
-    public class NoticiaAppService
+    public class NoticiaAppService : BaseAppService
     {
         private readonly ICrawlingGoogleService _crawlingGoogleService;
         private readonly ICrawlingG1Service _crawlingG1Service;
+        private readonly INoticiaService _noticiaService;
 
-        public NoticiaAppService(ICrawlingGoogleService crawlingGoogleService, ICrawlingG1Service crawlingG1Service)
+        public NoticiaAppService(IUnitOfWork unitOfWork, ICrawlingGoogleService crawlingGoogleService, ICrawlingG1Service crawlingG1Service, INoticiaService noticiaService) : base(unitOfWork)
         {
             _crawlingGoogleService = crawlingGoogleService;
             _crawlingG1Service = crawlingG1Service;
+            _noticiaService = noticiaService;
         }
 
         public ResponseViewModel ListarManchete()
@@ -34,24 +39,59 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
-        //public ResponseViewModel ListarPessoaFisica()
-        //{
-        //    return _pessoaFisicaService.ListarPessoaFisica();
-        //}
+        public async Task<ResponseViewModel> AdicionarNoticia(Noticia noticia)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var result = await _noticiaService.AdicionarNoticia(noticia);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = result };
+            }
+        }
 
-        //public ResponseViewModel AtualizarPessoaFisica(PessoaFisica pessoa)
-        //{
-        //    return _pessoaFisicaService.AtualizarPessoaFisica(pessoa);
-        //}
+        public async Task<ResponseViewModel> AtualizarNoticia(Noticia edit)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var result = await _noticiaService.AtualizarNoticia(edit);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = result };
+            }
+        }
 
-        //public ResponseViewModel DeletarPessoaFisica(PessoaFisica pessoa)
-        //{
-        //    return _pessoaFisicaService.DeletarPessoaFisica(pessoa);
-        //}
+        public async Task<ResponseViewModel> DeletarNoticiaById(int idNoticia)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                await _noticiaService.DeletarNoticiaById(idNoticia);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = "O registro foi excluído com sucesso!" };
+            }
+        }
 
-        //public ResponseViewModel BuscarPessoaFisica(long idPessoa)
-        //{
-        //    return _pessoaFisicaService.BuscarPessoaFisica(idPessoa);
-        //}
+        public async Task<ResponseViewModel> VisualizarNoticiaById(int idNoticia)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var data = await _noticiaService.VisualizarNoticiaById(idNoticia);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = data };
+            }
+        }
+
+        public async Task<ResponseViewModel> ListarNoticiaPorTipo(TipoNoticia tipoNoticia)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var data = await _noticiaService.ListarNoticiaPorTipo(tipoNoticia);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = data };
+            }
+        }
     }
 }
