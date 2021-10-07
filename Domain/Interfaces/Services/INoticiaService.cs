@@ -12,5 +12,6 @@ namespace Domain.Services
         Task<Noticia> AtualizarNoticia(Noticia noticia);
         Task DeletarNoticiaById(long idNoticia);
         Task<List<Noticia>> ListarNoticiaPorTipo(TipoNoticia tipoNoticia);
+        bool VerificarNoticiaExistente(string noticia);
     }
 }

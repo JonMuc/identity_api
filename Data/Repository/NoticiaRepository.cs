@@ -4,7 +4,6 @@ using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Enums;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace Data.Repository
@@ -13,13 +12,23 @@ namespace Data.Repository
     {
         public NoticiaRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
+        public long AdicionarNoticia(Noticia request)
+        {
+            var sql = @" INSERT INTO tbl_noticia (AtualizadoEm, CriadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Titulo, UrlImage, Fonte, Link, HoraAtras, TipoNoticia, OrigemNoticia )
+                                    VALUES (@AtualizadoEm, @CriadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Titulo, @UrlImage, @Fonte, @Link, @HoraAtras, @TipoNoticia, @OrigemNoticia)
+                         SELECT @@IDENTITY";
+            var response = _unitOfWork.Connection.ExecuteScalar<long>(sql, request, _unitOfWork?.Transaction);
+            return response;
+        }
+
+
         public async Task<long> AdicionarNoticiaAsync(Noticia request)
         {
             var sql = @" INSERT INTO tbl_noticia (AtualizadoEm, CriadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Titulo, UrlImage, Fonte, Link, HoraAtras, TipoNoticia)
                                     VALUES (@AtualizadoEm, @CriadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Titulo, @UrlImage, @Fonte, @Link, @HoraAtras, @TipoNoticia)
                          SELECT @@IDENTITY";
-
-            return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
+            var response = await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
+            return response;
         }
 
         public async Task<Noticia> AtualizarNoticiaAsync(Noticia noticia)
@@ -66,7 +75,21 @@ namespace Data.Repository
                 TipoNoticia = tipoNoticia
             };
 
-           return (List<Noticia>)await _unitOfWork.Connection.QueryAsync<Noticia>(sql, obj, _unitOfWork?.Transaction);
+            return (List<Noticia>)await _unitOfWork.Connection.QueryAsync<Noticia>(sql, obj, _unitOfWork?.Transaction);
+        }
+
+        public async Task<bool> VerificarExistenciaTituloAsync(string titulo)
+        {
+            var sql = @"SELECT count(*) FROM tbl_noticia WHERE Titulo like @titulo";
+            var response = await _unitOfWork.Connection.ExecuteScalarAsync<bool>(sql, new { titulo }, _unitOfWork?.Transaction);
+            return response;
+        }
+
+        public bool VerificarExistenciaTitulo(string titulo)
+        {
+            var sql = @"SELECT count(*) FROM tbl_noticia WHERE Titulo like @titulo";
+            var response = _unitOfWork.Connection.ExecuteScalar<bool>(sql, new { titulo }, _unitOfWork?.Transaction);
+            return response;
         }
     }
 }

@@ -41,6 +41,10 @@ namespace Jobs.Quartz
                 .Build();
             scheduler.Result.ScheduleJob(job, trigger);
 
+
+
+
+
             IJobDetail job2 = JobBuilder.Create<ImportarNoticiasGooglePrincipaisJob>()
                 .WithIdentity("myJob2", "group2")
                 .Build();

@@ -17,14 +17,14 @@ namespace Jobs
         {
             // Repository
             services.AddSingleton<IUnitOfWork, UnitOfWork>();
-            services.AddSingleton<IDbConnection>(_ => new SqlConnection("Server=tcp:noticia-bd.database.windows.net,1433;Initial Catalog=noticia-base;Persist Security Info=False;User ID=user157923admin;Password=nOv5vMJ&n!@cH2l;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
-            services.AddSingleton<IUsuarioRepository, UsuarioRepository>();
+            services.AddSingleton<IDbConnection>(_ => new SqlConnection("Server=tcp:noticia-bd.database.windows.net,1433;Initial Catalog=noticia-base;Persist Security Info=False;User ID=user157923admin;Password=nOv5vMJ&n!@cH2l;MultipleActiveResultSets=true;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+            services.AddSingleton<INoticiaRepository, NoticiaRepository>();
 
             // Services
-            services.AddSingleton<IUsuarioService, UsuarioService>();
+            services.AddSingleton<INoticiaService, NoticiaService>();
 
             // Validations
-            services.AddSingleton<UsuarioValidation>();
+            services.AddSingleton<NoticiaValidation>();
 
             //Jobs
             services.AddSingleton<ImportarNoticiasG1PrincipaisJob>();

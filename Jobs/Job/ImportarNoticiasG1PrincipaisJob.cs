@@ -1,17 +1,11 @@
-﻿using Domain.Interfaces;
-using Domain.Services;
-
-namespace Jobs.Job
+﻿namespace Jobs.Job
 {
     public class ImportarNoticiasG1PrincipaisJob : BaseJob
     {
-        protected readonly IUsuarioRepository _usuarioRepository;
-        protected readonly IUsuarioService _usuarioService;
 
-        public ImportarNoticiasG1PrincipaisJob(IUsuarioRepository usuarioRepository, IUsuarioService usuarioService)
+
+        public ImportarNoticiasG1PrincipaisJob()
         {
-            _usuarioRepository = usuarioRepository;
-            _usuarioService = usuarioService;
         }
 
 
@@ -22,7 +16,6 @@ namespace Jobs.Job
 
         protected override void Init()
         {
-            var teste = _usuarioRepository.BuscarUsuarioPorId(1);
         }
     }
 }

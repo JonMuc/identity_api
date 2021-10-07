@@ -9,8 +9,11 @@ namespace Domain.Interfaces
     {
         Task<long> AdicionarNoticiaAsync(Noticia noticia);
         Task<Noticia> GetNoticiaById(long idNoticia);
-        Task DeletarNoticiaAsync(long idNoticia);        
+        Task DeletarNoticiaAsync(long idNoticia);
         Task<Noticia> AtualizarNoticiaAsync(Noticia noticia);
         Task<List<Noticia>> ListarNoticiaPorTipoAsync(TipoNoticia tipoNoticia);
+        Task<bool> VerificarExistenciaTituloAsync(string titulo);
+        long AdicionarNoticia(Noticia request);
+        bool VerificarExistenciaTitulo(string titulo);
     }
 }

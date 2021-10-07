@@ -1,28 +1,80 @@
 ﻿using Domain.Interfaces;
+using Domain.Models;
+using Domain.Models.Enums;
 using Domain.Services;
+using HtmlAgilityPack;
+using System;
+using System.Collections.Generic;
+using System.Net;
 
 namespace Jobs.Job
 {
     public class ImportarNoticiasGooglePrincipaisJob : BaseJob
     {
-        protected readonly IUsuarioRepository _usuarioRepository;
-        protected readonly IUsuarioService _usuarioService;
+        protected readonly INoticiaRepository _noticiaRepository;
+        protected readonly INoticiaService _noticiaService;
 
-        public ImportarNoticiasGooglePrincipaisJob(IUsuarioRepository usuarioRepository, IUsuarioService usuarioService)
+        private static readonly string _urlBaseGoogle = "https://news.google.com/topstories?hl=pt-BR&gl=BR&ceid=BR:pt-419";
+        private static readonly string _urlBaseNoticiaGoogle = "https://news.google.com";
+
+        public ImportarNoticiasGooglePrincipaisJob(INoticiaRepository noticiaRepository, INoticiaService noticiaService)
         {
-            _usuarioRepository = usuarioRepository;
-            _usuarioService = usuarioService;
+            _noticiaRepository = noticiaRepository;
+            _noticiaService = noticiaService;
         }
 
 
         public override void Process()
         {
-            //METODOS
+            ProcessarNoticias();
         }
 
-        protected override void Init()
+        protected override void Init() { }
+
+        private void ProcessarNoticias()
         {
-            var teste = _usuarioRepository.BuscarUsuarioPorId(1);
+            string url = _urlBaseGoogle;
+            string html;
+
+            var htmlDoc = new HtmlDocument();
+
+            using (WebClient wc = new WebClient())
+            {
+                wc.Headers["Cookie"] = "security=true";
+                html = wc.DownloadString(url);
+            }
+
+
+            htmlDoc.LoadHtml(html);
+            // pegando uma lista com as tabelas da página
+            var todasAsTabelas = htmlDoc.DocumentNode.SelectNodes("//div[contains(@class, 'DBQmFf NclIid BL5WZb Oc0wGc xP6mwf j7vNaf')]");
+
+            var listaNoticias = new List<Noticia>();
+
+            foreach (HtmlNode node in todasAsTabelas)
+            {
+                var novaNoticia = new Noticia();
+                novaNoticia.Titulo = node.SelectSingleNode(".//div//article//h3//a").InnerText;
+                novaNoticia.Link = _urlBaseNoticiaGoogle + node.SelectSingleNode(".//div//article//h3//a").GetAttributeValue("href", string.Empty).Remove(0, 1);
+                novaNoticia.Fonte = node.SelectSingleNode(".//div//article//div//div//a").InnerText;
+                novaNoticia.HoraAtras = node.SelectSingleNode(".//div//article//div//div//time").InnerText;
+                novaNoticia.UrlImage = node.SelectSingleNode(".//div//a//figure//img").GetAttributeValue("src", string.Empty);
+                novaNoticia.CriadoEm = DateTime.Now;
+                novaNoticia.OrigemNoticia = OrigemNoticia.GoogleNews;
+                listaNoticias.Add(novaNoticia);
+            }
+            SalvarNoticias(listaNoticias);
+        }
+
+        private void SalvarNoticias(List<Noticia> listaNoticias)
+        {
+            foreach (Noticia noticia in listaNoticias)
+            {
+                if (!_noticiaService.VerificarNoticiaExistente(noticia.Titulo))
+                {
+                    _noticiaRepository.AdicionarNoticia(noticia);
+                }
+            }
         }
     }
 }

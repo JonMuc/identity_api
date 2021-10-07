@@ -10,5 +10,6 @@ namespace Domain.Models
         public string Link { get; set; }
         public string HoraAtras { get; set; }
         public TipoNoticia TipoNoticia { get; set; }
+        public OrigemNoticia OrigemNoticia { get; set; }
     }
 }
