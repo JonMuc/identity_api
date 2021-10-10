@@ -21,6 +21,7 @@ namespace IoC
             services.AddTransient<IPessoaJuridicaRepository, PessoaJuridicaRepository>();
             services.AddTransient<IUsuarioRepository, UsuarioRepository>();
             services.AddTransient<INoticiaRepository, NoticiaRepository>();
+            services.AddTransient<INoticiaFavoritoRepository, NoticiaFavoritoRepository>();
 
             // Services
             services.AddTransient<ICrawlingGoogleService, CrawlingGoogleService>();
@@ -29,15 +30,18 @@ namespace IoC
             services.AddTransient<ICrawlingG1Service, CrawlingG1Service>();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<INoticiaService, NoticiaService>();
+            services.AddTransient<INoticiaFavoritoService, NoticiaFavoritoService>();
 
             // Validations
             services.AddTransient<PessoaFisicaValidation>();
             services.AddTransient<PessoaJuridicaValidation>();
             services.AddTransient<UsuarioValidation>();
             services.AddTransient<NoticiaValidation>();
+            services.AddTransient<NoticiaFavoritoValidation>();
 
             // AppServices
             services.AddTransient<NoticiaAppService>();
+            services.AddTransient<NoticiaFavoritoAppService>();
             services.AddTransient<PessoaFisicaAppService>();
             services.AddTransient<PessoaJuridicaAppService>();
             services.AddTransient<UsuarioAppService>();
