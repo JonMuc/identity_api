@@ -11,6 +11,6 @@ namespace Domain.Interfaces
         Task<NoticiaFavorito> GetNoticiaFavoritoById(long idNoticiaFavorito);
         Task DeletarNoticiaFavoritoAsync(long idNoticiaFavorito);
         Task<NoticiaFavorito> AtualizarNoticiaFavoritoAsync(NoticiaFavorito noticiaFavorito);
-        //Task<List<Noticia>> ListarNoticiaPorTipoAsync(TipoNoticia tipoNoticia);
+        Task<List<Noticia>> ListarNoticiaFavoritoAsync(long idUsuario);
     }
 }

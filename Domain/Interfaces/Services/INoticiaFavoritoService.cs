@@ -11,6 +11,6 @@ namespace Domain.Services
         Task<NoticiaFavorito> VisualizarNoticiaFavoritoById(long idNoticiaFavorito);
         Task<NoticiaFavorito> AtualizarNoticiaFavorito(NoticiaFavorito noticiaFavorito);
         Task DeletarNoticiaFavoritoById(long idNoticiaFavorito);
-        //Task<List<Noticia>> ListarNoticiaPorTipo(TipoNoticia tipoNoticia);
+        Task<List<Noticia>> ListarNoticiaFavorito(long idUsuario);
     }
 }

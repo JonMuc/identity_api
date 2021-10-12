@@ -18,31 +18,35 @@ namespace Domain.Validations
             {
                 errosResponse.Add("A Notícia informada não existe.");
                 throw new ParametroException(errosResponse);
+            }           
+        }        
+
+        public List<Noticia> ValidarListaFavoritos(List<Noticia> list)
+        {
+            var errosResponse = new List<string>(0);
+            var listaValidada = new List<Noticia>();
+
+            if (list == null || list.Count == 0)
+            {
+                errosResponse.Add("Não existe notícias favoritadas vinculadas a este usuário.");
+                throw new ParametroException(errosResponse);
             }
+
+            foreach (Noticia noticia in list)
+            {
+                if (noticia.StatusRegistro == 0)
+                {
+                    listaValidada.Add(noticia);
+                }
+            }
+            
+            if (listaValidada == null)
+            {
+                errosResponse.Add("Não existe notícias favoritadas ativas para essa consulta.");
+                throw new ParametroException(errosResponse);
+            }
+            return listaValidada;
         }
-
-        //public void ValidarSalvarUsuario(Usuario usuario)
-        //{
-        //    var errosResponse = new List<string>(0);
-
-        //    if (usuario.Nome == null || usuario.Nome == "")
-        //    {
-        //        errosResponse.Add("Campo 'Nome' é obrigatório.");
-        //    }
-        //    if (usuario.Email == null || usuario.Email == "")
-        //    {
-        //        errosResponse.Add("Campo 'Email' é obrigatório.");
-        //    }            
-        //    if (usuario.Senha == null || usuario.Senha == "")
-        //    {
-        //        errosResponse.Add("Campo 'Senha' é obrigatório.");
-        //    }           
-
-        //    if (errosResponse.Count > 0)
-        //    {
-        //        throw new ParametroException(errosResponse);
-        //    }
-        //}
 
         public NoticiaFavorito CompararNoticiaFavorito(NoticiaFavorito edit, NoticiaFavorito noticiaFavorito)
         {

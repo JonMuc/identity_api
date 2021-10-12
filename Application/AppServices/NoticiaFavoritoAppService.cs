@@ -79,15 +79,15 @@ namespace Application.AppServices
             }
         }
 
-        //public async Task<ResponseViewModel> ListarNoticiaPorTipo(TipoNoticia tipoNoticia)
-        //{
-        //    using (_unitOfWork)
-        //    {
-        //        _unitOfWork.BeginTransaction();
-        //        var data = await _noticiaService.ListarNoticiaPorTipo(tipoNoticia);
-        //        _unitOfWork.CommitTransaction();
-        //        return new ResponseViewModel { Sucesso = true, Objeto = data };
-        //    }
-        //}
+        public async Task<ResponseViewModel> ListarNoticiaFavorito(long idUsuario)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var data = await _noticiaFavoritoService.ListarNoticiaFavorito(idUsuario);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = data };
+            }
+        }
     }
 }

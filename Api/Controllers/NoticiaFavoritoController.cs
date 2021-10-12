@@ -17,15 +17,15 @@ namespace ApiCrud.Controllers
             _noticiaFavoritoAppService = noticiaFavoritoAppService;
         }
 
-        //[HttpGet("listar-noticia-por-tipo")]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        //public async Task<IActionResult> ListarPorTipo(TipoNoticia tipoNoticia)
-        //{
-        //    var response = await _noticiaAppService.ListarNoticiaPorTipo(tipoNoticia);
-        //    return Ok(response);
-        //}
+        [HttpGet("listar-favoritos")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ListarFavoritos(long idUsuario)
+        {
+            var response = await _noticiaFavoritoAppService.ListarNoticiaFavorito(idUsuario);
+            return Ok(response);
+        }
 
         [HttpPost("incluir")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]

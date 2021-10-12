@@ -59,24 +59,24 @@ namespace Data.Repository
 
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<NoticiaFavorito>(sql, obj, _unitOfWork?.Transaction);
         }
-        //public async Task<List<Noticia>> ListarNoticiaPorTipoAsync(TipoNoticia tipoNoticia)
-        //{
+        public async Task<List<Noticia>> ListarNoticiaFavoritoAsync(long idUsuario)
+        {
+            var sql = @" SELECT tn.Id, tn.AtualizadoEm , tn.CriadoEm , tn.IdAtualizadoPor , tn.Titulo , 
+                                tn.Fonte ,tn.HoraAtras ,tn.TipoNoticia ,tn.IdCriadoPor , tn.UrlImage , 
+                                tn.Link ,tn.OrigemNoticia , tn.StatusRegistro
+                            FROM TBL_NOTICIA tn 
+                            JOIN CRZ_NOTICIA_USUARIO cnu 
+	                            ON tn.Id = cnu.IdNoticia 
+                            JOIN TBL_USUARIO tu 
+	                            ON tu.Id = cnu.IdUsuario 
+                            WHERE cnu.IdUsuario = @IdUsuario";
 
-        //SELECT *
-        //    FROM crz_noticia_usuario As crz
-        //    INNER JOIN tbl_noticia AS noti
-        //    ON crz.IdNoticia = noti.Id
-        //    INNER JOIN tbl_usuario AS usu
-        //    ON crz.IdUsuario = usu.Id
-        //    WHERE crz.Id = @Id;
+            var obj = new NoticiaFavorito
+            {
+                IdUsuario = idUsuario
+            };
 
-        //    var sql = @" SELECT * FROM tbl_noticia WHERE TipoNoticia = @TipoNoticia";
-        //    var obj = new Noticia
-        //    {
-        //        TipoNoticia = tipoNoticia
-        //    };
-
-        //   return (List<Noticia>)await _unitOfWork.Connection.QueryAsync<Noticia>(sql, obj, _unitOfWork?.Transaction);
-        //}
+            return (List<Noticia>)await _unitOfWork.Connection.QueryAsync<Noticia>(sql, obj, _unitOfWork?.Transaction);
+        }
     }
 }

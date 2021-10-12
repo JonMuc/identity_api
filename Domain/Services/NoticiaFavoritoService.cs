@@ -51,8 +51,14 @@ namespace Domain.Services
 
         public async Task DeletarNoticiaFavoritoById(long idNoticiaFavorito)
         {
+            var errosResponse = new List<string>(0);
             var result = await _noticiaFavoritoRepository.GetNoticiaFavoritoById(idNoticiaFavorito);
             _noticiaFavoritoValidation.VerificarExistenciaNoticiaFavorito(result);
+            if (result.StatusRegistro != 0)
+            {
+                errosResponse.Add("A Notícia informada já foi excluída.");
+                throw new ParametroException(errosResponse);
+            }
 
             await _noticiaFavoritoRepository.DeletarNoticiaFavoritoAsync(idNoticiaFavorito);
         }
@@ -65,11 +71,14 @@ namespace Domain.Services
             result.Usuario = await _usuarioRepository.GetUsuarioById(result.IdUsuario);             
             return result;
         }
-        //public async Task<List<Noticia>> ListarNoticiaPorTipo(TipoNoticia tipoNoticia)
-        //{
-        //    var result = await _noticiaRepository.ListarNoticiaPorTipoAsync(tipoNoticia);
+
+        public async Task<List<Noticia>> ListarNoticiaFavorito(long idUsuario)
+        {
+            _usuarioValidation.VerificarExistenciaUsuario(await _usuarioRepository.GetUsuarioById(idUsuario));
+            var result = await _noticiaFavoritoRepository.ListarNoticiaFavoritoAsync(idUsuario);
+
+            return _noticiaFavoritoValidation.ValidarListaFavoritos(result);
             
-        //    return result;
-        //}
+        }
     }
 }
