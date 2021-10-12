@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Dto;
 using System.Threading.Tasks;
 
 namespace Domain.Services
@@ -9,6 +10,8 @@ namespace Domain.Services
         Task<Usuario> VisualizarUsuarioById(long idUsuario);
         Task<Usuario> AtualizarUsuario(Usuario usuario);
         Task DeletarUsuarioById(long idUsuario);
+        Task<Usuario> CriarUsuarioStep(CriarContaUsuario usuario);
+
         //ResponseViewModel BuscarPessoaFisica(long idPessoa);
     }
 }

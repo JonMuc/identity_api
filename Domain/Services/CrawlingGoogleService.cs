@@ -1,6 +1,5 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Domain.Validations;
 using HtmlAgilityPack;
 using System.Collections.Generic;
 using System.Net;
@@ -9,17 +8,13 @@ namespace Domain.Services
 {
     public class CrawlingGoogleService : ICrawlingGoogleService
     {
-        private readonly PessoaFisicaValidation _pessoaFisicaValidation;
-        private readonly IPessoaFisicaRepository _pessoaFisicaRepository;
         private readonly IUsuarioRepository _usuarioRepository;
 
         private static readonly string _urlBaseGoogle = "https://news.google.com/topstories?hl=pt-BR&gl=BR&ceid=BR:pt-419";
         private static readonly string _urlBaseNoticiaGoogle = "https://news.google.com";
 
-        public CrawlingGoogleService(PessoaFisicaValidation pessoaFisicaValidation, IPessoaFisicaRepository pessoaFisicaRepository, IUsuarioRepository usuarioRepository)
+        public CrawlingGoogleService(IUsuarioRepository usuarioRepository)
         {
-            _pessoaFisicaValidation = pessoaFisicaValidation;
-            _pessoaFisicaRepository = pessoaFisicaRepository;
             _usuarioRepository = usuarioRepository;
         }
 

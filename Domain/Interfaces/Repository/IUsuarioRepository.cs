@@ -11,5 +11,9 @@ namespace Domain.Interfaces
         Task DeletarUsuarioAsync(long idUsuario);
         IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
         Task<Usuario> AtualizarUsuarioAsync(Usuario usuario);
+        Task<bool> VerificarExistenciaEmail(string email);
+        Task<bool> LoginAsync(Usuario request);
+        Task<Usuario> GetUsuarioByEmailAsync(string email);
+
     }
 }

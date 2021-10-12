@@ -1,5 +1,6 @@
 ﻿using Application.AppServices;
 using Domain.Models;
+using Domain.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
@@ -53,6 +54,16 @@ namespace ApiCrud.Controllers
         public async Task<IActionResult> Visualizar(int idUsuario)
         {
             var response = await _usuarioAppService.VisualizarUsuarioById(idUsuario);
+            return Ok(response);
+        }
+
+        [HttpPost("criar-usuario-step")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> SalvarUsuarioStep([FromBody] CriarContaUsuario usuario)
+        {
+            var response = await _usuarioAppService.CriarUsuarioStep(usuario);
             return Ok(response);
         }
     }
