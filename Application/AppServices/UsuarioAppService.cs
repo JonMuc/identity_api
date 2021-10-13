@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces.Repository;
 using Domain.Models;
+using Domain.Models.Dto;
 using Domain.Services;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace Application.AppServices
                 var result = await _usuarioService.AdicionarUsuario(usuario);
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = result };
-            }               
+            }
         }
 
         public async Task<ResponseViewModel> AtualizarUsuario(Usuario edit)
@@ -55,6 +56,17 @@ namespace Application.AppServices
                 var data = await _usuarioService.VisualizarUsuarioById(idUsuario);
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = data };
+            }
+        }
+
+        public async Task<ResponseViewModel> CriarUsuarioStep(CriarContaUsuario request)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var response = await _usuarioService.CriarUsuarioStep(request);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = response };
             }
         }
     }

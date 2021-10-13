@@ -64,5 +64,23 @@ namespace Data.Repository
             string sql = @"SELECT * FROM TBL_USUARIO";
             return conexao.Query<Usuario>(sql);
         }
+
+        public async Task<bool> VerificarExistenciaEmail(string email)
+        {
+            string sql = @"SELECT count(*) FROM TBL_USUARIO where Email = @email";
+            return await _unitOfWork.Connection.ExecuteScalarAsync<bool>(sql, new { email }, _unitOfWork?.Transaction);
+        }
+
+        public async Task<bool> LoginAsync(Usuario request)
+        {
+            string sql = @"SELECT count(*) FROM TBL_USUARIO where Email = @Email and Senha = @Senha";
+            return await _unitOfWork.Connection.ExecuteScalarAsync<bool>(sql, request, _unitOfWork?.Transaction);
+        }
+
+        public async Task<Usuario> GetUsuarioByEmailAsync(string email)
+        {
+            string sql = @"SELECT * FROM TBL_USUARIO where Email = @email";
+            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, new { email }, _unitOfWork?.Transaction);
+        }
     }
 }

@@ -36,3 +36,13 @@ IdentityApi.sln
 Jobs/obj/Debug/net5.0/.NETCoreApp,Version=v5.0.AssemblyAttributes.cs
 Jobs/obj/Debug/net5.0/Jobs.AssemblyInfo.cs
 Jobs/obj/Debug/net5.0/Jobs.csproj.FileListAbsolute.txt
+/Util/obj/Debug/net5.0/Util.csproj.FileListAbsolute.txt
+/Util/obj/Debug/net5.0/Util.AssemblyInfo.cs
+/Util/obj/Debug/net5.0
+/Application/obj/Release/net5.0
+/IoC/obj/Release/net5.0
+/Jobs/obj/Release/net5.0
+/Util/obj/Release/net5.0
+/Domain/obj/Release/net5.0
+/Data/obj/Release/net5.0
+/Api/obj/Release/net5.0
