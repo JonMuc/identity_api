@@ -75,6 +75,6 @@ namespace Domain.Services
                 i += 4;
             }
             return false;
-        }
+        }       
     }
 }
