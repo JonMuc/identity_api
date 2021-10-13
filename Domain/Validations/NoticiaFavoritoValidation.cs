@@ -50,6 +50,10 @@ namespace Domain.Validations
 
         public NoticiaFavorito CompararNoticiaFavorito(NoticiaFavorito edit, NoticiaFavorito noticiaFavorito)
         {
+            if (edit.StatusRegistro != noticiaFavorito.StatusRegistro)
+            {
+                noticiaFavorito.StatusRegistro = edit.StatusRegistro;
+            }
             if (edit.IdNoticia != noticiaFavorito.IdNoticia)
             {
                 noticiaFavorito.IdNoticia = edit.IdNoticia;

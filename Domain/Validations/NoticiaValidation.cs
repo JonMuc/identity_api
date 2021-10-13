@@ -46,6 +46,10 @@ namespace Domain.Validations
 
         public Noticia CompararNoticia(Noticia edit, Noticia noticia)
         {
+            if (edit.StatusRegistro != noticia.StatusRegistro)
+            {
+                noticia.StatusRegistro = edit.StatusRegistro;
+            }
             if (!string.IsNullOrEmpty(edit.Titulo))
             {
                 noticia.Titulo = edit.Titulo;
