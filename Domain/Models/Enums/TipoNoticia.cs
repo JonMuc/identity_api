@@ -3,6 +3,10 @@
     public enum TipoNoticia
     {
         Principal = 1,
-        Rodape = 2
+        CienciaTecnologia = 2,
+        Mundo = 3,
+        Negocios = 4,
+        Entretenimento = 5,
+        Esportes = 6
     }
 }

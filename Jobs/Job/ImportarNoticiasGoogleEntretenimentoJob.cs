@@ -9,15 +9,15 @@ using System.Net;
 
 namespace Jobs.Job
 {
-    public class ImportarNoticiasGooglePrincipaisJob : BaseJob
+    public class ImportarNoticiasGoogleEntretenimentoJob : BaseJob
     {
         protected readonly INoticiaRepository _noticiaRepository;
         protected readonly INoticiaService _noticiaService;
 
-        private static readonly string _urlBaseGoogle = "https://news.google.com/topstories?hl=pt-BR&gl=BR&ceid=BR:pt-419";
+        private static readonly string _urlBaseGoogle = "https://news.google.com/topics/CAAqKggKIiRDQkFTRlFvSUwyMHZNREpxYW5RU0JYQjBMVUpTR2dKQ1VpZ0FQAQ?hl=pt-BR&gl=BR&ceid=BR%3Apt-419";
         private static readonly string _urlBaseNoticiaGoogle = "https://news.google.com";
 
-        public ImportarNoticiasGooglePrincipaisJob(INoticiaRepository noticiaRepository, INoticiaService noticiaService)
+        public ImportarNoticiasGoogleEntretenimentoJob(INoticiaRepository noticiaRepository, INoticiaService noticiaService)
         {
             _noticiaRepository = noticiaRepository;
             _noticiaService = noticiaService;
@@ -73,11 +73,11 @@ namespace Jobs.Job
                     if (!_noticiaRepository.VerificarExistenciaTitulo(noticia.Titulo))
                     {
                         noticia.OrigemNoticia = OrigemNoticia.GoogleNews;
-                        noticia.TipoNoticia = TipoNoticia.Principal;
+                        noticia.TipoNoticia = TipoNoticia.Entretenimento;
                         noticia.CriadoEm = DateTime.Now;
                         _noticiaRepository.AdicionarNoticia(noticia);
                     }
-                }
+                }                
             }
         }
     }

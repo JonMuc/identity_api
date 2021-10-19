@@ -79,13 +79,16 @@ namespace Jobs.Job
         {
             foreach (Noticia noticia in listaNoticias)
             {
-                if (!_noticiaRepository.VerificarExistenciaTitulo(noticia.Titulo))
+                if(noticia.UrlImage != null)
                 {
-                    noticia.OrigemNoticia = OrigemNoticia.G1;
-                    noticia.TipoNoticia = TipoNoticia.Principal;
-                    noticia.CriadoEm = DateTime.Now;
-                    _noticiaRepository.AdicionarNoticia(noticia);
-                }
+                    if (!_noticiaRepository.VerificarExistenciaTitulo(noticia.Titulo))
+                    {
+                        noticia.OrigemNoticia = OrigemNoticia.G1;
+                        noticia.TipoNoticia = TipoNoticia.Principal;
+                        noticia.CriadoEm = DateTime.Now;
+                        _noticiaRepository.AdicionarNoticia(noticia);
+                    }
+                }               
             }
         }
     }

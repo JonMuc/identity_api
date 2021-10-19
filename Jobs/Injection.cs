@@ -29,6 +29,11 @@ namespace Jobs
             //Jobs
             services.AddSingleton<ImportarNoticiasG1PrincipaisJob>();
             services.AddSingleton<ImportarNoticiasGooglePrincipaisJob>();
+            services.AddSingleton<ImportarNoticiasGoogleCienciaTecnologiaJob>();
+            services.AddSingleton<ImportarNoticiasGoogleMundoJob>();
+            services.AddSingleton<ImportarNoticiasGoogleNegociosJob>();
+            services.AddSingleton<ImportarNoticiasGoogleEntretenimentoJob>();
+            services.AddSingleton<ImportarNoticiasGoogleEsportesJob>();
 
             var container = services.BuildServiceProvider();
 
