@@ -2,9 +2,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
-using Domain.Models.Enums;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 namespace Data.Repository
@@ -52,13 +50,14 @@ namespace Data.Repository
             var sql = @" SELECT * 
                             FROM tbl_chat
                             WHERE Id = @Id";
-            var obj = new 
+            var obj = new
             {
                 Id = idChat
             };
 
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Chat>(sql, obj, _unitOfWork?.Transaction);
         }
+
         public async Task<List<Chat>> ListarMensagensAsync(long idUsuarioEnvio, long idUsuarioRecebe)
         {
             var sql = @" SELECT tc.Id , tc.AtualizadoEm , tc.CriadoEm , tc.IdAtualizadoPor ,
@@ -71,7 +70,7 @@ namespace Data.Repository
     		                      (tc.IdUsuarioEnvio = @idUsuarioRecebe AND tc.IdUsuarioRecebe = @idUsuarioEnvio)
    	                        ORDER BY tc.CriadoEm;";
 
-            var obj = new 
+            var obj = new
             {
                 IdUsuarioEnvio = idUsuarioEnvio,
                 idUsuarioRecebe = idUsuarioRecebe

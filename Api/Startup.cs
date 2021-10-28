@@ -28,6 +28,10 @@ namespace Api
                 options.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
 
+            //services.AddControllers().AddJsonOptions(x =>
+            //    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
+
+
 
             //Registrando dependencias
             Injection.RegisterServices(services);

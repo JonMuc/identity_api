@@ -1,6 +1,6 @@
 ﻿using Application.AppServices;
 using Domain.Models;
-using Domain.Models.Enums;
+using Domain.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,13 +17,13 @@ namespace ApiCrud.Controllers
             _noticiaAppService = noticiaAppService;
         }
 
-        [HttpGet("listar-manchete")]
+        [HttpPost("listar-manchete")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult ListarManchete()
+        public async Task<IActionResult> ListarManchete([FromBody] NoticiaRequest request)
         {
-            var response = _noticiaAppService.ListarManchete();
+            var response = await _noticiaAppService.ListarManchete(request);
             return Ok(response);
         }
 
@@ -31,7 +31,7 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarPorTipo(TipoNoticia tipoNoticia)
+        public async Task<IActionResult> ListarPorTipo(NoticiaRequest tipoNoticia)
         {
             var response = await _noticiaAppService.ListarNoticiaPorTipo(tipoNoticia);
             return Ok(response);

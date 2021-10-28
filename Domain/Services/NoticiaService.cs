@@ -1,6 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Domain.Models.Enums;
+using Domain.Models.Request;
 using Domain.Validations;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -51,7 +51,7 @@ namespace Domain.Services
             _noticiaValidation.VerificarExistenciaNoticia(result);
             return result;
         }
-        public async Task<List<Noticia>> ListarNoticiaPorTipo(TipoNoticia tipoNoticia)
+        public async Task<IEnumerable<Noticia>> ListarNoticiaPorTipo(NoticiaRequest tipoNoticia)
         {
             var result = await _noticiaRepository.ListarNoticiaPorTipoAsync(tipoNoticia);
 
@@ -75,6 +75,6 @@ namespace Domain.Services
                 i += 4;
             }
             return false;
-        }       
+        }
     }
 }

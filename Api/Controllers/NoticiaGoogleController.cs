@@ -1,5 +1,6 @@
 ﻿using Application.AppServices;
 using Domain.Models;
+using Domain.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -19,9 +20,9 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult ListarManchete()
+        public IActionResult ListarManchete(NoticiaRequest request)
         {
-            var response = _informacaoGoogleAppService.ListarManchete();
+            var response = _informacaoGoogleAppService.ListarManchete(request);
             return Ok(response);
         }
 

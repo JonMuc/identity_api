@@ -1,10 +1,8 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces;
+using Domain.Interfaces.Repository;
 using Domain.Models;
-using Domain.Models.Enums;
+using Domain.Models.Request;
 using Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Application.AppServices
@@ -14,22 +12,24 @@ namespace Application.AppServices
         private readonly ICrawlingGoogleService _crawlingGoogleService;
         private readonly ICrawlingG1Service _crawlingG1Service;
         private readonly INoticiaService _noticiaService;
+        private readonly INoticiaRepository _noticiaRepository;
 
-        public NoticiaAppService(IUnitOfWork unitOfWork, ICrawlingGoogleService crawlingGoogleService, ICrawlingG1Service crawlingG1Service, INoticiaService noticiaService) : base(unitOfWork)
+        public NoticiaAppService(IUnitOfWork unitOfWork, ICrawlingGoogleService crawlingGoogleService, ICrawlingG1Service crawlingG1Service, INoticiaService noticiaService, INoticiaRepository noticiaRepository) : base(unitOfWork)
         {
             _crawlingGoogleService = crawlingGoogleService;
             _crawlingG1Service = crawlingG1Service;
             _noticiaService = noticiaService;
+            _noticiaRepository = noticiaRepository;
         }
 
-        public ResponseViewModel ListarManchete()
+        public async Task<ResponseViewModel> ListarManchete(NoticiaRequest request)
         {
-            var listaNoticia = new List<Noticia>();
-
-            listaNoticia = _crawlingGoogleService.ListarManchetes();
-            var g1 = _crawlingG1Service.ListarManchetes();
-            listaNoticia.AddRange(g1);
-            var result = listaNoticia.OrderBy(elem => Guid.NewGuid());
+            //var listaNoticia = new List<Noticia>();
+            var listaNoticia = await _noticiaRepository.ListarNoticiaAsync(request);
+            //listaNoticia = _crawlingGoogleService.ListarManchetes();
+            //var g1 = _crawlingG1Service.ListarManchetes();
+            //listaNoticia.AddRange(g1);
+            var result = listaNoticia;
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
@@ -83,7 +83,7 @@ namespace Application.AppServices
             }
         }
 
-        public async Task<ResponseViewModel> ListarNoticiaPorTipo(TipoNoticia tipoNoticia)
+        public async Task<ResponseViewModel> ListarNoticiaPorTipo(NoticiaRequest tipoNoticia)
         {
             using (_unitOfWork)
             {

@@ -1,5 +1,5 @@
 ﻿using Domain.Models;
-using Domain.Models.Enums;
+using Domain.Models.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,7 +11,7 @@ namespace Domain.Services
         Task<Noticia> VisualizarNoticiaById(long idNoticia);
         Task<Noticia> AtualizarNoticia(Noticia noticia);
         Task DeletarNoticiaById(long idNoticia);
-        Task<List<Noticia>> ListarNoticiaPorTipo(TipoNoticia tipoNoticia);
+        Task<IEnumerable<Noticia>> ListarNoticiaPorTipo(NoticiaRequest tipoNoticia);
         bool VerificarNoticiaExistente(string noticia);
     }
 }

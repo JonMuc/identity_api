@@ -46,3 +46,5 @@ Jobs/obj/Debug/net5.0/Jobs.csproj.FileListAbsolute.txt
 /Domain/obj/Release/net5.0
 /Data/obj/Release/net5.0
 /Api/obj/Release/net5.0
+Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
+Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml

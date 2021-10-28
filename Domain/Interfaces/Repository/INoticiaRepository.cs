@@ -1,5 +1,5 @@
 ﻿using Domain.Models;
-using Domain.Models.Enums;
+using Domain.Models.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,9 +11,10 @@ namespace Domain.Interfaces
         Task<Noticia> GetNoticiaById(long idNoticia);
         Task DeletarNoticiaAsync(long idNoticia);
         Task<Noticia> AtualizarNoticiaAsync(Noticia noticia);
-        Task<List<Noticia>> ListarNoticiaPorTipoAsync(TipoNoticia tipoNoticia);
+        Task<IEnumerable<Noticia>> ListarNoticiaPorTipoAsync(NoticiaRequest request);
         Task<bool> VerificarExistenciaTituloAsync(string titulo);
         long AdicionarNoticia(Noticia request);
         bool VerificarExistenciaTitulo(string titulo);
+        Task<IEnumerable<Noticia>> ListarNoticiaAsync(NoticiaRequest request);
     }
 }

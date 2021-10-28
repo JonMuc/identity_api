@@ -2,7 +2,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
-using Domain.Models.Enums;
+using Domain.Models.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -66,16 +66,24 @@ namespace Data.Repository
 
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Noticia>(sql, obj, _unitOfWork?.Transaction);
         }
-        public async Task<List<Noticia>> ListarNoticiaPorTipoAsync(TipoNoticia tipoNoticia)
+
+        //SELECT * FROM TBL_NOTICIA ORDER BY Id asc OFFSET 20 ROWS FETCH NEXT  10  ROWS ONLY
+        public async Task<IEnumerable<Noticia>> ListarNoticiaPorTipoAsync(NoticiaRequest request)
         {
+            //request.PageIndex = request.PageIndex * request.PageSize;
+            var TipoNoticia = (int)request.TipoNoticia;
+            var sql = @" SELECT * FROM tbl_noticia WHERE TipoNoticia = @TipoNoticia ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
+            var response = await _unitOfWork.Connection.QueryAsync<Noticia>(sql, new { request.PageSize, request.PageIndex, TipoNoticia }, _unitOfWork?.Transaction);
+            return response;
+        }
 
-            var sql = @" SELECT * FROM tbl_noticia WHERE TipoNoticia = @TipoNoticia";
-            var obj = new Noticia
-            {
-                TipoNoticia = tipoNoticia
-            };
+        public async Task<IEnumerable<Noticia>> ListarNoticiaAsync(NoticiaRequest request)
+        {
+            //var sql = @" SELECT * FROM tbl_noticia ORDER BY Id asc OFFSET " + request.PageSize * request.PageIndex + " ROWS FETCH NEXT  " + request.PageSize + "  ROWS ONLY";
+            var sql = @" SELECT * FROM tbl_noticia ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
 
-            return (List<Noticia>)await _unitOfWork.Connection.QueryAsync<Noticia>(sql, obj, _unitOfWork?.Transaction);
+            var response = await _unitOfWork.Connection.QueryAsync<Noticia>(sql, request, _unitOfWork?.Transaction);
+            return response;
         }
 
         public async Task<bool> VerificarExistenciaTituloAsync(string titulo)
