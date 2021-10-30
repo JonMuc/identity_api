@@ -30,6 +30,7 @@ namespace IoC
             services.AddTransient<INoticiaService, NoticiaService>();
             services.AddTransient<INoticiaFavoritoService, NoticiaFavoritoService>();
             services.AddTransient<IChatService, ChatService>();
+            services.AddTransient<IAwsApiService, AwsApiService>();
 
             // Validations
             services.AddTransient<LoginValidation>();

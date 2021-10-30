@@ -1,6 +1,7 @@
 ﻿using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Dto;
+using Domain.Models.Request;
 using Domain.Services;
 using System.Threading.Tasks;
 
@@ -68,6 +69,12 @@ namespace Application.AppServices
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = response };
             }
+        }
+
+        public async Task<ResponseViewModel> UploadImagemAsync(UploadImagemRequest request)
+        {
+            var response = await _usuarioService.UploadImagemAsync(request);
+            return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
     }
 }

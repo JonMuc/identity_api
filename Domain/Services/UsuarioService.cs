@@ -1,10 +1,12 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
 using Domain.Models.Dto;
+using Domain.Models.Request;
 using Domain.Validations;
 using System;
 using System.Threading.Tasks;
 using Util.Criptografia;
+using Util.String;
 
 namespace Domain.Services
 {
@@ -12,11 +14,13 @@ namespace Domain.Services
     {
         private readonly UsuarioValidation _usuarioValidation;
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IAwsApiService _awsApiService;
 
-        public UsuarioService(UsuarioValidation usuarioValidation, IUsuarioRepository usuarioRepository)
+        public UsuarioService(UsuarioValidation usuarioValidation, IUsuarioRepository usuarioRepository, IAwsApiService awsApiService)
         {
             _usuarioValidation = usuarioValidation;
             _usuarioRepository = usuarioRepository;
+            _awsApiService = awsApiService;
         }
 
         public async Task<long> AdicionarUsuario(Usuario usuario)
@@ -65,6 +69,20 @@ namespace Domain.Services
             var result = await _usuarioRepository.GetUsuarioById(idUsuario);
             _usuarioValidation.VerificarExistenciaUsuario(result);
             return result;
+        }
+
+        public async Task<string> UploadImagemAsync(UploadImagemRequest request)
+        {
+            var usuario = await _usuarioRepository.GetUsuarioById(request.IdUsuario);
+            string imageName = string.Format("{0}{1}", DateTime.Now.Ticks, ".jpg");
+            var path = "img-user/{0}".FormatWith(usuario.Id);
+            var fullPath = "img-user/{0}-{1}".FormatWith(usuario.Id, imageName);
+            _awsApiService.CreateDirectory(path);
+            await _awsApiService.CreateFileAsync(fullPath, request.FileStreamIO);
+            var urlImagem = "https://noticia-app.s3.amazonaws.com/" + fullPath;
+            usuario.Foto = urlImagem;
+            await _usuarioRepository.AtualizarUsuarioAsync(usuario);
+            return urlImagem;
         }
     }
 }

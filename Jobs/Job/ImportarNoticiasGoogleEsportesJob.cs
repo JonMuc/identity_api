@@ -77,7 +77,7 @@ namespace Jobs.Job
                         noticia.CriadoEm = DateTime.Now;
                         _noticiaRepository.AdicionarNoticia(noticia);
                     }
-                }                
+                }
             }
         }
     }

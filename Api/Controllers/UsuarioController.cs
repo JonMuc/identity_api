@@ -1,7 +1,9 @@
 ﻿using Application.AppServices;
 using Domain.Models;
 using Domain.Models.Dto;
+using Domain.Models.Request;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -65,6 +67,22 @@ namespace ApiCrud.Controllers
         {
             var response = await _usuarioAppService.CriarUsuarioStep(usuario);
             return Ok(response);
+        }
+
+        [HttpPost("enviar-foto/{id}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> EnviarFotoAsync(long id)
+        {
+            UploadImagemRequest request = new UploadImagemRequest();
+            var file = HttpContext.Request.Form.Files.Count > 0 ? HttpContext.Request.Form.Files[0] : null;
+            request.IdFuncionario = id;
+            var data = new MemoryStream();
+            file.CopyTo(data);
+            request.FileStreamIO = data;
+            var response = await _usuarioAppService.UploadImagemAsync(request);
+            return Ok(null);
         }
     }
 }
