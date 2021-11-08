@@ -120,18 +120,33 @@ namespace Jobs.Quartz
 
 
             //JOB GOOGLE NEWS ESPORTES
-            IJobDetail job7 = JobBuilder.Create<ImportarNoticiasGoogleEsportesJob>()
-                .WithIdentity("myJob7", "group7")
+            //IJobDetail job7 = JobBuilder.Create<ImportarNoticiasGoogleEsportesJob>()
+            //    .WithIdentity("myJob7", "group7")
+            //    .Build();
+
+            //ITrigger trigger7 = TriggerBuilder.Create()
+            //    .WithIdentity("myTrigger7", "group7")
+            //    .StartNow()
+            //    .WithSimpleSchedule(x => x
+            //        .WithIntervalInSeconds(30)
+            //        .RepeatForever())
+            //    .Build();
+            //scheduler.Result.ScheduleJob(job7, trigger7);
+
+
+            //JOB IG PRINCIPAIS NOTICIAS
+            IJobDetail job8 = JobBuilder.Create<ImportarNoticiasIGJob>()
+                .WithIdentity("myJob8", "group8")
                 .Build();
 
-            ITrigger trigger7 = TriggerBuilder.Create()
-                .WithIdentity("myTrigger7", "group7")
+            ITrigger trigger8 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger8", "group8")
                 .StartNow()
                 .WithSimpleSchedule(x => x
                     .WithIntervalInSeconds(30)
                     .RepeatForever())
                 .Build();
-            scheduler.Result.ScheduleJob(job7, trigger7);
+            scheduler.Result.ScheduleJob(job8, trigger8);
 
 
             scheduler.Result.Start();

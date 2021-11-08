@@ -34,6 +34,7 @@ namespace Jobs
             services.AddSingleton<ImportarNoticiasGoogleNegociosJob>();
             services.AddSingleton<ImportarNoticiasGoogleEntretenimentoJob>();
             services.AddSingleton<ImportarNoticiasGoogleEsportesJob>();
+            services.AddSingleton<ImportarNoticiasIGJob>();
 
             var container = services.BuildServiceProvider();
 
