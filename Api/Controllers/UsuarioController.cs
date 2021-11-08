@@ -77,7 +77,7 @@ namespace ApiCrud.Controllers
         {
             UploadImagemRequest request = new UploadImagemRequest();
             var file = HttpContext.Request.Form.Files.Count > 0 ? HttpContext.Request.Form.Files[0] : null;
-            request.IdFuncionario = id;
+            request.IdUsuario = id;
             var data = new MemoryStream();
             file.CopyTo(data);
             request.FileStreamIO = data;

@@ -1,15 +1,15 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Domain.Models.Enums;
 using Domain.Util;
 using Domain.Validations;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Domain.Services
 {
     public class NoticiaFavoritoService : INoticiaFavoritoService
-    {               
+    {
         private readonly NoticiaFavoritoValidation _noticiaFavoritoValidation;
         private readonly NoticiaValidation _noticiaValidation;
         private readonly UsuarioValidation _usuarioValidation;
@@ -29,7 +29,8 @@ namespace Domain.Services
         }
 
         public async Task<long> AdicionarNoticiaFavorito(NoticiaFavorito noticiaFavorito)
-        {           
+        {
+            noticiaFavorito.CriadoEm = DateTime.Now;
             _usuarioValidation.VerificarExistenciaUsuario(await _usuarioRepository.GetUsuarioById(noticiaFavorito.IdUsuario));
             _noticiaValidation.VerificarExistenciaNoticia(await _noticiaRepository.GetNoticiaById(noticiaFavorito.IdNoticia));
             var result = await _noticiaFavoritoRepository.AdicionarNoticiaFavoritoAsync(noticiaFavorito);
@@ -67,8 +68,8 @@ namespace Domain.Services
         {
             var result = await _noticiaFavoritoRepository.GetNoticiaFavoritoById(idNoticia);
             _noticiaFavoritoValidation.VerificarExistenciaNoticiaFavorito(result);
-            result.Noticia = await _noticiaRepository.GetNoticiaById(result.IdNoticia);
-            result.Usuario = await _usuarioRepository.GetUsuarioById(result.IdUsuario);             
+            //result.Noticia = await _noticiaRepository.GetNoticiaById(result.IdNoticia);
+            //result.Usuario = await _usuarioRepository.GetUsuarioById(result.IdUsuario);             
             return result;
         }
 
@@ -78,7 +79,7 @@ namespace Domain.Services
             var result = await _noticiaFavoritoRepository.ListarNoticiaFavoritoAsync(idUsuario);
 
             return _noticiaFavoritoValidation.ValidarListaFavoritos(result);
-            
+
         }
     }
 }

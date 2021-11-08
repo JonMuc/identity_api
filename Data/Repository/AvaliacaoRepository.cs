@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Data.Repository
 {
-    public class ComentarioRepository : BaseRepository, IComentarioRepository
+    public class AvaliacaoRepository : BaseRepository, IAvaliacaoRepository
     {
-        public ComentarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
+        public AvaliacaoRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
         public async Task<long> AdicionarAsync(Comentario request)
         {

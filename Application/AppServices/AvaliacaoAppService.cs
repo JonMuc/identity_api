@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Application.AppServices
 {
-    public class ComentarioAppService : BaseAppService
+    public class AvaliacaoAppService : BaseAppService
     {
         private readonly IComentarioService _comentarioService;
         private readonly IComentarioRepository _comentarioRepository;
 
-        public ComentarioAppService(IUnitOfWork unitOfWork, IComentarioService comentarioService, IComentarioRepository comentarioRepository) : base(unitOfWork)
+        public AvaliacaoAppService(IUnitOfWork unitOfWork, IComentarioService comentarioService, IComentarioRepository comentarioRepository) : base(unitOfWork)
         {
             _comentarioService = comentarioService;
             _comentarioRepository = comentarioRepository;

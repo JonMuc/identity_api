@@ -21,6 +21,8 @@ namespace IoC
             services.AddTransient<INoticiaRepository, NoticiaRepository>();
             services.AddTransient<INoticiaFavoritoRepository, NoticiaFavoritoRepository>();
             services.AddTransient<IChatRepository, ChatRepository>();
+            services.AddTransient<IComentarioRepository, ComentarioRepository>();
+            services.AddTransient<IAvaliacaoRepository, AvaliacaoRepository>();
 
             // Services
             services.AddTransient<ICrawlingGoogleService, CrawlingGoogleService>();
@@ -31,6 +33,8 @@ namespace IoC
             services.AddTransient<INoticiaFavoritoService, NoticiaFavoritoService>();
             services.AddTransient<IChatService, ChatService>();
             services.AddTransient<IAwsApiService, AwsApiService>();
+            services.AddTransient<IComentarioService, ComentarioService>();
+            services.AddTransient<IAvaliacaoService, AvaliacaoService>();
 
             // Validations
             services.AddTransient<LoginValidation>();
@@ -38,13 +42,16 @@ namespace IoC
             services.AddTransient<NoticiaValidation>();
             services.AddTransient<NoticiaFavoritoValidation>();
             services.AddTransient<ChatValidation>();
+            services.AddTransient<ComentarioValidation>();
 
             // AppServices
             services.AddTransient<NoticiaAppService>();
             services.AddTransient<NoticiaFavoritoAppService>();
             services.AddTransient<LoginAppService>();
             services.AddTransient<UsuarioAppService>();
+            services.AddTransient<ComentarioAppService>();
             services.AddTransient<ChatAppService>();
+            services.AddTransient<AvaliacaoAppService>();
         }
     }
 }

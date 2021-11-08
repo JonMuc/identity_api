@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("comentario")]
-    public class ComentarioController : ControllerBase
+    [ApiController, Route("avaliacao")]
+    public class AvaliacaoController : ControllerBase
     {
         private readonly ComentarioAppService _comentarioAppService;
 
-        public ComentarioController(ComentarioAppService comentarioAppService)
+        public AvaliacaoController(ComentarioAppService comentarioAppService)
         {
             _comentarioAppService = comentarioAppService;
         }
