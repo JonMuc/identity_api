@@ -82,7 +82,7 @@ namespace ApiCrud.Controllers
             file.CopyTo(data);
             request.FileStreamIO = data;
             var response = await _usuarioAppService.UploadImagemAsync(request);
-            return Ok(null);
+            return Ok(response);
         }
     }
 }
