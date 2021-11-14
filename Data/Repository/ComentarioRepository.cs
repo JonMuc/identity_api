@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
+using Domain.Models.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -20,10 +21,19 @@ namespace Data.Repository
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<Comentario>> ListarComentariosNoticiaAsync(long idNoticia)
+        public async Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idNoticia)
         {
-            var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdNoticia = @idNoticia";
-            return await _unitOfWork.Connection.QueryAsync<Comentario>(sql, new { idNoticia }, _unitOfWork?.Transaction);
+            var sql = @"select come.Id as IdComentario, usua.Id as IdUsuario, come.Mensagem, usua.Nome, usua.Foto, come.CriadoEm as DataComentario
+                        from TBL_COMENTARIO come
+                        inner join TBL_USUARIO usua
+                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @idNoticia";
+            return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, new { idNoticia }, _unitOfWork?.Transaction);
+        }
+
+        public async Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario)
+        {
+            var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdComentario = @idComentario";
+            return await _unitOfWork.Connection.QueryAsync<Comentario>(sql, new { idComentario }, _unitOfWork?.Transaction);
         }
     }
 }

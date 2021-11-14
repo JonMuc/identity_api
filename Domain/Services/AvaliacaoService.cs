@@ -19,7 +19,7 @@ namespace Domain.Services
 
         public async Task<Comentario> AdicionarAsync(Comentario request)
         {
-            _comentarioValidation.ValidarSalvarComentario(request);
+            //ta tudoe errado
             request.CriadoEm = DateTime.Now;
             request.Id = await _comentarioRepository.AdicionarAsync(request);
             return request;

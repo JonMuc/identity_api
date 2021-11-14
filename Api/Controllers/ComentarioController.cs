@@ -16,13 +16,23 @@ namespace ApiCrud.Controllers
             _comentarioAppService = comentarioAppService;
         }
 
-        [HttpPost("salvar")]
+        [HttpPost("salvar-comentario-noticia")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> SalvarAsync([FromBody] Comentario request)
+        public async Task<IActionResult> SalvarComentarioNoticiaAsync([FromBody] Comentario request)
         {
-            var response = await _comentarioAppService.AdicionarAsync(request);
+            var response = await _comentarioAppService.SalvarComentarioNoticiaAsync(request);
+            return Ok(response);
+        }
+
+        [HttpPost("comentar-comentario")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ComentarComentarioAsync([FromBody] Comentario request)
+        {
+            var response = await _comentarioAppService.ComentarComentarioAsync(request);
             return Ok(response);
         }
 
@@ -36,35 +46,5 @@ namespace ApiCrud.Controllers
             var response = await _comentarioAppService.ListarComentariosNoticiaAsync(idNoticia);
             return Ok(response);
         }
-
-        //[HttpPost("atualizar-usuario")]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        //public async Task<IActionResult> Atualizar([FromBody] Usuario usuario)
-        //{
-        //    var response = await _usuarioAppService.AtualizarUsuario(usuario);
-        //    return Ok(response);
-        //}
-
-        //[HttpDelete("excluir-usuario/{idUsuario:int}")]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        //public async Task<IActionResult> Deletar(int idUsuario)
-        //{
-        //    var response = await _usuarioAppService.DeletarUsuarioById(idUsuario);
-        //    return Ok(response);
-        //}
-
-        //[HttpGet("visualizar-usuario/{idUsuario:int}")]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
-        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        //public async Task<IActionResult> Visualizar(int idUsuario)
-        //{
-        //    var response = await _usuarioAppService.VisualizarUsuarioById(idUsuario);
-        //    return Ok(response);
-        //}
     }
 }
