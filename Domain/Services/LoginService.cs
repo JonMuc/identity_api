@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
+using Domain.Models.Request;
 using Domain.Validations;
 using System.Threading.Tasks;
 
@@ -16,9 +17,9 @@ namespace Domain.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<Usuario> LoginAsync(Usuario usuario)
+        public async Task<Usuario> LoginAsync(LoginRequest request)
         {
-            return await _loginValidation.LoginUsuarioAsync(usuario);
+            return await _loginValidation.LoginUsuarioAsync(request);
         }
     }
 }

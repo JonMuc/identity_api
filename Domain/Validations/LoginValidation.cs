@@ -1,5 +1,6 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
+using Domain.Models.Request;
 using Domain.Util;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Domain.Validations
             _usuarioRepository = usuarioRepository;
         }
 
-        public async Task<Usuario> LoginUsuarioAsync(Usuario request)
+        public async Task<Usuario> LoginUsuarioAsync(LoginRequest request)
         {
             var errosResponse = new List<string>(0);
             var usuario = await _usuarioRepository.GetUsuarioByEmailAsync(request.Email);
