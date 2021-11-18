@@ -108,6 +108,10 @@ namespace Domain.Validations
             {
                 errosResponse.Add("Campo 'Nome' é obrigatório.");
             }
+            if (usuario.Senha != usuario.ConfirmarSenha)
+            {
+                errosResponse.Add("As senhas não conferem.");
+            }
             if (usuario.Email == null || usuario.Email == "")
             {
                 errosResponse.Add("Campo 'Email' é obrigatório.");
