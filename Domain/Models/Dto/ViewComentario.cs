@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models.Enums;
+using System;
 
 namespace Domain.Models.Dto
 {
@@ -12,6 +13,6 @@ namespace Domain.Models.Dto
         public DateTime DataComentario { get; set; }
         public long QuantidadeLike { get; set; }
         public long QuantidadeDeslike { get; set; }
-        public bool ComentarioFilho { get; set; }
+        public TipoAvaliacao? ComentarioAvaliado { get; set; }
     }
 }

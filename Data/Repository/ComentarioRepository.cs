@@ -21,16 +21,18 @@ namespace Data.Repository
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idNoticia)
+        public async Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idNoticia, long idUsuario)
         {
-            var sql = @"select come.Id as IdComentario, usua.Id as IdUsuario, come.Mensagem, usua.Nome, usua.Foto as UrlFoto, come.CriadoEm as DataComentario,
+            var sql = @"select come.Id as IdComentario, usua.Id as IdUsuario, come.Mensagem, usua.Nome, usua.Foto as UrlFoto, 
+                        come.CriadoEm as DataComentario,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 1 and StatusRegistro = 0) as QuantidadeLike,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike,
-                        come.IdComentario as ComentarioFilho
+                        (select TipoAvaliacao from TBL_AVALIACAO WHERE IdNoticia = @idNoticia and IdUsuario = @idUsuario and StatusRegistro = 0) as ComentarioAvaliado                     
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
-                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @idNoticia";
-            return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, new { idNoticia }, _unitOfWork?.Transaction);
+                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @idNoticia
+						and come.IdComentario = 0";
+            return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, new { idNoticia, idUsuario }, _unitOfWork?.Transaction);
         }
 
         public async Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario)

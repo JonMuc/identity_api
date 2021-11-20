@@ -8,7 +8,7 @@ namespace Domain.Interfaces
     public interface IComentarioRepository
     {
         Task<long> AdicionarAsync(Comentario request);
-        Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idUsuarioa);
+        Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idNoticia, long idUsuario);
         Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario);
     }
 }
