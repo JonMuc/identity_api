@@ -38,5 +38,15 @@ namespace Data.Repository
             var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdComentario = @idComentario";
             return await _unitOfWork.Connection.QueryAsync<Comentario>(sql, new { idComentario }, _unitOfWork?.Transaction);
         }
+        public async Task<Comentario> GetComentarioById(long idComentario)
+        {
+            var sql = @" SELECT * FROM tbl_comentario WHERE Id = @Id";
+            var obj = new Comentario
+            {
+                Id = idComentario
+            };
+
+            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Comentario>(sql, obj, _unitOfWork?.Transaction);
+        }
     }
 }

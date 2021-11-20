@@ -1,14 +1,14 @@
 ﻿using Domain.Models;
+using Domain.Models.Enums;
 using System.Threading.Tasks;
 
 namespace Domain.Services
 {
     public interface IAvaliacaoService
     {
-        Task<Comentario> AdicionarAsync(Comentario request);
-        //Task<Usuario> VisualizarUsuarioById(long idUsuario);
-        //Task<Usuario> AtualizarUsuario(Usuario usuario);
-        //Task DeletarUsuarioById(long idUsuario);
-        //Task<Usuario> CriarUsuarioStep(CriarContaUsuario usuario);
+        Task<long> AvaliarNoticia(long idUsuario, long idNoticia, TipoAvaliacao tipoAvaliacao);
+        Task<long> AvaliarComentario(long idUsuario, long idComentario, TipoAvaliacao tipoAvaliacao);
+        Task ExcluirAvaliacaoNoticia(long idUsuario, long idNoticia);
+        Task ExcluirAvaliacaoComentario(long idUsuario, long idComentario);        
     }
 }

@@ -6,7 +6,10 @@ namespace Domain.Interfaces
 {
     public interface IAvaliacaoRepository
     {
-        Task<long> AdicionarAsync(Comentario request);
-        Task<IEnumerable<Comentario>> ListarComentariosNoticiaAsync(long idUsuarioa);
+        Task<long> AdicionarAvaliacaoAsync(Avaliacao request);
+        Task<List<Avaliacao>> GetAvaliacaoByUsuarioNoticia(long idUsuario, long idNoticia);
+        Task<List<Avaliacao>> GetAvaliacaoByUsuarioComentario(long idUsuario, long idComentario);
+        Task ExcluirAvaliacaoNoticiaAsync(long idUsuario, long idNoticia);
+        Task ExcluirAvaliacaoComentarioAsync(long idUsuario, long idComentario);
     }
 }

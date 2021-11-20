@@ -29,152 +29,152 @@ namespace Jobs.Quartz
 
             //CRIANDO JOB
 
-            ////JOB G1 NOTICIAS PRINCIPAIS
-            //IJobDetail job = JobBuilder.Create<ImportarNoticiasG1PrincipaisJob>()
-            //    .WithIdentity("myJob", "group1")
-            //    .Build();
+            //JOB G1 NOTICIAS PRINCIPAIS
+            IJobDetail job = JobBuilder.Create<ImportarNoticiasG1PrincipaisJob>()
+                .WithIdentity("myJob", "group1")
+                .Build();
 
-            //ITrigger trigger = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger", "group1")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(20)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job, trigger);
-
-
-            ////JOB GOOGLE NEWS PRINCIPAIS
-            //IJobDetail job2 = JobBuilder.Create<ImportarNoticiasGooglePrincipaisJob>()
-            //    .WithIdentity("myJob2", "group2")
-            //    .Build();
-
-            //ITrigger trigger2 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger2", "group2")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job2, trigger2);
+            ITrigger trigger = TriggerBuilder.Create()
+                .WithIdentity("myTrigger", "group1")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(20)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job, trigger);
 
 
-            ////JOB GOOGLE NEWS CIENCIA E TECNOLOGIA
-            //IJobDetail job3 = JobBuilder.Create<ImportarNoticiasGoogleCienciaTecnologiaJob>()
-            //    .WithIdentity("myJob3", "group3")
-            //    .Build();
+            //JOB GOOGLE NEWS PRINCIPAIS
+            IJobDetail job2 = JobBuilder.Create<ImportarNoticiasGooglePrincipaisJob>()
+                .WithIdentity("myJob2", "group2")
+                .Build();
 
-            //ITrigger trigger3 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger3", "group3")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job3, trigger3);
-
-
-            ////JOB GOOGLE NEWS MUNDO
-            //IJobDetail job4 = JobBuilder.Create<ImportarNoticiasGoogleMundoJob>()
-            //    .WithIdentity("myJob4", "group4")
-            //    .Build();
-
-            //ITrigger trigger4 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger4", "group4")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job4, trigger4);
+            ITrigger trigger2 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger2", "group2")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job2, trigger2);
 
 
-            ////JOB GOOGLE NEWS NEGOCIOS
-            //IJobDetail job5 = JobBuilder.Create<ImportarNoticiasGoogleNegociosJob>()
-            //    .WithIdentity("myJob5", "group5")
-            //    .Build();
+            //JOB GOOGLE NEWS CIENCIA E TECNOLOGIA
+            IJobDetail job3 = JobBuilder.Create<ImportarNoticiasGoogleCienciaTecnologiaJob>()
+                .WithIdentity("myJob3", "group3")
+                .Build();
 
-            //ITrigger trigger5 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger5", "group5")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job5, trigger5);
-
-
-            ////JOB GOOGLE NEWS ENTRETENIMENTO
-            //IJobDetail job6 = JobBuilder.Create<ImportarNoticiasGoogleEntretenimentoJob>()
-            //    .WithIdentity("myJob6", "group6")
-            //    .Build();
-
-            //ITrigger trigger6 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger6", "group6")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job6, trigger6);
+            ITrigger trigger3 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger3", "group3")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job3, trigger3);
 
 
-            ////JOB GOOGLE NEWS ESPORTES
-            //IJobDetail job7 = JobBuilder.Create<ImportarNoticiasGoogleEsportesJob>()
-            //    .WithIdentity("myJob7", "group7")
-            //    .Build();
+            //JOB GOOGLE NEWS MUNDO
+            IJobDetail job4 = JobBuilder.Create<ImportarNoticiasGoogleMundoJob>()
+                .WithIdentity("myJob4", "group4")
+                .Build();
 
-            //ITrigger trigger7 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger7", "group7")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job7, trigger7);
+            ITrigger trigger4 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger4", "group4")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job4, trigger4);
 
 
-            ////JOB IG PRINCIPAIS NOTICIAS
-            //IJobDetail job8 = JobBuilder.Create<ImportarNoticiasIGJob>()
-            //    .WithIdentity("myJob8", "group8")
-            //    .Build();
+            //JOB GOOGLE NEWS NEGOCIOS
+            IJobDetail job5 = JobBuilder.Create<ImportarNoticiasGoogleNegociosJob>()
+                .WithIdentity("myJob5", "group5")
+                .Build();
 
-            //ITrigger trigger8 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger8", "group8")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job8, trigger8);
+            ITrigger trigger5 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger5", "group5")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job5, trigger5);
 
-            ////JOB G1 MUNDO NOTICIAS
-            //IJobDetail job9 = JobBuilder.Create<ImportarNoticiasG1MundoJob>()
-            //    .WithIdentity("myJob9", "group9")
-            //    .Build();
 
-            //ITrigger trigger9 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger9", "group9")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job9, trigger9);
+            //JOB GOOGLE NEWS ENTRETENIMENTO
+            IJobDetail job6 = JobBuilder.Create<ImportarNoticiasGoogleEntretenimentoJob>()
+                .WithIdentity("myJob6", "group6")
+                .Build();
 
-            ////JOB G1 ECONOMIA NOTICIAS
-            //IJobDetail job10 = JobBuilder.Create<ImportarNoticiasG1EconomiaJob>()
-            //    .WithIdentity("myJob10", "group10")
-            //    .Build();
+            ITrigger trigger6 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger6", "group6")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job6, trigger6);
 
-            //ITrigger trigger10 = TriggerBuilder.Create()
-            //    .WithIdentity("myTrigger10", "group10")
-            //    .StartNow()
-            //    .WithSimpleSchedule(x => x
-            //        .WithIntervalInSeconds(30)
-            //        .RepeatForever())
-            //    .Build();
-            //scheduler.Result.ScheduleJob(job10, trigger10);
+
+            //JOB GOOGLE NEWS ESPORTES
+            IJobDetail job7 = JobBuilder.Create<ImportarNoticiasGoogleEsportesJob>()
+                .WithIdentity("myJob7", "group7")
+                .Build();
+
+            ITrigger trigger7 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger7", "group7")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job7, trigger7);
+
+
+            //JOB IG PRINCIPAIS NOTICIAS
+            IJobDetail job8 = JobBuilder.Create<ImportarNoticiasIGJob>()
+                .WithIdentity("myJob8", "group8")
+                .Build();
+
+            ITrigger trigger8 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger8", "group8")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job8, trigger8);
+
+            //JOB G1 MUNDO NOTICIAS
+            IJobDetail job9 = JobBuilder.Create<ImportarNoticiasG1MundoJob>()
+                .WithIdentity("myJob9", "group9")
+                .Build();
+
+            ITrigger trigger9 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger9", "group9")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job9, trigger9);
+
+            //JOB G1 ECONOMIA NOTICIAS
+            IJobDetail job10 = JobBuilder.Create<ImportarNoticiasG1EconomiaJob>()
+                .WithIdentity("myJob10", "group10")
+                .Build();
+
+            ITrigger trigger10 = TriggerBuilder.Create()
+                .WithIdentity("myTrigger10", "group10")
+                .StartNow()
+                .WithSimpleSchedule(x => x
+                    .WithIntervalInSeconds(30)
+                    .RepeatForever())
+                .Build();
+            scheduler.Result.ScheduleJob(job10, trigger10);
 
             //JOB G1 TECNOLOGIA NOTICIAS
             IJobDetail job11 = JobBuilder.Create<ImportarNoticiasG1TecnologiaJob>()

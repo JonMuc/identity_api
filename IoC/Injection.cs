@@ -43,6 +43,7 @@ namespace IoC
             services.AddTransient<NoticiaFavoritoValidation>();
             services.AddTransient<ChatValidation>();
             services.AddTransient<ComentarioValidation>();
+            services.AddTransient<AvaliacaoValidation>();
 
             // AppServices
             services.AddTransient<NoticiaAppService>();

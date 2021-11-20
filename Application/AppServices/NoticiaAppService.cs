@@ -9,26 +9,20 @@ namespace Application.AppServices
 {
     public class NoticiaAppService : BaseAppService
     {
-        private readonly ICrawlingGoogleService _crawlingGoogleService;
         private readonly ICrawlingG1Service _crawlingG1Service;
         private readonly INoticiaService _noticiaService;
         private readonly INoticiaRepository _noticiaRepository;
 
         public NoticiaAppService(IUnitOfWork unitOfWork, ICrawlingGoogleService crawlingGoogleService, ICrawlingG1Service crawlingG1Service, INoticiaService noticiaService, INoticiaRepository noticiaRepository) : base(unitOfWork)
         {
-            _crawlingGoogleService = crawlingGoogleService;
             _crawlingG1Service = crawlingG1Service;
             _noticiaService = noticiaService;
             _noticiaRepository = noticiaRepository;
         }
 
         public async Task<ResponseViewModel> ListarManchete(NoticiaRequest request)
-        {
-            //var listaNoticia = new List<Noticia>();
-            var listaNoticia = await _noticiaRepository.ListarNoticiaAsync(request);
-            //listaNoticia = _crawlingGoogleService.ListarManchetes();
-            //var g1 = _crawlingG1Service.ListarManchetes();
-            //listaNoticia.AddRange(g1);
+        {           
+            var listaNoticia = await _noticiaRepository.ListarNoticiaAsync(request);            
             var result = listaNoticia;
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }

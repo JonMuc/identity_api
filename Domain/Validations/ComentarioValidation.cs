@@ -14,13 +14,13 @@ namespace Domain.Validations
             _usuarioRepository = usuarioRepository;
         }
 
-        public void VerificarExistenciaUsuario(Usuario usuario)
+        public void VerificarExistenciaComentario(Comentario comentario)
         {
             var errosResponse = new List<string>(0);
 
-            if (usuario == null)
+            if (comentario == null)
             {
-                errosResponse.Add("Usuário informado não existe.");
+                errosResponse.Add("O comentário informado não existe.");
                 throw new ParametroException(errosResponse);
             }
         }
