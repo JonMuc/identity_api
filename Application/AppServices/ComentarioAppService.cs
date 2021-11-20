@@ -23,7 +23,7 @@ namespace Application.AppServices
             {
                 _unitOfWork.BeginTransaction();
                 await _comentarioService.AdicionarComentarioNoticiaAsync(request);
-                var response = await _comentarioRepository.ListarComentariosNoticiaAsync(request.IdNoticia);
+                var response = await _comentarioRepository.ListarComentariosNoticiaAsync(request.IdNoticia, 11);
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = response };
             }
@@ -40,15 +40,16 @@ namespace Application.AppServices
             }
         }
 
-        public async Task<ResponseViewModel> ListarComentariosNoticiaAsync(long idNoticia)
+        public async Task<ResponseViewModel> ListarComentariosNoticiaAsync(long idNoticia, long idUsuario)
         {
-            var response = await _comentarioRepository.ListarComentariosNoticiaAsync(idNoticia);
+            var response = await _comentarioRepository.ListarComentariosNoticiaAsync(idNoticia, idUsuario);
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
 
-        public async Task<ResponseViewModel> ListarComentariosComentarioAsync(long idComentario)
+        public async Task<ResponseViewModel> ListarComentariosComentarioAsync(long idComentario, long idUsuario)
         {
-            var response = await _comentarioRepository.ListarComentariosNoticiaAsync(idComentario);
+            //TODO ALTERAR PARA METODO DE LISTAR COMENTARIO DE COMENTARIO
+            var response = await _comentarioRepository.ListarComentariosNoticiaAsync(idComentario, idUsuario);
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
     }

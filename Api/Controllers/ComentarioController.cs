@@ -37,13 +37,13 @@ namespace ApiCrud.Controllers
         }
 
 
-        [HttpGet("obter-comentario-noticia/{idNoticia:int}")]
+        [HttpGet("obter-comentario-noticia/{idNoticia:int}/{idUsuario:int}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarComentariosNoticiaAsync(int idNoticia)
+        public async Task<IActionResult> ListarComentariosNoticiaAsync(int idNoticia, int idUsuario)
         {
-            var response = await _comentarioAppService.ListarComentariosNoticiaAsync(idNoticia);
+            var response = await _comentarioAppService.ListarComentariosNoticiaAsync(idNoticia, idUsuario);
             return Ok(response);
         }
     }
