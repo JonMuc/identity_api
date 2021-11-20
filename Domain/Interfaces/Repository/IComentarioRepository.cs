@@ -9,7 +9,7 @@ namespace Domain.Interfaces
     {
         Task<long> AdicionarAsync(Comentario request);
         Task<Comentario> GetComentarioById(long idComentario);
-        Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idUsuarioa);
+        Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idNoticia, long idUsuario);
         Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario);
     }
 }
