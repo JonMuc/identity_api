@@ -21,6 +21,11 @@ namespace Domain.Validations
         {
             var errosResponse = new List<string>(0);
             var usuario = await _usuarioRepository.GetUsuarioByEmailAsync(request.Email);
+            if (usuario == null)
+            {
+                errosResponse.Add("Email não encontrado.");
+                throw new ParametroException(errosResponse);
+            }
             if (CryptographyHelper.DecryptString(usuario.Senha) != request.Senha)
             {
                 errosResponse.Add("Email e senha não conferem.");
