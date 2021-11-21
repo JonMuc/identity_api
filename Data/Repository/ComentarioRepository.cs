@@ -3,6 +3,7 @@ using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Dto;
+using Domain.Models.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -21,18 +22,18 @@ namespace Data.Repository
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(long idNoticia, long idUsuario)
+        public async Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(ComentarioRequest request)
         {
             var sql = @"select come.Id as IdComentario, usua.Id as IdUsuario, come.Mensagem, usua.Nome, usua.Foto as UrlFoto, 
                         come.CriadoEm as DataComentario,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 1 and StatusRegistro = 0) as QuantidadeLike,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike,
-                        (select TipoAvaliacao from TBL_AVALIACAO WHERE IdNoticia = @idNoticia and IdUsuario = @idUsuario and StatusRegistro = 0) as ComentarioAvaliado                     
+                        (select TipoAvaliacao from TBL_AVALIACAO WHERE IdNoticia = @IdNoticia and IdUsuario = IdUsuario and StatusRegistro = 0) as ComentarioAvaliado                     
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
-                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @idNoticia
+                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
 						and come.IdComentario = 0";
-            return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, new { idNoticia, idUsuario }, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
         }
 
         public async Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario)

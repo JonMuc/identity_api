@@ -1,5 +1,6 @@
 ﻿using Application.AppServices;
 using Domain.Models;
+using Domain.Models.Request;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Threading.Tasks;
@@ -37,13 +38,13 @@ namespace ApiCrud.Controllers
         }
 
 
-        [HttpGet("obter-comentario-noticia/{idNoticia:int}/{idUsuario:int}")]
+        [HttpPost("obter-comentario-noticia")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarComentariosNoticiaAsync(int idNoticia, int idUsuario)
+        public async Task<IActionResult> ListarComentariosNoticiaAsync([FromBody] ComentarioRequest request)
         {
-            var response = await _comentarioAppService.ListarComentariosNoticiaAsync(idNoticia, idUsuario);
+            var response = await _comentarioAppService.ListarComentariosNoticiaAsync(request);
             return Ok(response);
         }
     }
