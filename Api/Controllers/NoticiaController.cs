@@ -27,6 +27,16 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
+        [HttpPost("listar-noticias")] //com a query melhorada
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ListarNoticias([FromBody] NoticiaRequest request)
+        {
+            var response = await _noticiaAppService.ListarNoticias(request);
+            return Ok(response);
+        }
+
         [HttpGet("listar-noticia-por-tipo")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]

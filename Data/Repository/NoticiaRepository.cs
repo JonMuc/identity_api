@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
+using Domain.Models.Dto;
 using Domain.Models.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -97,6 +98,22 @@ namespace Data.Repository
         {
             var sql = @"SELECT count(*) FROM tbl_noticia WHERE Titulo like @titulo";
             var response = _unitOfWork.Connection.ExecuteScalar<bool>(sql, new { titulo }, _unitOfWork?.Transaction);
+            return response;
+        }
+
+        public async Task<List<ViewNoticia>> ListarNoticias(NoticiaRequest request)
+        {
+            var sql = @" SELECT noti.Id AS IdNoticia, noti.Titulo, noti.UrlImage, noti.Fonte, noti.CriadoEm, noti.TipoNoticia, noti.OrigemNoticia,
+						        (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
+                                (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 2 AND StatusRegistro = 0) AS QuantidadeDeslike,
+                                (SELECT TipoAvaliacao FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND IdUsuario = @IdUsuario AND StatusRegistro = 0) AS UsuarioAvaliacao,
+                                (SELECT Id FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND IdUsuario = @IdUsuario) AS IdAvaliacao,                        
+                                (SELECT count(*) FROM CRZ_NOTICIA_USUARIO WHERE IdUsuario = @IdUsuario AND IdNoticia = noti.Id AND StatusRegistro = 0) AS NoticiaFavorito,
+                                (SELECT Id FROM CRZ_NOTICIA_USUARIO WHERE IdUsuario = @IdUsuario AND IdNoticia = noti.Id) AS IdFavorito
+                        FROM tbl_noticia noti	 
+                        ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
+                       
+            var response = (List<ViewNoticia>)await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);            
             return response;
         }
     }

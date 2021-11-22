@@ -27,6 +27,17 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
+        public async Task<ResponseViewModel> ListarNoticias(NoticiaRequest request)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var result = await _noticiaRepository.ListarNoticias(request);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = result };
+            }
+        }
+
         public ResponseViewModel ListarMancheteG1()
         {
             var result = _crawlingG1Service.ListarManchetes();

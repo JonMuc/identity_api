@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Dto;
 using Domain.Models.Request;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,5 +17,6 @@ namespace Domain.Interfaces
         long AdicionarNoticia(Noticia request);
         bool VerificarExistenciaTitulo(string titulo);
         Task<IEnumerable<Noticia>> ListarNoticiaAsync(NoticiaRequest request);
+        Task<List<ViewNoticia>> ListarNoticias(NoticiaRequest request);
     }
 }
