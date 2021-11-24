@@ -17,6 +17,6 @@ namespace Domain.Interfaces
         long AdicionarNoticia(Noticia request);
         bool VerificarExistenciaTitulo(string titulo);
         Task<IEnumerable<Noticia>> ListarNoticiaAsync(NoticiaRequest request);
-        Task<List<ViewNoticia>> ListarNoticias(NoticiaRequest request);
+        Task<IEnumerable<ViewNoticia>> ListarNoticias(NoticiaRequest request);
     }
 }

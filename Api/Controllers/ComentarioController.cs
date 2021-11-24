@@ -47,5 +47,15 @@ namespace ApiCrud.Controllers
             var response = await _comentarioAppService.ListarComentariosNoticiaAsync(request);
             return Ok(response);
         }
+
+        [HttpPost("obter-comentarios-de-comentario")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ListarComentariosComentarioAsync([FromBody] ComentarioRequest request)
+        {
+            var response = await _comentarioAppService.ListarComentariosComentarioAsync(request);
+            return Ok(response);
+        }
     }
 }

@@ -101,7 +101,7 @@ namespace Data.Repository
             return response;
         }
 
-        public async Task<List<ViewNoticia>> ListarNoticias(NoticiaRequest request)
+        public async Task<IEnumerable<ViewNoticia>> ListarNoticias(NoticiaRequest request)
         {
             var sql = @" SELECT noti.Id AS IdNoticia, noti.Titulo, noti.UrlImage, noti.Fonte, noti.CriadoEm, noti.TipoNoticia, noti.OrigemNoticia,
 						        (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
@@ -113,7 +113,7 @@ namespace Data.Repository
                         FROM tbl_noticia noti	 
                         ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
                        
-            var response = (List<ViewNoticia>)await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);            
+            var response = await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);            
             return response;
         }
     }

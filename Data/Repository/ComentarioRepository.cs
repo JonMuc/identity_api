@@ -41,6 +41,23 @@ namespace Data.Repository
             var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdComentario = @idComentario";
             return await _unitOfWork.Connection.QueryAsync<Comentario>(sql, new { idComentario }, _unitOfWork?.Transaction);
         }
+
+        public async Task<IEnumerable<ViewComentario>> ListarComentariosComentarioAsync(ComentarioRequest request)
+        {
+            var sql = @" SELECT come.IdComentario, come.Mensagem, come.CriadoEm AS DataComentario, usua.Id as IdUsuario, usua.Nome, usua.Foto as UrlFoto,
+						                            (SELECT count(*) FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
+                                                    (SELECT count(*) FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND TipoAvaliacao = 2 AND StatusRegistro = 0) AS QuantidadeDeslike,
+                                                    (SELECT TipoAvaliacao FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND IdUsuario = @IdUsuario AND StatusRegistro = 0) AS ComentarioAvaliado                        
+                            FROM TBL_COMENTARIO come
+                            INNER JOIN TBL_USUARIO usua
+                            ON come.IdCriadoPor = usua.Id
+                            WHERE come.IdComentario = @IdComentario
+                            ORDER BY DataComentario ASC";
+
+            var response = await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
+            return response;
+        }
+
         public async Task<Comentario> GetComentarioById(long idComentario)
         {
             var sql = @" SELECT * FROM tbl_comentario WHERE Id = @Id";

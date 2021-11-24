@@ -47,12 +47,10 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
 
-        public async Task<ResponseViewModel> ListarComentariosComentarioAsync(long idComentario, long idUsuario)
-        {
-            //TODO ALTERAR PARA METODO DE LISTAR COMENTARIO DE COMENTARIO
-            //var response = await _comentarioRepository.ListarComentariosNoticiaAsync(idComentario, idUsuario);
-            //return new ResponseViewModel { Sucesso = true, Objeto = response };
-            return null;
+        public async Task<ResponseViewModel> ListarComentariosComentarioAsync(ComentarioRequest request)
+        {            
+            var response = await _comentarioRepository.ListarComentariosComentarioAsync(request);
+            return new ResponseViewModel { Sucesso = true, Objeto = response };            
         }
     }
 }

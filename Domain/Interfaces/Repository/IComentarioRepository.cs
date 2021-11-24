@@ -11,6 +11,7 @@ namespace Domain.Interfaces
         Task<long> AdicionarAsync(Comentario request);
         Task<Comentario> GetComentarioById(long idComentario);
         Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario);
+        Task<IEnumerable<ViewComentario>> ListarComentariosComentarioAsync(ComentarioRequest request);
         Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaAsync(ComentarioRequest request);
     }
 }

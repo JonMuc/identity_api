@@ -4,5 +4,6 @@
     {
         public long IdUsuario { get; set; }
         public long IdNoticia { get; set; }
+        public long IdComentario { get; set; }
     }
 }
