@@ -9,7 +9,7 @@ namespace Domain.Interfaces
     public interface IPerfilUsuarioRepository
     {
         public Task<long> AdicionarPerfilUsuarioAsync(PerfilUsuario perfilUsuario);
-        public Task<PerfilUsuario> GetPerfilUsuarioById(long idPerfil);
+        public Task<PerfilUsuario> GetPerfilUsuarioById(long idUsuario);
         public Task<IEnumerable<TipoNoticia>> VisualizarPerfilUsuarioCompletoAsync(long idUsuario);
         public Task DeletarPerfilUsuarioAsync(long idPerfil);
         public Task<long> VerificarPerfilUsuarioAsync(PerfilUsuarioRequest request);

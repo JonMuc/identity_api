@@ -40,11 +40,11 @@ namespace Domain.Services
             return await _perfilUsuarioRepository.AdicionarPerfilUsuarioAsync(obj);            
         }
 
-        public async Task DeletarPerfilUsuarioByIdAsync(long idPerfil)
+        public async Task DeletarPerfilUsuarioByIdAsync(long idUsuario)
         {            
-            _perfilUsuarioValidation.VerificarExistenciaPerfil(await _perfilUsuarioRepository.GetPerfilUsuarioById(idPerfil));
+            _perfilUsuarioValidation.VerificarExistenciaPerfil(await _perfilUsuarioRepository.GetPerfilUsuarioById(idUsuario));
 
-            await _perfilUsuarioRepository.DeletarPerfilUsuarioAsync(idPerfil);
+            await _perfilUsuarioRepository.DeletarPerfilUsuarioAsync(idUsuario);
         }
 
         public async Task<IEnumerable<TipoNoticia>> VisualizarPerfilUsuarioCompleto(long idUsuario)

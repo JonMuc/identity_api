@@ -21,10 +21,14 @@ namespace Application.AppServices
         }
 
         public async Task<ResponseViewModel> ListarManchete(NoticiaRequest request)
-        {           
-            var listaNoticia = await _noticiaRepository.ListarNoticiaAsync(request);            
-            var result = listaNoticia;
-            return new ResponseViewModel { Sucesso = true, Objeto = result };
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var result = await _noticiaService.ListarManchetes(request);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = result };
+            }
         }
 
         public async Task<ResponseViewModel> ListarNoticias(NoticiaRequest request)

@@ -78,10 +78,18 @@ namespace Data.Repository
             return response;
         }
 
-        public async Task<IEnumerable<Noticia>> ListarNoticiaAsync(NoticiaRequest request)
-        {
-            //var sql = @" SELECT * FROM tbl_noticia ORDER BY Id asc OFFSET " + request.PageSize * request.PageIndex + " ROWS FETCH NEXT  " + request.PageSize + "  ROWS ONLY";
-            var sql = @" SELECT * FROM tbl_noticia ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
+        public async Task<IEnumerable<Noticia>> ListarManchetesAsync(NoticiaRequest request)
+        {            
+            var sql = @" SELECT tn.Id, tn.AtualizadoEm , tn.CriadoEm , tn.IdAtualizadoPor , tn.Titulo , 
+                                tn.Fonte ,tn.HoraAtras ,tn.TipoNoticia ,tn.IdCriadoPor , tn.UrlImage , 
+                                tn.Link ,tn.OrigemNoticia , tn.StatusRegistro
+                            FROM TBL_NOTICIA tn 
+                            JOIN TBL_PERFIL_USUARIO tpu  
+	                            ON tpu.TipoNoticia = tn.TipoNoticia AND tpu.StatusRegistro = 0 
+                            JOIN TBL_USUARIO tu 
+	                            ON tu.Id = tpu.IdUsuario 
+                            WHERE tpu.IdUsuario = @IdUsuario AND tn.StatusRegistro = 0
+                            ORDER BY tn.CriadoEm DESC OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             var response = await _unitOfWork.Connection.QueryAsync<Noticia>(sql, request, _unitOfWork?.Transaction);
             return response;

@@ -33,11 +33,11 @@ namespace Data.Repository
             await _unitOfWork.Connection.ExecuteAsync(sql, new { Id = idPerfil }, _unitOfWork?.Transaction);
         }
 
-        public async Task<PerfilUsuario> GetPerfilUsuarioById(long idPerfil)
+        public async Task<PerfilUsuario> GetPerfilUsuarioById(long idUsuario)
         {
-            var sql = @" SELECT * FROM tbl_perfil_usuario WHERE Id = @Id";            
+            var sql = @" SELECT * FROM tbl_perfil_usuario WHERE IdUsuario = @Id AND StatusRegistro = 0";            
 
-            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<PerfilUsuario>(sql, new { Id = idPerfil }, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<PerfilUsuario>(sql, new { Id = idUsuario }, _unitOfWork?.Transaction);
         }
 
         public async Task<long> VerificarPerfilUsuarioAsync(PerfilUsuarioRequest request)

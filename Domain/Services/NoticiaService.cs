@@ -10,12 +10,22 @@ namespace Domain.Services
     public class NoticiaService : INoticiaService
     {
         private readonly NoticiaValidation _noticiaValidation;
+        private readonly UsuarioValidation _usuarioValidation;
+        private readonly PerfilUsuarioValidation _perfilUsuarioValidation;
+        private readonly IPerfilUsuarioRepository _perfilUsuarioRepository;
         private readonly INoticiaRepository _noticiaRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
-        public NoticiaService(INoticiaRepository noticiaRepository, NoticiaValidation noticiaValidation)
+        public NoticiaService(INoticiaRepository noticiaRepository, IUsuarioRepository usuarioRepository, 
+                                NoticiaValidation noticiaValidation, UsuarioValidation usuarioValidation,
+                                PerfilUsuarioValidation perfilUsuarioValidation, IPerfilUsuarioRepository perfilUsuarioRepository)
         {
             _noticiaRepository = noticiaRepository;
+            _usuarioRepository = usuarioRepository;
+            _perfilUsuarioRepository = perfilUsuarioRepository;
             _noticiaValidation = noticiaValidation;
+            _usuarioValidation = usuarioValidation;
+            _perfilUsuarioValidation = perfilUsuarioValidation;
         }
 
         public async Task<long> AdicionarNoticia(Noticia noticia)
@@ -56,6 +66,18 @@ namespace Domain.Services
             var result = await _noticiaRepository.ListarNoticiaPorTipoAsync(tipoNoticia);
 
             return result;
+        }
+
+        public async Task<IEnumerable<Noticia>> ListarManchetes(NoticiaRequest request)
+        {
+            if(request.IdUsuario != 0)
+            {
+                _usuarioValidation.VerificarExistenciaUsuario(await _usuarioRepository.GetUsuarioById(request.IdUsuario));
+                _perfilUsuarioValidation.VerificarExistenciaPerfil(await _perfilUsuarioRepository.GetPerfilUsuarioById(request.IdUsuario));
+                return await _noticiaRepository.ListarManchetesAsync(request);
+            }
+
+            return await _noticiaRepository.ListarNoticiaPorTipoAsync(request);
         }
 
         public bool VerificarNoticiaExistente(string noticia)

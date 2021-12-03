@@ -13,5 +13,6 @@ namespace Domain.Services
         Task DeletarNoticiaById(long idNoticia);
         Task<IEnumerable<Noticia>> ListarNoticiaPorTipo(NoticiaRequest tipoNoticia);
         bool VerificarNoticiaExistente(string noticia);
+        Task<IEnumerable<Noticia>> ListarManchetes(NoticiaRequest request);
     }
 }

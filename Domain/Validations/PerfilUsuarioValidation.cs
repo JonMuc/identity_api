@@ -24,7 +24,7 @@ namespace Domain.Validations
 
             if (perfil == null)
             {
-                errosResponse.Add("O perfil informado não existe.");
+                errosResponse.Add("O usuário não possui um perfil vinculado à ele.");
                 throw new ParametroException(errosResponse);
             }
         }       
