@@ -81,7 +81,7 @@ namespace Application.AppServices
             }
         }
 
-        public async Task<ResponseViewModel> VisualizarNoticiaById(int idNoticia)
+        public async Task<ResponseViewModel> VisualizarNoticiaById(long idNoticia)
         {
             using (_unitOfWork)
             {

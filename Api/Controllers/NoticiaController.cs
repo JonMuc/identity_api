@@ -10,11 +10,13 @@ namespace ApiCrud.Controllers
     [ApiController, Route("noticia")]
     public class NoticiaController : ControllerBase
     {
-        private readonly NoticiaAppService _noticiaAppService;
+        private readonly NoticiaAppService _noticiaAppService;        
+        private readonly MetricaAppService _metricaAppService;        
 
-        public NoticiaController(NoticiaAppService noticiaAppService)
+        public NoticiaController(NoticiaAppService noticiaAppService, MetricaAppService metricaAppService)
         {
             _noticiaAppService = noticiaAppService;
+            _metricaAppService = metricaAppService;
         }
 
         [HttpPost("listar-manchete")]
@@ -81,9 +83,23 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> Visualizar(int idNoticia)
-        {
+        public async Task<IActionResult> Visualizar(long idNoticia)        
+        {            
             var response = await _noticiaAppService.VisualizarNoticiaById(idNoticia);
+            return Ok(response);
+        }
+
+        [HttpPost("metrica-noticia")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ContabilizarClick(long idUsuario, long idNoticia)
+        {
+            await _metricaAppService.ContabilizarClick(idUsuario,idNoticia);
+            var response = new ResponseViewModel()
+            {
+                Sucesso = true
+            };
             return Ok(response);
         }
     }

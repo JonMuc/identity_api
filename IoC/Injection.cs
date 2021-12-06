@@ -24,6 +24,7 @@ namespace IoC
             services.AddTransient<IComentarioRepository, ComentarioRepository>();
             services.AddTransient<IAvaliacaoRepository, AvaliacaoRepository>();
             services.AddTransient<IPerfilUsuarioRepository, PerfilUsuarioRepository>();
+            services.AddTransient<IMetricaRepository, MetricaRepository>();
 
             // Services
             services.AddTransient<ICrawlingGoogleService, CrawlingGoogleService>();
@@ -57,6 +58,7 @@ namespace IoC
             services.AddTransient<ChatAppService>();
             services.AddTransient<AvaliacaoAppService>();
             services.AddTransient<PerfilUsuarioAppService>();
+            services.AddTransient<MetricaAppService>();
         }
     }
 }
