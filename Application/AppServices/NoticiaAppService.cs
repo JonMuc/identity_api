@@ -44,7 +44,7 @@ namespace Application.AppServices
 
         public ResponseViewModel ListarMancheteG1()
         {
-            var result = _crawlingG1Service.ListarManchetes();
+            var result = _noticiaRepository.ListarManchetesTemp();
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 

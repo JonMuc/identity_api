@@ -78,6 +78,7 @@ namespace Data.Repository
             return response;
         }
 
+        //TODO JV - ARRUMAR ESSE METODO, ESTA ERRADO A FORMA COMO FEZ, TEM QUE SER COMO CONVERSAMOS
         public async Task<IEnumerable<Noticia>> ListarManchetesAsync(NoticiaRequest request)
         {            
             var sql = @" SELECT tn.Id, tn.AtualizadoEm , tn.CriadoEm , tn.IdAtualizadoPor , tn.Titulo , 
@@ -122,6 +123,14 @@ namespace Data.Repository
                         ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
                        
             var response = await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);            
+            return response;
+        }
+
+        //METODO TEMPORARIO
+        public IEnumerable<Noticia> ListarManchetesTemp()
+        {
+            var sql = @"SELECT top 10 * from tbl_noticia";
+            var response = _unitOfWork.Connection.Query<Noticia>(sql, _unitOfWork?.Transaction);
             return response;
         }
     }
