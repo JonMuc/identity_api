@@ -13,6 +13,6 @@ namespace Domain.Models.Dto
         public DateTime DataComentario { get; set; }
         public long QuantidadeLike { get; set; }
         public long QuantidadeDeslike { get; set; }
-        public TipoAvaliacao? ComentarioAvaliado { get; set; }
+        public TipoAvaliacao ComentarioAvaliado { get; set; }
     }
 }

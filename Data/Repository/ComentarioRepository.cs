@@ -28,7 +28,7 @@ namespace Data.Repository
                         come.CriadoEm as DataComentario,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 1 and StatusRegistro = 0) as QuantidadeLike,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike,
-                        (select TipoAvaliacao from TBL_AVALIACAO WHERE IdNoticia = @IdNoticia and IdUsuario = IdUsuario and StatusRegistro = 0) as ComentarioAvaliado                     
+                        (select TipoAvaliacao from TBL_AVALIACAO WHERE  IdComentario = come.Id and IdUsuario = @IdUsuario and StatusRegistro = 0) as ComentarioAvaliado                     
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
                         on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia

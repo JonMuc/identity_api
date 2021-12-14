@@ -36,23 +36,23 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
-        [HttpDelete("excluir-avaliacao-noticia")]
+        [HttpPost("excluir-avaliacao-noticia")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ExcluirAvaliacaoNoticia(long idUsuario, long idNoticia)
+        public async Task<IActionResult> ExcluirAvaliacaoNoticia(AvaliacaoRequest request)
         {
-            var response = await _avaliacaoAppService.ExcluirAvaliacaoNoticia(idUsuario, idNoticia);
+            var response = await _avaliacaoAppService.ExcluirAvaliacaoNoticia(request.IdUsuario, request.IdNoticia);
             return Ok(response);
         }
 
-        [HttpDelete("excluir-avaliacao-comentario")]
+        [HttpPost("excluir-avaliacao-comentario")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ExcluirAvaliacaoComentario(long idUsuario, long idComentario)
+        public async Task<IActionResult> ExcluirAvaliacaoComentario(AvaliacaoRequest request)
         {
-            var response = await _avaliacaoAppService.ExcluirAvaliacaoComentario(idUsuario, idComentario);
+            var response = await _avaliacaoAppService.ExcluirAvaliacaoComentario(request.IdUsuario, request.IdComentario);
             return Ok(response);
         }
 
