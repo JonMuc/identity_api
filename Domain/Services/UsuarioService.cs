@@ -26,6 +26,7 @@ namespace Domain.Services
         public async Task<long> AdicionarUsuario(Usuario usuario)
         {
             _usuarioValidation.ValidarSalvarUsuario(usuario);
+            usuario.Senha = CryptographyHelper.EncryptString(usuario.Senha);
             var result = await _usuarioRepository.AdicionarUsuarioAsync(usuario);
             return result;
         }

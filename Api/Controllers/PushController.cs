@@ -23,7 +23,7 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> EnviarPushNotification(long idUsuario)
         {
-            await _pushService.EnviarPush(idUsuario);
+            await _pushService.EnviarPush(new Usuario { Id = idUsuario });
             var response = "deu bom";
             return Ok(response);
         }       

@@ -79,6 +79,7 @@ namespace Data.Repository
         }
 
         //TODO JV - ARRUMAR ESSE METODO, ESTA ERRADO A FORMA COMO FEZ, TEM QUE SER COMO CONVERSAMOS
+        //select * from tbl_noticia where TipoNoticia in (0,1,2)
         public async Task<IEnumerable<Noticia>> ListarManchetesAsync(NoticiaRequest request)
         {            
             var sql = @" SELECT tn.Id, tn.AtualizadoEm , tn.CriadoEm , tn.IdAtualizadoPor , tn.Titulo , 
