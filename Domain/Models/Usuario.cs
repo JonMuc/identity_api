@@ -13,5 +13,6 @@
         public string PerfilInstagram { get; set; }
         public string PerfilTwitter { get; set; }
         public string Descricao { get; set; }
+        public string PushToken { get; set; }
     }
 }

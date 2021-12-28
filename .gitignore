@@ -55,3 +55,4 @@ Api/Api.csproj.user
 Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
 *.user
 Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
+/.vs/IdentityApi/v17/.suo

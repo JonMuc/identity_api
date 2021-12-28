@@ -38,6 +38,7 @@ namespace IoC
             services.AddTransient<IComentarioService, ComentarioService>();
             services.AddTransient<IAvaliacaoService, AvaliacaoService>();
             services.AddTransient<IPerfilUsuarioService, PerfilUsuarioService>();
+            services.AddTransient<IPushService, PushService>();
 
             // Validations
             services.AddTransient<LoginValidation>();
