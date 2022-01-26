@@ -3,6 +3,7 @@ using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Request;
 using Domain.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Application.AppServices
@@ -45,6 +46,10 @@ namespace Application.AppServices
         public ResponseViewModel ListarMancheteG1()
         {
             var result = _noticiaRepository.ListarManchetesTemp();
+            foreach (Noticia noticia in result)
+            {
+                noticia.UrlImage = noticia.UrlImage.Replace("w100-h100", "w1000-h1000");
+            }
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
