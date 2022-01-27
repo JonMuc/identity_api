@@ -15,5 +15,7 @@ namespace Domain.Interfaces
         Task<bool> LoginAsync(Usuario request);
         Task<Usuario> GetUsuarioByEmailAsync(string email);
 
+        Task AtualizarTokenPush(long idUsuario, string tokenPush);
+
     }
 }
