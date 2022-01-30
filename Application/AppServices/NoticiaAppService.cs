@@ -1,9 +1,11 @@
 ﻿using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
+using Domain.Models.Dto;
 using Domain.Models.Request;
 using Domain.Services;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Application.AppServices
@@ -34,13 +36,12 @@ namespace Application.AppServices
 
         public async Task<ResponseViewModel> ListarNoticias(NoticiaRequest request)
         {
-            using (_unitOfWork)
+            var result = await _noticiaRepository.ListarNoticias(request);
+            foreach (ViewNoticia noticia in result)
             {
-                _unitOfWork.BeginTransaction();
-                var result = await _noticiaRepository.ListarNoticias(request);
-                _unitOfWork.CommitTransaction();
-                return new ResponseViewModel { Sucesso = true, Objeto = result };
+                noticia.UrlImage = noticia.UrlImage.Replace("w100-h100", "w1000-h1000");
             }
+            return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
         public ResponseViewModel ListarMancheteG1()
@@ -50,6 +51,16 @@ namespace Application.AppServices
             {
                 noticia.UrlImage = noticia.UrlImage.Replace("w100-h100", "w1000-h1000");
             }
+            var response = result.Select(x => new ViewNoticia() { 
+                Fonte = x.Fonte,
+                CriadoEm = x.CriadoEm,
+                Link = x.Link,
+                UrlImage = x.UrlImage,
+                IdNoticia = x.Id,
+                TipoNoticia = x.TipoNoticia,
+                Titulo = x.Titulo,
+                OrigemNoticia = x.OrigemNoticia,
+            });
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 

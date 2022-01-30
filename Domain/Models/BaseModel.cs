@@ -7,7 +7,7 @@ namespace Domain.Models
     public class BaseModel : IBaseModel
     {
         public long Id { get; set; }
-        public DateTime? CriadoEm { get; set; }
+        public DateTime CriadoEm { get; set; }
         public DateTime? AtualizadoEm { get; set; }
         public long IdAtualizadoPor { get; set; }
         public long IdCriadoPor { get; set; }

@@ -105,7 +105,7 @@ namespace Data.Repository
 
         public async Task<IEnumerable<ViewNoticia>> ListarNoticias(NoticiaRequest request)
         {
-            var sql = @" SELECT noti.Id AS IdNoticia, noti.Titulo, noti.UrlImage, noti.Fonte, noti.CriadoEm, noti.TipoNoticia, noti.OrigemNoticia,
+            var sql = @" SELECT noti.Id AS IdNoticia, noti.Titulo, noti.UrlImage, noti.Fonte, noti.CriadoEm, noti.TipoNoticia, noti.OrigemNoticia,noti.Link,
 						        (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
                                 (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 2 AND StatusRegistro = 0) AS QuantidadeDeslike,
                                 (SELECT TipoAvaliacao FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND IdUsuario = @IdUsuario AND StatusRegistro = 0) AS UsuarioAvaliacao,
@@ -113,7 +113,8 @@ namespace Data.Repository
                                 (SELECT count(*) FROM CRZ_NOTICIA_USUARIO WHERE IdUsuario = @IdUsuario AND IdNoticia = noti.Id AND StatusRegistro = 0) AS NoticiaFavorito,
                                 (SELECT Id FROM CRZ_NOTICIA_USUARIO WHERE IdUsuario = @IdUsuario AND IdNoticia = noti.Id) AS IdFavorito
                         FROM tbl_noticia noti	 
-                        ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
+                        ORDER BY Id asc";            
+                        //ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
                        
             var response = await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);            
             return response;

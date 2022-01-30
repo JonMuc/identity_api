@@ -9,6 +9,7 @@ namespace Domain.Models.Dto
         public DateTime CriadoEm { get; set; }
         public string Titulo { get; set; }
         public string UrlImage { get; set; }
+        public string Link { get; set; }
         public string Fonte { get; set; }
         public TipoNoticia TipoNoticia { get; set; }
         public OrigemNoticia OrigemNoticia { get; set; }

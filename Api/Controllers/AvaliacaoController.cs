@@ -23,6 +23,8 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> AvaliarNoticia(AvaliacaoRequest request)
         {
+            var usuario = ObterUsuario();
+            request.IdUsuario = usuario.Id;
             var response = await _avaliacaoAppService.AvaliarNoticia(request);
             return Ok(response);
         }

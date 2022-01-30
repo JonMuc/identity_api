@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Domain.Models.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace ApiCrud.Controllers
 {
     [ApiController, Route("noticia")]
-    public class NoticiaController : ControllerBase
+    public class NoticiaController : BaseController
     {
         private readonly NoticiaAppService _noticiaAppService;        
         private readonly MetricaAppService _metricaAppService;        
@@ -29,13 +30,15 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
-        [HttpPost("listar-noticias")] //com a query melhorada
+        [ValidateUser]
+        [HttpGet("listar-noticias")] //com a query melhorada
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarNoticias([FromBody] NoticiaRequest request)
+        public async Task<IActionResult> ListarNoticias()
         {
-            var response = await _noticiaAppService.ListarNoticias(request);
+            var usuario = ObterUsuario();
+            var response = await _noticiaAppService.ListarNoticias(new NoticiaRequest() { IdUsuario = usuario.Id});
             return Ok(response);
         }
 
