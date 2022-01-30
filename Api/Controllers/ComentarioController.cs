@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Domain.Models.Request;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("comentario")]
-    public class ComentarioController : ControllerBase
+    [ApiController, ValidateUser, Route("comentario")]
+    public class ComentarioController : BaseController
     {
         private readonly ComentarioAppService _comentarioAppService;
 

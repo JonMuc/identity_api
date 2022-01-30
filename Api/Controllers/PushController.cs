@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Domain.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("push-notification")]
-    public class PushController : ControllerBase
+    [ApiController, ValidateUser, Route("push-notification")]
+    public class PushController : BaseController
     {
         private readonly IPushService _pushService;
 

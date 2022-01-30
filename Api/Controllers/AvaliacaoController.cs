@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("avaliacao")]
-    public class AvaliacaoController : ControllerBase
+    [ApiController, ValidateUser, Route("avaliacao")]
+    public class AvaliacaoController : BaseController
     {
         private readonly AvaliacaoAppService _avaliacaoAppService;
 

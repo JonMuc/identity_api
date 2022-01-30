@@ -1,8 +1,10 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Application.ModelsDto;
+using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Request;
 using Domain.Services;
 using System.Threading.Tasks;
+using Util.Jwt;
 
 namespace Application.AppServices
 {
@@ -18,7 +20,12 @@ namespace Application.AppServices
         public async Task<ResponseViewModel> Login(LoginRequest request)
         {
             var response = await _loginService.LoginAsync(request);
-            return new ResponseViewModel { Sucesso = true, Objeto = response };
+            var token = JWTManager.GenerateToken(response);
+            var result = new LoginResponse { Id = response.Id, Descricao = response.Descricao, Email = response.Email, Foto = response.Foto,
+            Nome = response.Nome, IdGoogle = response.IdGoogle, IdFacebook = response.IdFacebook, PerfilInstagram = response.PerfilInstagram,
+            PerfilLinkedin = response.PerfilLinkedin, PushToken = response.PushToken, StatusRegistro = response.StatusRegistro, PerfilTwitter = response.PerfilTwitter,
+            Telefone = response.Telefone, Token = token};
+            return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
     }
 }

@@ -3,6 +3,7 @@ using Domain.Models;
 using Domain.Models.Request;
 using Domain.Validations;
 using System.Threading.Tasks;
+using Util.Jwt;
 
 namespace Domain.Services
 {

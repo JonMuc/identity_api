@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("chat")]
-    public class ChatController : ControllerBase
+    [ApiController, ValidateUser, Route("chat")]
+    public class ChatController : BaseController
     {
         private readonly ChatAppService _chatAppService;
 

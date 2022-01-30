@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Domain.Models.Dto;
 using Domain.Models.Request;
@@ -9,8 +10,8 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("perfil-usuario")]
-    public class PerfilUsuarioController : ControllerBase
+    [ApiController, ValidateUser, Route("perfil-usuario")]
+    public class PerfilUsuarioController : BaseController
     {
         private readonly PerfilUsuarioAppService _perfilUsuarioAppService;
 

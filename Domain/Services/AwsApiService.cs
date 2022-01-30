@@ -23,7 +23,7 @@ namespace Domain.Services
             get
             {
                 if (_s3client == null)
-                {
+                 {
                     _s3client = new AmazonS3Client(_awsAccessKey, _awsSecretKey, RegionEndpoint.USEast2);
                 }
                 return _s3client;
