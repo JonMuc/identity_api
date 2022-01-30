@@ -25,7 +25,7 @@ namespace Util.Jwt
             values.Add("Email", usuario.Email);
             values.Add("Nome", usuario.Nome);
             values.Add("Senha", usuario.Senha);
-            values.Add("PushToken", usuario.PushToken == null ? "" : usuario.PushToken);
+            values.Add("PushToken", usuario.TokenPush == null ? "" : usuario.TokenPush);
             values.Add("Telefone", usuario.Telefone == null ? "" : usuario.Telefone);
             values.Add("StatusRegistro", usuario.StatusRegistro.ToString());
             values.Add("Foto", usuario.Foto == null ? "" : usuario.Foto);
@@ -48,7 +48,7 @@ namespace Util.Jwt
             values.Add("Email", usuario.Email);
             values.Add("Nome", usuario.Nome);
             values.Add("Senha", usuario.Senha);
-            values.Add("PushToken", usuario.PushToken);
+            values.Add("PushToken", usuario.TokenPush);
             values.Add("Telefone", usuario.Telefone);
             values.Add("StatusRegistro", usuario.StatusRegistro.ToString());
             values.Add("Foto", usuario.Foto);
@@ -120,7 +120,7 @@ namespace Util.Jwt
                 Email = emailClam?.Value ?? string.Empty,
                 Nome = nomeClam?.Value ?? string.Empty,
                 Senha = senhaClam?.Value ?? string.Empty,
-                PushToken = pushTokenClam?.Value ?? string.Empty,
+                TokenPush = pushTokenClam?.Value ?? string.Empty,
                 Telefone = telefoneClam?.Value ?? string.Empty,
                 StatusRegistro = (StatusRegistro)statusRegistro,
                 Foto = fotoClam?.Value ?? string.Empty,
