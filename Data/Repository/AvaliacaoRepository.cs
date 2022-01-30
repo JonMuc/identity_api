@@ -50,7 +50,7 @@ namespace Data.Repository
 
         public async Task<List<Avaliacao>> GetAvaliacaoByUsuarioNoticia(long idUsuario, long idNoticia)
         {
-            var sql = @" SELECT * FROM tbl_avaliacao WHERE IdUsuario = @IdUsuario AND IdNoticia = @IdNoticia";
+            var sql = @" SELECT * FROM tbl_avaliacao WHERE IdUsuario = @IdUsuario AND IdNoticia = @IdNoticia AND StatusRegistro = 0";
             var obj = new Avaliacao
             {
                 IdUsuario = idUsuario,

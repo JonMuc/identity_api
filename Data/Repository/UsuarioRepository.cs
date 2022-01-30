@@ -82,5 +82,18 @@ namespace Data.Repository
             string sql = @"SELECT * FROM TBL_USUARIO where Email = @email";
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, new { email }, _unitOfWork?.Transaction);
         }
+
+        public async Task AtualizarTokenPush(long idUsuario, string tokenPush)
+        {
+            string sql = @"UPDATE tbl_usuario
+                            SET TokenPush = @TokenPush
+                            WHERE Id = @Id";
+            var obj = new
+            {
+                Id = idUsuario,
+                TokenPush = tokenPush
+            };
+            await _unitOfWork.Connection.ExecuteAsync(sql, obj, _unitOfWork?.Transaction);
+        }
     }
 }

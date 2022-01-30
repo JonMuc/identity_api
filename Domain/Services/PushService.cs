@@ -31,9 +31,10 @@ namespace Domain.Services
                 contents = new { en = "Teste 001" },
                 android_led_color = "1e4999",
                 android_accent_color = "1e4999",
-                include_player_ids = new string[] { usuario.PushToken }
+                include_player_ids = new string[] { usuario.TokenPush }
             };
 
+            //await _usuarioRepository.AtualizarTokenPush(usuario.Id, usuario.TokenPush);
             //WebRequest
             using var client = new WebClient();
             client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
