@@ -3,6 +3,7 @@ using Domain.Models;
 using Domain.Models.Enums;
 using Domain.Validations;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Domain.Services
@@ -43,7 +44,17 @@ namespace Domain.Services
 
             //validação de inclusão no BD
             var listAvaliacao = await _avaliacaoRepository.GetAvaliacaoByUsuarioNoticia(idUsuario, idNoticia);
-            _avaliacaoValidation.ValidarInclusaoAvaliacao(listAvaliacao);
+
+            if (listAvaliacao.Count > 0)
+            {
+                await ExcluirAvaliacaoNoticia(idUsuario, idNoticia);
+            }
+            
+            //se for do mesmo tipo, o usuario que remover a avaliacao
+            if (listAvaliacao.Count > 0 && tipoAvaliacao == listAvaliacao.First().TipoAvaliacao)
+            {
+                return await Task.FromResult(Convert.ToInt64(0));
+            }
 
             var request = new Avaliacao()
             {
@@ -98,7 +109,7 @@ namespace Domain.Services
 
             //validação de exclusão no BD
             var listAvaliacao = await _avaliacaoRepository.GetAvaliacaoByUsuarioNoticia(idUsuario, idNoticia);
-            _avaliacaoValidation.ValidarExclusaoAvaliacao(listAvaliacao);
+            _avaliacaoValidation.VerificarExistenciaAvaliacao(listAvaliacao);
             
 
             await _avaliacaoRepository.ExcluirAvaliacaoNoticiaAsync(idUsuario, idNoticia);

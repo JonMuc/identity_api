@@ -4,6 +4,7 @@ using Domain.Models.Enums;
 using Domain.Util;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Validations
 {
@@ -40,7 +41,7 @@ namespace Domain.Validations
         {
             var errosResponse = new List<string>(0);
             
-            if (listAvaliacao != null) //Só existirá elementos na lista se tiver avaliação ativa no BD (status registro = 0)
+            if (listAvaliacao.Count() > 0) //Só existirá elementos na lista se tiver avaliação ativa no BD (status registro = 0)
             {  
                 errosResponse.Add("Já existe uma avaliação para este caso.");
                 throw new ParametroException(errosResponse);               
@@ -50,9 +51,9 @@ namespace Domain.Validations
         public void ValidarExclusaoAvaliacao(List<Avaliacao> listAvaliacao)
         {
             VerificarExistenciaAvaliacao(listAvaliacao);
-            var errosResponse = new List<string>(0);                
-            errosResponse.Add("Não é possível excluir esta avaliação.");
-            throw new ParametroException(errosResponse);            
+            //var errosResponse = new List<string>(0);                
+            //errosResponse.Add("Não é possível excluir esta avaliação.");
+            //throw new ParametroException(errosResponse);            
         }
     }
 }
