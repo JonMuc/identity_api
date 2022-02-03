@@ -18,7 +18,7 @@ namespace Domain.Interfaces
         bool VerificarExistenciaTitulo(string titulo);
         Task<IEnumerable<Noticia>> ListarManchetesAsync(NoticiaRequest request);
         Task<IEnumerable<ViewNoticia>> ListarNoticias(NoticiaRequest request);
-        IEnumerable<Noticia> ListarManchetesTemp();
+        Task<IEnumerable<ViewNoticia>> ListarManchetesTemp();
 
 
     }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
@@ -23,10 +24,9 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public IActionResult ListarManchete()
+        public async Task<IActionResult> ListarManchete()
         {
-            var usuario = ObterUsuario();
-            var response = _informacaoGoogleAppService.ListarMancheteG1();
+            var response = await _informacaoGoogleAppService.ListarMancheteG1();
             return Ok(response);
         }
     }

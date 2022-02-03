@@ -120,10 +120,16 @@ namespace Data.Repository
         }
 
         //METODO TEMPORARIO
-        public IEnumerable<Noticia> ListarManchetesTemp()
+        public async Task<IEnumerable<ViewNoticia>> ListarManchetesTemp()
         {
-            var sql = @"SELECT top 10 * from tbl_noticia";
-            var response = _unitOfWork.Connection.Query<Noticia>(sql, _unitOfWork?.Transaction);
+            var sql = @" SELECT noti.Id AS IdNoticia, noti.Titulo, noti.UrlImage, noti.Fonte, noti.CriadoEm, noti.TipoNoticia, noti.OrigemNoticia,noti.Link,
+						        (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
+                                (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 2 AND StatusRegistro = 0) AS QuantidadeDeslike
+                        FROM tbl_noticia noti	 
+                        ORDER BY Id asc";
+            //ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
+
+            var response = await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, _unitOfWork?.Transaction);
             return response;
         }
     }

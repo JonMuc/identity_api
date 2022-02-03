@@ -44,23 +44,13 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
-        public ResponseViewModel ListarMancheteG1()
+        public async Task<ResponseViewModel> ListarMancheteG1()
         {
-            var result = _noticiaRepository.ListarManchetesTemp();
-            foreach (Noticia noticia in result)
+            var result = await _noticiaRepository.ListarManchetesTemp();
+            foreach (ViewNoticia noticia in result)
             {
                 noticia.UrlImage = noticia.UrlImage.Replace("w100-h100", "w1000-h1000");
             }
-            var response = result.Select(x => new ViewNoticia() { 
-                Fonte = x.Fonte,
-                CriadoEm = x.CriadoEm,
-                Link = x.Link,
-                UrlImage = x.UrlImage,
-                IdNoticia = x.Id,
-                TipoNoticia = x.TipoNoticia,
-                Titulo = x.Titulo,
-                OrigemNoticia = x.OrigemNoticia,
-            });
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
