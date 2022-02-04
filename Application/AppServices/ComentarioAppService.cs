@@ -18,15 +18,25 @@ namespace Application.AppServices
             _comentarioRepository = comentarioRepository;
         }
 
+        public async Task<ResponseViewModel> ExcluirComentarioNoticiaAsync(Comentario request)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                await _comentarioService.ExcluirComentarioNoticiaAsync(request);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = request };
+            }
+        }
+
         public async Task<ResponseViewModel> SalvarComentarioNoticiaAsync(Comentario request)
         {
             using (_unitOfWork)
             {
                 _unitOfWork.BeginTransaction();
                 await _comentarioService.AdicionarComentarioNoticiaAsync(request);
-                var response = await ListarComentariosNoticiaAsync(new ComentarioRequest { IdNoticia = request.IdNoticia });
                 _unitOfWork.CommitTransaction();
-                return new ResponseViewModel { Sucesso = true, Objeto = response };
+                return new ResponseViewModel { Sucesso = true, Objeto = request };
             }
         }
         public async Task<ResponseViewModel> ComentarComentarioAsync(Comentario request)

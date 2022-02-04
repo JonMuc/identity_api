@@ -8,6 +8,7 @@ namespace Domain.Interfaces
 {
     public interface IComentarioRepository
     {
+        Task ExcluirAsync(Comentario request);
         Task<long> AdicionarAsync(Comentario request);
         Task<Comentario> GetComentarioById(long idComentario);
         Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario);

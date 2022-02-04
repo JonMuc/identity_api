@@ -17,6 +17,13 @@ namespace Domain.Services
             _comentarioRepository = comentarioRepository;
         }
 
+        public async Task ExcluirComentarioNoticiaAsync(Comentario request)
+        {
+            _comentarioValidation.ValidarExclusaoComentario(request);
+            request.AtualizadoEm = DateTime.Now;
+            await _comentarioRepository.ExcluirAsync(request);
+        }
+
         public async Task<Comentario> AdicionarComentarioNoticiaAsync(Comentario request)
         {
             _comentarioValidation.ValidarSalvarComentarioNoticia(request);

@@ -13,6 +13,12 @@ namespace Data.Repository
     {
         public ComentarioRepository(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
+        public async Task ExcluirAsync(Comentario request)
+        {
+            var sql = @" UPDATE TBL_COMENTARIO SET StatusRegistro = 1, AtualizadoEm = @AtualizadoEm  WHERE Id = @Id";
+            await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
+        }
+
         public async Task<long> AdicionarAsync(Comentario request)
         {
             var sql = @" INSERT INTO tbl_comentario (IdComentario, IdNoticia, Mensagem, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro)
@@ -32,7 +38,8 @@ namespace Data.Repository
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
                         on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
-						and come.IdComentario = 0";
+						and come.IdComentario = 0
+                        and come.StatusRegistro = 0";
             return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
         }
 

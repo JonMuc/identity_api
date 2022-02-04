@@ -24,6 +24,7 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> SalvarComentarioNoticiaAsync([FromBody] Comentario request)
         {
+            request.IdCriadoPor = ObterUsuario().Id;
             var response = await _comentarioAppService.SalvarComentarioNoticiaAsync(request);
             return Ok(response);
         }
@@ -57,6 +58,16 @@ namespace ApiCrud.Controllers
         public async Task<IActionResult> ListarComentariosComentarioAsync([FromBody] ComentarioRequest request)
         {
             var response = await _comentarioAppService.ListarComentariosComentarioAsync(request);
+            return Ok(response);
+        }
+
+        [HttpGet("excluir-comentario-noticia/{idComentario:long}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ExcluirComentarioNoticiaAsync(long idComentario)
+        {
+            var response = await _comentarioAppService.ExcluirComentarioNoticiaAsync(new Comentario() { Id = idComentario, IdCriadoPor = ObterUsuario().Id });
             return Ok(response);
         }
     }
