@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, ValidateUser, Route("comentario")]
+    [ApiController, Route("comentario")]
     public class ComentarioController : BaseController
     {
         private readonly ComentarioAppService _comentarioAppService;
@@ -18,6 +18,7 @@ namespace ApiCrud.Controllers
             _comentarioAppService = comentarioAppService;
         }
 
+        [ValidateUser]
         [HttpPost("salvar-comentario-noticia")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
@@ -29,6 +30,7 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
+        [ValidateUser]
         [HttpPost("comentar-comentario")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
@@ -39,7 +41,7 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
-
+        [ValidateUser]
         [HttpGet("obter-comentario-noticia/{idNoticia:int}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
@@ -51,6 +53,18 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
+        [HttpGet("obter-comentario-noticia-deslogado/{idNoticia:int}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ListarComentariosNoticiaDeslogadoAsync(int idNoticia)
+        {
+            var response = await _comentarioAppService.ListarComentariosNoticiaDeslogadoAsync(
+                new ComentarioRequest() { IdNoticia = idNoticia });
+            return Ok(response);
+        }
+
+        [ValidateUser]
         [HttpPost("obter-comentarios-de-comentario")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
@@ -61,6 +75,7 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
+        [ValidateUser]
         [HttpGet("excluir-comentario-noticia/{idComentario:long}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]

@@ -43,6 +43,20 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
         }
 
+        public async Task<IEnumerable<ViewComentario>> ListarComentariosNoticiaDeslogadoAsync(ComentarioRequest request)
+        {
+            var sql = @"select come.Id as IdComentario, usua.Id as IdUsuario, come.Mensagem, usua.Nome, usua.Foto as UrlFoto, 
+                        come.CriadoEm as DataComentario,
+                        (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 1 and StatusRegistro = 0) as QuantidadeLike,
+                        (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike
+                        from TBL_COMENTARIO come
+                        inner join TBL_USUARIO usua
+                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
+						and come.IdComentario = 0
+                        and come.StatusRegistro = 0";
+            return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
+        }
+
         public async Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario)
         {
             var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdComentario = @idComentario";
