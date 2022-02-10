@@ -13,6 +13,7 @@
         public string PerfilLinkedin { get; set; }
         public string PerfilInstagram { get; set; }
         public string PerfilTwitter { get; set; }
+        public string PerfilFacebook{ get; set; }
         public string Descricao { get; set; }
         public string TokenPush { get; set; }
     }
