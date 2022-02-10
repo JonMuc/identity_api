@@ -15,8 +15,8 @@ namespace Data.Repository
 
         public async Task<long> AdicionarUsuarioAsync(Usuario request)
         {
-            var sql = @" INSERT INTO tbl_usuario (Nome, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilFacebook, PerfilTwitter, Descricao)
-                                    VALUES (@Nome, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilFacebook, @PerfilInstagram, @PerfilTwitter, @Descricao)
+            var sql = @" INSERT INTO tbl_usuario (Nome, NomeUsuario, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilFacebook, PerfilTwitter, Descricao)
+                                    VALUES (@Nome, NomeUsuario, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilFacebook, @PerfilInstagram, @PerfilTwitter, @Descricao)
                          SELECT @@IDENTITY";
 
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
@@ -25,7 +25,7 @@ namespace Data.Repository
         public async Task<Usuario> AtualizarUsuarioAsync(Usuario user)
         {
             var sql = @" UPDATE tbl_usuario
-                            SET Nome = @Nome, Email = @Email, Senha = @Senha, Telefone = @Telefone, CriadoEm = @CriadoEm, AtualizadoEm = @AtualizadoEm, IdAtualizadoPor = @IdAtualizadoPor, IdCriadoPor = @IdCriadoPor,
+                            SET Nome = @Nome, NomeUsuario = @NomeUsuario, Email = @Email, Senha = @Senha, Telefone = @Telefone, CriadoEm = @CriadoEm, AtualizadoEm = @AtualizadoEm, IdAtualizadoPor = @IdAtualizadoPor, IdCriadoPor = @IdCriadoPor,
                                 StatusRegistro = @StatusRegistro, Foto = @Foto, IdGoogle = @IdGoogle, IdFacebook = @IdFacebook, PerfilFacebook = @PerfilFacebook, PerfilLinkedin = @PerfilLinkedin, PerfilInstagram = @PerfilInstagram, PerfilTwitter = @PerfilTwitter, Descricao = @Descricao
                             WHERE Id = @Id";
 

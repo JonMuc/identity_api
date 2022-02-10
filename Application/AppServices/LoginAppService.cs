@@ -22,9 +22,10 @@ namespace Application.AppServices
             var response = await _loginService.LoginAsync(request);
             var token = JWTManager.GenerateToken(response);
             var result = new LoginResponse { Id = response.Id, Descricao = response.Descricao, Email = response.Email, Foto = response.Foto,
-            Nome = response.Nome, IdGoogle = response.IdGoogle, IdFacebook = response.IdFacebook, PerfilInstagram = response.PerfilInstagram,
+            Nome = response.Nome, NomeUsuario = response.NomeUsuario, IdGoogle = response.IdGoogle, IdFacebook = response.IdFacebook, PerfilInstagram = response.PerfilInstagram,
             PerfilLinkedin = response.PerfilLinkedin, TokenPush = response.TokenPush, StatusRegistro = response.StatusRegistro, PerfilTwitter = response.PerfilTwitter,
-            Telefone = response.Telefone, Token = token};
+                PerfilFacebook = response.PerfilFacebook,
+                Telefone = response.Telefone, Token = token};
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
     }

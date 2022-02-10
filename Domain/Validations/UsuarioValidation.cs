@@ -55,6 +55,10 @@ namespace Domain.Validations
             if (!string.IsNullOrEmpty(edit.Nome))
             {
                 user.Nome = edit.Nome;
+            } 
+            if (!string.IsNullOrEmpty(edit.NomeUsuario))
+            {
+                user.NomeUsuario = edit.NomeUsuario;
             }
             if (!string.IsNullOrEmpty(edit.Email))
             {
@@ -83,6 +87,10 @@ namespace Domain.Validations
             if (!string.IsNullOrEmpty(edit.PerfilLinkedin))
             {
                 user.PerfilLinkedin = edit.PerfilLinkedin;
+            } 
+            if (!string.IsNullOrEmpty(edit.PerfilFacebook))
+            {
+                user.PerfilFacebook = edit.PerfilFacebook;
             }
             if (!string.IsNullOrEmpty(edit.PerfilInstagram))
             {
