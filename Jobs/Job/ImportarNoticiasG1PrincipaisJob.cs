@@ -14,7 +14,7 @@ namespace Jobs.Job
         protected readonly INoticiaRepository _noticiaRepository;
         protected readonly INoticiaService _noticiaService;
 
-        private static readonly string _urlBaseG1 = "https://g1.globo.com/";
+        private static readonly string _urlBaseG1 = "https://www.washingtonpost.com/";
 
         public ImportarNoticiasG1PrincipaisJob(INoticiaRepository noticiaRepository, INoticiaService noticiaService)
         {

@@ -14,7 +14,7 @@ namespace Jobs.Job
         protected readonly INoticiaRepository _noticiaRepository;
         protected readonly INoticiaService _noticiaService;
 
-        private static readonly string _urlBaseIG = "https://www.ig.com.br";
+        private static readonly string _urlBaseIG = "https://www.washingtonpost.com/politics/?itid=nb_politics";
 
         public ImportarNoticiasIGJob(INoticiaRepository noticiaRepository, INoticiaService noticiaService)
         {
