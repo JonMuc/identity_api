@@ -53,5 +53,5 @@ jobs:
         with:
           app-name: 'noticia-api-dev'
           slot-name: 'Production'
-          publish-profile: '9loGtQZAamqPu9P8oYLB8jj8lmGq0gXX4JbKKWY3NPdY2d6t40YsaDa5tup6'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2FEAC6FAB8F248DD805DB6B5482BBD22 }}
           package: .
