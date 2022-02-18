@@ -50,7 +50,7 @@ namespace Domain.Services
                 await ExcluirAvaliacaoNoticia(idUsuario, idNoticia);
             }
             
-            //se for do mesmo tipo, o usuario que remover a avaliacao
+            //se for do mesmo tipo, o usuario quer remover a avaliacao
             if (listAvaliacao.Count > 0 && tipoAvaliacao == listAvaliacao.First().TipoAvaliacao)
             {
                 return await Task.FromResult(Convert.ToInt64(0));
@@ -75,8 +75,17 @@ namespace Domain.Services
 
             //validação de inclusão no BD
             var listAvaliacao = await _avaliacaoRepository.GetAvaliacaoByUsuarioComentario(idUsuario, idComentario);
-            _avaliacaoValidation.ValidarInclusaoAvaliacao(listAvaliacao);
 
+            if (listAvaliacao.Count > 0)
+            {
+                await ExcluirAvaliacaoComentario(idUsuario, idComentario);
+            }
+
+            //se for do mesmo tipo, o usuario quer remover a avaliacao
+            if (listAvaliacao.Count > 0 && tipoAvaliacao == listAvaliacao.First().TipoAvaliacao)
+            {
+                return await Task.FromResult(Convert.ToInt64(0));
+            }
 
             var request = new Avaliacao()
             {
