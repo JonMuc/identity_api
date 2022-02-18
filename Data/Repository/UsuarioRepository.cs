@@ -15,8 +15,8 @@ namespace Data.Repository
 
         public async Task<long> AdicionarUsuarioAsync(Usuario request)
         {
-            var sql = @" INSERT INTO tbl_usuario (Nome, NomeUsuario, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilFacebook, PerfilInstagram, PerfilTwitter, Descricao)
-                                    VALUES (@Nome, @NomeUsuario, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilFacebook, @PerfilInstagram, @PerfilTwitter, @Descricao)
+            var sql = @" INSERT INTO tbl_usuario (Nome, Email, Senha, Telefone, CriadoEm, AtualizadoEm, IdAtualizadoPor, IdCriadoPor, StatusRegistro, Foto, IdGoogle, IdFacebook, PerfilLinkedin, PerfilInstagram, PerfilTwitter, Descricao, NomeUsuario,  PerfilFacebook)
+                                    VALUES (@Nome, @Email, @Senha, @Telefone, @CriadoEm, @AtualizadoEm, @IdAtualizadoPor, @IdCriadoPor, @StatusRegistro, @Foto, @IdGoogle, @IdFacebook, @PerfilLinkedin, @PerfilInstagram, @PerfilTwitter, @Descricao, @NomeUsuario, @PerfilFacebook)
                          SELECT @@IDENTITY";
 
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
