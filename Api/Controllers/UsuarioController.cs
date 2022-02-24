@@ -19,6 +19,15 @@ namespace ApiCrud.Controllers
             _usuarioAppService = usuarioAppService;
         }
 
+        [HttpGet("buscar-usuario")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> Buscar(string nomeUsuario) {
+            var response = await _usuarioAppService.BuscarUsuario(nomeUsuario);
+            return Ok(response);
+        }
+
         [HttpPost("salvar-usuario")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]

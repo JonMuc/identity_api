@@ -4,6 +4,7 @@ using Domain.Models.Dto;
 using Domain.Models.Request;
 using Domain.Validations;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Util.Criptografia;
 using Util.String;
@@ -69,6 +70,12 @@ namespace Domain.Services
         {
             var result = await _usuarioRepository.GetUsuarioById(idUsuario);
             _usuarioValidation.VerificarExistenciaUsuario(result);
+            return result;
+        }
+
+        public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
+            var result = await _usuarioRepository.BuscarUsuario(nomeUsuario);
+            //_usuarioValidation.VerificarExistenciaUsuario(result);
             return result;
         }
 

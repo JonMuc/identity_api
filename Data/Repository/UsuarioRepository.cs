@@ -58,6 +58,14 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
         }
 
+        public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
+            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE @NomeUsuario";
+            var obj = new Usuario {
+                NomeUsuario = nomeUsuario
+            };
+            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
+        }
+
         public IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario)
         {
             using SqlConnection conexao = new(_connectionString);
