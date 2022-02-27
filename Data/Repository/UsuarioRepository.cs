@@ -59,7 +59,7 @@ namespace Data.Repository
         }
 
         public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
-            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE @NomeUsuario";
+            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @NomeUsuario + '%'";
             var obj = new Usuario {
                 NomeUsuario = nomeUsuario
             };
