@@ -34,7 +34,8 @@ namespace Data.Repository
                         come.CriadoEm as DataComentario,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 1 and StatusRegistro = 0) as QuantidadeLike,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike,
-                        (select TipoAvaliacao from TBL_AVALIACAO WHERE  IdComentario = come.Id and IdUsuario = @IdUsuario and StatusRegistro = 0) as ComentarioAvaliado                     
+                        (select TipoAvaliacao from TBL_AVALIACAO WHERE  IdComentario = come.Id and IdUsuario = @IdUsuario and StatusRegistro = 0) as ComentarioAvaliado,
+                        (select count(*) from TBL_COMENTARIO where IdComentario = come.Id and StatusRegistro = 0) AS QuantidadeSubComentario
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
                         on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
@@ -48,7 +49,8 @@ namespace Data.Repository
             var sql = @"select come.Id as IdComentario, usua.Id as IdUsuario, come.Mensagem, usua.Nome, usua.Foto as UrlFoto, 
                         come.CriadoEm as DataComentario,
                         (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 1 and StatusRegistro = 0) as QuantidadeLike,
-                        (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike
+                        (select count(*) from TBL_AVALIACAO where IdComentario = come.Id and TipoAvaliacao = 2 and StatusRegistro = 0) as QuantidadeDeslike,
+                        (select count(*) from TBL_COMENTARIO where IdComentario = come.Id and StatusRegistro = 0) AS QuantidadeSubComentario
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
                         on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
@@ -59,20 +61,21 @@ namespace Data.Repository
 
         public async Task<IEnumerable<Comentario>> ListarComentariosComentarioAsync(long idComentario)
         {
-            var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdComentario = @idComentario";
+            var sql = @" SELECT * FROM TBL_COMENTARIO WHERE IdComentario = @idComentario and StatusRegistro = 0";
             return await _unitOfWork.Connection.QueryAsync<Comentario>(sql, new { idComentario }, _unitOfWork?.Transaction);
         }
 
         public async Task<IEnumerable<ViewComentario>> ListarComentariosComentarioAsync(ComentarioRequest request)
         {
-            var sql = @" SELECT come.IdComentario, come.Mensagem, come.CriadoEm AS DataComentario, usua.Id as IdUsuario, usua.Nome, usua.Foto as UrlFoto,
+            var sql = @" SELECT  come.Id, come.IdComentario ,come.Mensagem, come.CriadoEm AS DataComentario, usua.Id as IdUsuario, usua.Nome, usua.Foto as UrlFoto,
 						                            (SELECT count(*) FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
                                                     (SELECT count(*) FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND TipoAvaliacao = 2 AND StatusRegistro = 0) AS QuantidadeDeslike,
                                                     (SELECT TipoAvaliacao FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND IdUsuario = @IdUsuario AND StatusRegistro = 0) AS ComentarioAvaliado                        
                             FROM TBL_COMENTARIO come
                             INNER JOIN TBL_USUARIO usua
                             ON come.IdCriadoPor = usua.Id
-                            WHERE come.IdComentario = @IdComentario
+                            WHERE come.IdComentario = @IdComentario and
+                            come.StatusRegistro = 0
                             ORDER BY DataComentario ASC";
 
             var response = await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);

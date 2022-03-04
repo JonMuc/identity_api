@@ -37,6 +37,7 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> ComentarComentarioAsync([FromBody] Comentario request)
         {
+            request.IdCriadoPor = ObterUsuario().Id;
             var response = await _comentarioAppService.ComentarComentarioAsync(request);
             return Ok(response);
         }
@@ -65,13 +66,24 @@ namespace ApiCrud.Controllers
         }
 
         [ValidateUser]
-        [HttpPost("obter-comentarios-de-comentario")]
+        [HttpGet("obter-comentarios-de-comentario/{idComentario:int}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarComentariosComentarioAsync([FromBody] ComentarioRequest request)
+        public async Task<IActionResult> ListarComentariosComentarioAsync(int idComentario)
         {
+            var request = new ComentarioRequest { IdComentario = idComentario, IdUsuario = ObterUsuario().Id };
             var response = await _comentarioAppService.ListarComentariosComentarioAsync(request);
+            return Ok(response);
+        }
+
+        [HttpGet("obter-comentarios-de-comentario-deslogado/{idComentario:int}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> ListarComentariosComentarioDeslogadoAsync(int idComentario)
+        {
+            var response = await _comentarioAppService.ListarComentariosComentarioDeslogadoAsync(idComentario);
             return Ok(response);
         }
 

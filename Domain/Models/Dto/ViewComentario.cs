@@ -5,6 +5,8 @@ namespace Domain.Models.Dto
 {
     public class ViewComentario
     {
+        public long Id { get; set; }
+        public long QuantidadeSubComentario { get; set; }
         public long IdComentario { get; set; }
         public long IdUsuario { get; set; }
         public string Mensagem { get; set; }
