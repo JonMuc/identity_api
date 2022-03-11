@@ -20,7 +20,7 @@ namespace ApiCrud.Controllers
             _usuarioAppService = usuarioAppService;
         }
 
-        [HttpGet("buscar-usuario")]
+        [HttpGet("buscar-usuario/{nomeUsuario}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
