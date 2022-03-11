@@ -1,4 +1,5 @@
-﻿using Application.AppServices;
+﻿using Api.Config;
+using Application.AppServices;
 using Domain.Models;
 using Domain.Models.Dto;
 using Domain.Models.Request;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace ApiCrud.Controllers
 {
     [ApiController, Route("usuario")]
-    public class UsuarioController : ControllerBase
+    public class UsuarioController : BaseController
     {
         private readonly UsuarioAppService _usuarioAppService;
 
@@ -87,6 +88,23 @@ namespace ApiCrud.Controllers
             UploadImagemRequest request = new UploadImagemRequest();
             var file = HttpContext.Request.Form.Files.Count > 0 ? HttpContext.Request.Form.Files[0] : null;
             request.IdUsuario = id;
+            var data = new MemoryStream();
+            file.CopyTo(data);
+            request.FileStreamIO = data;
+            var response = await _usuarioAppService.UploadImagemAsync(request);
+            return Ok(response);
+        }
+
+        [ValidateUser]
+        [HttpPost("editar-foto")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> EditarFotoAsync()
+        {
+            UploadImagemRequest request = new UploadImagemRequest();
+            var file = HttpContext.Request.Form.Files.Count > 0 ? HttpContext.Request.Form.Files[0] : null;
+            request.IdUsuario = ObterUsuario().Id;
             var data = new MemoryStream();
             file.CopyTo(data);
             request.FileStreamIO = data;
