@@ -1,9 +1,11 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Application.ModelsDto;
+using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Dto;
 using Domain.Models.Request;
 using Domain.Services;
 using System.Threading.Tasks;
+using Util.Jwt;
 
 namespace Application.AppServices
 {
@@ -43,7 +45,27 @@ namespace Application.AppServices
                 _unitOfWork.BeginTransaction();
                 var result = await _usuarioService.AtualizarUsuario(edit);
                 _unitOfWork.CommitTransaction();
-                return new ResponseViewModel { Sucesso = true, Objeto = result };
+                var token = JWTManager.GenerateToken(result);
+                var response = new LoginResponse
+                {
+                    Id = result.Id,
+                    Descricao = result.Descricao,
+                    Email = result.Email,
+                    Foto = result.Foto,
+                    Nome = result.Nome,
+                    NomeUsuario = result.NomeUsuario,
+                    IdGoogle = result.IdGoogle,
+                    IdFacebook = result.IdFacebook,
+                    PerfilInstagram = result.PerfilInstagram,
+                    PerfilLinkedin = result.PerfilLinkedin,
+                    TokenPush = result.TokenPush,
+                    StatusRegistro = result.StatusRegistro,
+                    PerfilTwitter = result.PerfilTwitter,
+                    PerfilFacebook = result.PerfilFacebook,
+                    Telefone = result.Telefone,
+                    Token = token
+                };
+                return new ResponseViewModel { Sucesso = true, Objeto = response };
             }
         }
 

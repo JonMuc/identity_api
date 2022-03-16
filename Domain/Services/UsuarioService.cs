@@ -34,7 +34,6 @@ namespace Domain.Services
 
         public async Task<Usuario> AtualizarUsuario(Usuario edit)
         {
-
             var user = await _usuarioRepository.GetUsuarioById(edit.Id);
             _usuarioValidation.VerificarExistenciaUsuario(user);
 

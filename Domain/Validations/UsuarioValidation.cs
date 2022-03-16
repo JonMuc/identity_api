@@ -84,26 +84,31 @@ namespace Domain.Validations
             {
                 user.IdFacebook = edit.IdFacebook;
             }
-            if (!string.IsNullOrEmpty(edit.PerfilLinkedin))
-            {
-                user.PerfilLinkedin = edit.PerfilLinkedin;
-            } 
-            if (!string.IsNullOrEmpty(edit.PerfilFacebook))
-            {
-                user.PerfilFacebook = edit.PerfilFacebook;
-            }
-            if (!string.IsNullOrEmpty(edit.PerfilInstagram))
-            {
-                user.PerfilInstagram = edit.PerfilInstagram;
-            }
-            if (!string.IsNullOrEmpty(edit.PerfilTwitter))
-            {
-                user.PerfilTwitter = edit.PerfilTwitter;
-            }
-            if (!string.IsNullOrEmpty(edit.Descricao))
-            {
-                user.Descricao = edit.Descricao;
-            }
+            //if (!string.IsNullOrEmpty(edit.PerfilLinkedin))
+            //{
+            //    user.PerfilLinkedin = edit.PerfilLinkedin;
+            //} 
+            //if (!string.IsNullOrEmpty(edit.PerfilFacebook))
+            //{
+            //    user.PerfilFacebook = edit.PerfilFacebook;
+            //}
+            //if (!string.IsNullOrEmpty(edit.PerfilInstagram))
+            //{
+            //    user.PerfilInstagram = edit.PerfilInstagram;
+            //}
+            //if (!string.IsNullOrEmpty(edit.PerfilTwitter))
+            //{
+            //    user.PerfilTwitter = edit.PerfilTwitter;
+            //}
+            //if (!string.IsNullOrEmpty(edit.Descricao))
+            //{
+            //    user.Descricao = edit.Descricao;
+            //}
+            user.PerfilTwitter = edit.PerfilTwitter;
+            user.Descricao = edit.Descricao;
+            user.PerfilInstagram = edit.PerfilInstagram;
+            user.PerfilFacebook = edit.PerfilFacebook;
+            user.PerfilLinkedin = edit.PerfilLinkedin;
 
             return user;
         }

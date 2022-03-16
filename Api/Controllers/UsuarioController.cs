@@ -39,12 +39,14 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
+        [ValidateUser]
         [HttpPost("atualizar-usuario")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
         public async Task<IActionResult> Atualizar([FromBody] Usuario usuario)
         {
+            usuario.Id = ObterUsuario().Id;
             var response = await _usuarioAppService.AtualizarUsuario(usuario);
             return Ok(response);
         }
