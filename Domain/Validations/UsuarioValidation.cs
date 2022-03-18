@@ -3,6 +3,7 @@ using Domain.Models;
 using Domain.Models.Dto;
 using Domain.Util;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Domain.Validations
@@ -10,6 +11,7 @@ namespace Domain.Validations
     public class UsuarioValidation
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private Regex validarNomeUSer = new Regex(@"^[a-zA-Z0-9]+$");
 
         public UsuarioValidation(IUsuarioRepository usuarioRepository)
         {
@@ -136,6 +138,14 @@ namespace Domain.Validations
             if (usuario.Email != null && usuario.Email != "" && await _usuarioRepository.VerificarExistenciaEmail(usuario.Email))
             {
                 errosResponse.Add("Este e-mail já esta cadastrado.");
+            }
+            if (await _usuarioRepository.VerificarExistenciaNomeUser(usuario.NomeUsuario))
+            {
+                errosResponse.Add("Este nome de usuario já está cadastrado.");
+            }
+            if (!validarNomeUSer.IsMatch(usuario.NomeUsuario))
+            {
+                errosResponse.Add("Nome de usuario invalido.");
             }
 
             if (errosResponse.Count > 0)

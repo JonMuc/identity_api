@@ -79,6 +79,12 @@ namespace Data.Repository
             return await _unitOfWork.Connection.ExecuteScalarAsync<bool>(sql, new { email }, _unitOfWork?.Transaction);
         }
 
+        public async Task<bool> VerificarExistenciaNomeUser(string nomeUser)
+        {
+            string sql = @"SELECT count(*) FROM TBL_USUARIO where NomeUsuario = @nomeUser";
+            return await _unitOfWork.Connection.ExecuteScalarAsync<bool>(sql, new { nomeUser }, _unitOfWork?.Transaction);
+        }
+
         public async Task<bool> LoginAsync(Usuario request)
         {
             string sql = @"SELECT count(*) FROM TBL_USUARIO where Email = @Email and Senha = @Senha";

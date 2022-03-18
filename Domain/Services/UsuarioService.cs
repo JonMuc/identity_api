@@ -52,6 +52,7 @@ namespace Domain.Services
             usuario.Email = request.Email;
             usuario.Senha = CryptographyHelper.EncryptString(request.Senha);
             usuario.CriadoEm = DateTime.Now;
+            usuario.NomeUsuario = request.NomeUsuario;
             usuario.Nome = request.Nome;
             usuario.Id = await _usuarioRepository.AdicionarUsuarioAsync(usuario);
             return usuario;

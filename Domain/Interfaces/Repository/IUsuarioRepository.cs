@@ -15,8 +15,7 @@ namespace Domain.Interfaces
         Task<bool> VerificarExistenciaEmail(string email);
         Task<bool> LoginAsync(Usuario request);
         Task<Usuario> GetUsuarioByEmailAsync(string email);
-
+        Task<bool> VerificarExistenciaNomeUser(string nomeUser);
         Task AtualizarTokenPush(long idUsuario, string tokenPush);
-
     }
 }
