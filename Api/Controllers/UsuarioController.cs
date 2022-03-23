@@ -113,5 +113,18 @@ namespace ApiCrud.Controllers
             var response = await _usuarioAppService.UploadImagemAsync(request);
             return Ok(response);
         }
+
+        [HttpPost("seguir-usuario")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> SeguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
+        {
+            if (idUsuarioSeguidor == null) {
+                idUsuarioSeguidor = ObterUsuario().Id;
+            }
+            var response = await _usuarioAppService.SeguirUsuario(idUsuarioSeguido, idUsuarioSeguidor);
+            return Ok(response);
+        }
     }
 }

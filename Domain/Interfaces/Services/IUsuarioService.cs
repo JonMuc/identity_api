@@ -15,6 +15,7 @@ namespace Domain.Services
         Task DeletarUsuarioById(long idUsuario);
         Task<Usuario> CriarUsuarioStep(CriarContaUsuario usuario);
         Task<string> UploadImagemAsync(UploadImagemRequest request);
+        Task<long> SeguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor);
 
         //ResponseViewModel BuscarPessoaFisica(long idPessoa);
     }

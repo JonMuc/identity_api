@@ -24,6 +24,16 @@ namespace Domain.Services
             _awsApiService = awsApiService;
         }
 
+        public async Task<long> SeguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
+        {
+            var entity = new Crz_SeguirUsuario();
+            entity.Id = idUsuarioSeguidor;
+            entity.IdUsuarioSeguido = idUsuarioSeguido;
+            var result = await _usuarioRepository.SeguirUsuario(entity);
+            return result;
+        }
+
+
         public async Task<long> AdicionarUsuario(Usuario usuario)
         {
             _usuarioValidation.ValidarSalvarUsuario(usuario);
