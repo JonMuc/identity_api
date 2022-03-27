@@ -33,6 +33,12 @@ namespace Domain.Services
             return result;
         }
 
+        public async Task<long> DeseguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
+        {
+            var result = await _usuarioRepository.DeseguirUsuario(idUsuarioSeguido, idUsuarioSeguidor);
+            return result;
+        }
+
 
         public async Task<long> AdicionarUsuario(Usuario usuario)
         {

@@ -31,6 +31,14 @@ namespace Data.Repository
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, usuario, _unitOfWork?.Transaction);
         }
 
+        public async Task<long> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo)
+        {
+            var sql = @" delete CRZ_SEGUIR_USUARIO where IdUsuarioSeguidor = @idUsuarioDeseguindo AND IdUsuarioSeguido = @idUsuarioDeseguido";
+
+            await _unitOfWork.Connection.ExecuteAsync(sql, new { idUsuarioDeseguido = idUsuarioDeseguido, idUsuarioDeseguindo = idUsuarioDeseguindo }, _unitOfWork?.Transaction);
+            return idUsuarioDeseguindo;
+        }
+
         public async Task<Usuario> AtualizarUsuarioAsync(Usuario user)
         {
             var sql = @" UPDATE tbl_usuario

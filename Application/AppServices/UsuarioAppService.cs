@@ -118,5 +118,16 @@ namespace Application.AppServices
                 return new ResponseViewModel { Sucesso = true, Objeto = result };
             }
         }
+
+        public async Task<ResponseViewModel> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var result = await _usuarioService.DeseguirUsuario(idUsuarioDeseguido, idUsuarioDeseguindo);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = result };
+            }
+        }
     }
 }
