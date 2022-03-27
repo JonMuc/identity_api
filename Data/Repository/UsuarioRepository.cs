@@ -24,7 +24,7 @@ namespace Data.Repository
 
         public async Task<long> SeguirUsuario(Crz_SeguirUsuario usuario)
         {
-            var sql = @" INSERT INTO crz_seguir_usuario (IdUsuarioSeguido, IdUsuarioSeguidor)
+            var sql = @" INSERT INTO crz_seguir_usuario (IdUsuarioSeguidor, IdUsuarioSeguido)
                                     VALUES (@Id, @IdUsuarioSeguido)
                          SELECT @@IDENTITY";
 
