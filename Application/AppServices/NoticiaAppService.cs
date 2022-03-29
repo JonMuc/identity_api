@@ -44,9 +44,10 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = result };
         }
 
-        public async Task<ResponseViewModel> ListarMancheteG1()
+        public async Task<ResponseViewModel> ListarMancheteG1(DataRequest request)
         {
-            var result = await _noticiaRepository.ListarManchetesTemp();
+            request.PageIndex = request.PageIndex * request.PageSize;
+            var result = await _noticiaRepository.ListarManchetesTemp(request);
             foreach (ViewNoticia noticia in result)
             {
                 noticia.UrlImage = noticia.UrlImage.Replace("w100-h100", "w1000-h1000");

@@ -20,13 +20,13 @@ namespace ApiCrud.Controllers
             _informacaoGoogleAppService = informacaoGoogleAppService;
         }
 
-        [HttpGet("listar-manchete")]
+        [HttpPost("listar-manchete")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarManchete()
+        public async Task<IActionResult> ListarManchete([FromBody] DataRequest request)
         {
-            var response = await _informacaoGoogleAppService.ListarMancheteG1();
+            var response = await _informacaoGoogleAppService.ListarMancheteG1(request);
             return Ok(response);
         }
     }

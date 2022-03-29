@@ -18,8 +18,6 @@ namespace Domain.Interfaces
         bool VerificarExistenciaTitulo(string titulo);
         Task<IEnumerable<Noticia>> ListarManchetesAsync(NoticiaRequest request);
         Task<IEnumerable<ViewNoticia>> ListarNoticias(NoticiaRequest request);
-        Task<IEnumerable<ViewNoticia>> ListarManchetesTemp();
-
-
+        Task<IEnumerable<ViewNoticia>> ListarManchetesTemp(DataRequest request);
     }
 }
