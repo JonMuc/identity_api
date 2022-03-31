@@ -91,6 +91,17 @@ namespace Application.AppServices
             }
         }
 
+        public async Task<ResponseViewModel> VisualizarSeguidores(int idUsuario)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var data = await _usuarioService.VisualizarSeguidores(idUsuario);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = data };
+            }
+        }
+
         public async Task<ResponseViewModel> CriarUsuarioStep(CriarContaUsuario request)
         {
             using (_unitOfWork)

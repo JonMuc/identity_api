@@ -75,6 +75,20 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
         }
 
+        public async Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario)
+        {
+            //SELECT CRZ_SEGUIR_USUARIO.IdUsuarioSeguidor FROM crz_seguir_usuario WHERE IdUsuarioSeguido = 10
+            var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome FROM crz_seguir_usuario crz
+                        INNER JOIN TBL_USUARIO usuario on crz.IdUsuarioSeguido = usuario.Id
+                        WHERE crz.IdUsuarioSeguido = @Id";
+
+            var obj = new Usuario
+            {
+                Id = idUsuario
+            };
+            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
+        }
+
         public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
             var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @NomeUsuario + '%'";
             var obj = new Usuario {

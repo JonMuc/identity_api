@@ -88,6 +88,11 @@ namespace Domain.Services
             _usuarioValidation.VerificarExistenciaUsuario(result);
             return result;
         }
+         public async Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario)
+        {
+            var result = await _usuarioRepository.VisualizarSeguidores(idUsuario);
+            return result;
+        }
 
         public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
             var result = await _usuarioRepository.BuscarUsuario(nomeUsuario);
