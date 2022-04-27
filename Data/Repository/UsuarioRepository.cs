@@ -89,6 +89,20 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
         }
 
+        public async Task<Usuario> VisualizarPerfilUsuario(long idUsuario)
+        {
+            var sql = @" select us.NomeUsuario, us.Descricao, us.Nome, us.Foto, us.PerfilFacebook, us.PerfilInstagram, us.PerfilLinkedin, us.PerfilTwitter,
+                        (SELECT count(*) from CRZ_SEGUIR_USUARIO where IdUsuarioSeguido = us.Id and StatusRegistro = 0) as quantidadeSeguidores,
+                        (SELECT count(*) from CRZ_SEGUIR_USUARIO where IdUsuarioSeguidor = us.Id and StatusRegistro = 0) as quantidadeSeguindo
+                        from TBL_USUARIO us where us.Id = @Id";
+
+            var obj = new Usuario
+            {
+                Id = idUsuario
+            };
+            return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
+        }
+
         public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
             var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @NomeUsuario + '%'";
             var obj = new Usuario {

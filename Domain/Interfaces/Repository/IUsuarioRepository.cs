@@ -8,6 +8,7 @@ namespace Domain.Interfaces
     {
         Task<long> SeguirUsuario(Crz_SeguirUsuario usuario);
         Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario);
+        Task<Usuario> VisualizarPerfilUsuario(long idUsuario);
         Task<long> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo);
         Task<long> AdicionarUsuarioAsync(Usuario usuario);
         Task<Usuario> GetUsuarioById(long idUsuarioa);

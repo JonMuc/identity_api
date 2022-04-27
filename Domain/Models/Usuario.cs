@@ -16,5 +16,7 @@
         public string PerfilFacebook{ get; set; }
         public string Descricao { get; set; }
         public string TokenPush { get; set; }
+        public int quantidadeSeguidores { get; set; }
+        public int quantidadeSeguindo { get; set; }
     }
 }

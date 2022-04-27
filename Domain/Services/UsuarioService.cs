@@ -93,6 +93,12 @@ namespace Domain.Services
             var result = await _usuarioRepository.VisualizarSeguidores(idUsuario);
             return result;
         }
+        public async Task<Usuario> VisualizarPerfilUsuario(long idUsuario)
+        {
+            var result = await _usuarioRepository.VisualizarPerfilUsuario(idUsuario);
+
+            return result;
+        }
 
         public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
             var result = await _usuarioRepository.BuscarUsuario(nomeUsuario);

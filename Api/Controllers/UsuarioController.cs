@@ -143,5 +143,16 @@ namespace ApiCrud.Controllers
             var response = await _usuarioAppService.VisualizarSeguidores(idUsuario);
             return Ok(response);
         }
+
+        [HttpGet("visualizar-perfil-usuario/{idUsuario:int}")]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        public async Task<IActionResult> VisualizarPerfilUsuario(int idUsuario)
+        {
+            var response = await _usuarioAppService.VisualizarPerfilUsuario(idUsuario);
+            return Ok(response);
+        }
+
     }
 }
