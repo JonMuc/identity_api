@@ -101,7 +101,18 @@ namespace Application.AppServices
                 return new ResponseViewModel { Sucesso = true, Objeto = data };
             }
         }
-          public async Task<ResponseViewModel> VisualizarPerfilUsuario(int idUsuario)
+
+        public async Task<ResponseViewModel> VisualizarSeguindo(int idUsuario)
+        {
+            using (_unitOfWork)
+            {
+                _unitOfWork.BeginTransaction();
+                var data = await _usuarioService.VisualizarSeguindo(idUsuario);
+                _unitOfWork.CommitTransaction();
+                return new ResponseViewModel { Sucesso = true, Objeto = data };
+            }
+        }
+        public async Task<ResponseViewModel> VisualizarPerfilUsuario(int idUsuario)
         {
             using (_unitOfWork)
             {
