@@ -78,8 +78,8 @@ namespace Data.Repository
         public async Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario)
         {
             //SELECT CRZ_SEGUIR_USUARIO.IdUsuarioSeguidor FROM crz_seguir_usuario WHERE IdUsuarioSeguido = 10
-            var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome FROM crz_seguir_usuario crz
-                        INNER JOIN TBL_USUARIO usuario on crz.IdUsuarioSeguido = usuario.Id
+            var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome, usuario.Id FROM crz_seguir_usuario crz
+                        INNER JOIN TBL_USUARIO usuario on crz.IdUsuarioSeguidor = usuario.Id
                         WHERE crz.IdUsuarioSeguido = @Id";
 
             var obj = new Usuario
@@ -92,7 +92,7 @@ namespace Data.Repository
         public async Task<IEnumerable<Usuario>> VisualizarSeguindo(long idUsuario)
         {
             //SELECT CRZ_SEGUIR_USUARIO.IdUsuarioSeguidor FROM crz_seguir_usuario WHERE IdUsuarioSeguido = 10
-            var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome FROM crz_seguir_usuario crz
+            var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome, usuario.Id FROM crz_seguir_usuario crz
                         INNER JOIN TBL_USUARIO usuario on crz.IdUsuarioSeguido = usuario.Id
                         WHERE crz.IdUsuarioSeguidor = @Id";
 
