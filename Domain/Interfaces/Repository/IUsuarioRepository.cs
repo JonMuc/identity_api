@@ -13,7 +13,7 @@ namespace Domain.Interfaces
         Task<long> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo);
         Task<long> AdicionarUsuarioAsync(Usuario usuario);
         Task<Usuario> GetUsuarioById(long idUsuarioa);
-        Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario);
+        Task<IEnumerable<Usuario>> BuscarUsuario(DataRequest request);
         Task DeletarUsuarioAsync(long idUsuario);
         IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario);
         Task<Usuario> AtualizarUsuarioAsync(Usuario usuario);

@@ -117,13 +117,15 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
-            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @NomeUsuario + '%'";
+        public async Task<IEnumerable<Usuario>> BuscarUsuario(DataRequest request) {
+            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @Filter + '%' ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
             var obj = new Usuario {
-                NomeUsuario = nomeUsuario
+                NomeUsuario = request.Filter
             };
-            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, new { request.Filter, request.PageSize, request.PageIndex, obj }, _unitOfWork?.Transaction);
         }
+
+
 
         public IEnumerable<Usuario> BuscarUsuarioPorId(long idUsuario)
         {
