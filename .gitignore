@@ -56,3 +56,15 @@ Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
 *.user
 Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
 /.vs/IdentityApi/v17/.suo
+IoC/obj/Debug/net5.0/IoC.csproj.BuildWithSkipAnalyzers
+Domain/obj/Debug/net5.0/Domain.csproj.BuildWithSkipAnalyzers
+Data/obj/Debug/net5.0/Data.csproj.BuildWithSkipAnalyzers
+Application/obj/Debug/net5.0/Application.csproj.BuildWithSkipAnalyzers
+Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
+Api/obj/Debug/net5.0/Api.csproj.BuildWithSkipAnalyzers
+Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
+.vs/IdentityApi/v17/.futdcache.v1
+Api/Api.csproj.user
+Api/Api.csproj.user
+Api/Api.csproj.user
+Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user

@@ -20,12 +20,12 @@ namespace ApiCrud.Controllers
             _usuarioAppService = usuarioAppService;
         }
 
-        [HttpGet("buscar-usuario/{nomeUsuario}")]
+        [HttpGet("buscar-usuario/{nomeUsuario}/{pageIndex}/{pageSize}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> Buscar(string nomeUsuario) {
-            var response = await _usuarioAppService.BuscarUsuario(nomeUsuario);
+        public async Task<IActionResult> Buscar(string nomeUsuario, int pageIndex, int pageSize) {
+            var response = await _usuarioAppService.BuscarUsuario(nomeUsuario, pageIndex, pageSize);
             return Ok(response);
         }
 

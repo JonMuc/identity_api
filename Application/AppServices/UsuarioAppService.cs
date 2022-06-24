@@ -18,10 +18,10 @@ namespace Application.AppServices
             _usuarioService = usuarioService;
         }
 
-        public async Task<ResponseViewModel> BuscarUsuario(string nomeUsuario) {
+        public async Task<ResponseViewModel> BuscarUsuario(string nomeUsuario, int pageIndex, int pageSize) {
             using (_unitOfWork) {
                 _unitOfWork.BeginTransaction();
-                var data = await _usuarioService.BuscarUsuario(nomeUsuario);
+                var data = await _usuarioService.BuscarUsuario(nomeUsuario, pageIndex, pageSize);
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = data };
             }

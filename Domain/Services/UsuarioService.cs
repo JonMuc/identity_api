@@ -105,11 +105,14 @@ namespace Domain.Services
             return result;
         }
 
-        public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario) {
+        public async Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario, int pageIndex , int pageSize ) {
             var dataRequest = new DataRequest();
-            dataRequest.PageIndex = 1;
-            dataRequest.PageSize = 3;
-            dataRequest.PageIndex = dataRequest.PageIndex * dataRequest.PageSize;
+            dataRequest.PageIndex = pageIndex;
+            if (pageSize == 0) {
+                pageSize = 15;
+            }
+            dataRequest.PageSize = pageSize;
+            //dataRequest.PageIndex = dataRequest.PageIndex * dataRequest.PageSize;
             dataRequest.Filter = nomeUsuario;
             var result = await _usuarioRepository.BuscarUsuario(dataRequest);
             //_usuarioValidation.VerificarExistenciaUsuario(result);

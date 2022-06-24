@@ -13,7 +13,7 @@ namespace Domain.Services
         Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario);
         Task<IEnumerable<Usuario>> VisualizarSeguindo(long idUsuario);
         Task<Usuario> VisualizarPerfilUsuario(long idUsuario);
-        Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario);
+        Task<IEnumerable<Usuario>> BuscarUsuario(string nomeUsuario, int pageIndex, int pageSize);
         Task<Usuario> AtualizarUsuario(Usuario usuario);
         Task DeletarUsuarioById(long idUsuario);
         Task<Usuario> CriarUsuarioStep(CriarContaUsuario usuario);
