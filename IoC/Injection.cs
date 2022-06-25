@@ -27,9 +27,7 @@ namespace IoC
             services.AddTransient<IMetricaRepository, MetricaRepository>();
 
             // Services
-            services.AddTransient<ICrawlingGoogleService, CrawlingGoogleService>();
             services.AddTransient<ILoginService, LoginService>();
-            services.AddTransient<ICrawlingG1Service, CrawlingG1Service>();
             services.AddTransient<IUsuarioService, UsuarioService>();
             services.AddTransient<INoticiaService, NoticiaService>();
             services.AddTransient<INoticiaFavoritoService, NoticiaFavoritoService>();

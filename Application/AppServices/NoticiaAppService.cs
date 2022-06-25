@@ -12,13 +12,11 @@ namespace Application.AppServices
 {
     public class NoticiaAppService : BaseAppService
     {
-        private readonly ICrawlingG1Service _crawlingG1Service;
         private readonly INoticiaService _noticiaService;
         private readonly INoticiaRepository _noticiaRepository;
 
-        public NoticiaAppService(IUnitOfWork unitOfWork, ICrawlingGoogleService crawlingGoogleService, ICrawlingG1Service crawlingG1Service, INoticiaService noticiaService, INoticiaRepository noticiaRepository) : base(unitOfWork)
+        public NoticiaAppService(IUnitOfWork unitOfWork, INoticiaService noticiaService, INoticiaRepository noticiaRepository) : base(unitOfWork)
         {
-            _crawlingG1Service = crawlingG1Service;
             _noticiaService = noticiaService;
             _noticiaRepository = noticiaRepository;
         }
