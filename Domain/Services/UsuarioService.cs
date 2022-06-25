@@ -26,7 +26,7 @@ namespace Domain.Services
 
         public async Task<long> SeguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
         {
-            var entity = new Crz_SeguirUsuario();
+            var entity = new CrzSeguirUsuario();
             entity.Id = idUsuarioSeguidor;
             entity.IdUsuarioSeguido = idUsuarioSeguido;
             var result = await _usuarioRepository.SeguirUsuario(entity);

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Models
 {
-    public class Crz_SeguirUsuario : BaseModel
+    public class CrzSeguirUsuario : BaseModel
     {
         public long IdUsuarioSeguido { get; set; }
     }
