@@ -53,9 +53,9 @@ namespace Data.Repository
                         (select count(*) from TBL_COMENTARIO where IdComentario = come.Id and StatusRegistro = 0) AS QuantidadeSubComentario
                         from TBL_COMENTARIO come
                         inner join TBL_USUARIO usua
-                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
-						and come.IdComentario = 0
-                        and come.StatusRegistro = 0";
+                        on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia 
+                        and come.IdComentario = 0
+                        and come.StatusRegistro = 0 ORDER BY Nome asc OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
             return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
         }
 

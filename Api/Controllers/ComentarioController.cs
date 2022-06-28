@@ -54,14 +54,14 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
-        [HttpGet("obter-comentario-noticia-deslogado/{idNoticia:int}")]
+        [HttpGet("obter-comentario-noticia-deslogado/{idNoticia:int}/{pageIndex}/{pageSize}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarComentariosNoticiaDeslogadoAsync(int idNoticia)
+        public async Task<IActionResult> ListarComentariosNoticiaDeslogadoAsync(int idNoticia, int pageIndex, int pageSize)
         {
             var response = await _comentarioAppService.ListarComentariosNoticiaDeslogadoAsync(
-                new ComentarioRequest() { IdNoticia = idNoticia });
+                new ComentarioRequest() { IdNoticia = idNoticia }, pageIndex, pageSize);
             return Ok(response);
         }
 

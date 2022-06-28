@@ -57,8 +57,10 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
 
-        public async Task<ResponseViewModel> ListarComentariosNoticiaDeslogadoAsync(ComentarioRequest request)
+        public async Task<ResponseViewModel> ListarComentariosNoticiaDeslogadoAsync(ComentarioRequest request, int pageIndex, int pageSize)
         {
+            request.pageSize = pageSize;
+            request.pageIndex = pageIndex;
             var response = await _comentarioRepository.ListarComentariosNoticiaDeslogadoAsync(request);
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
