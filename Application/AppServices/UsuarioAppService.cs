@@ -91,23 +91,22 @@ namespace Application.AppServices
             }
         }
 
-        public async Task<ResponseViewModel> VisualizarSeguidores(int idUsuario)
+        public async Task<ResponseViewModel> VisualizarSeguidores(long idUsuario, int pageIndex, int pageSize)
         {
             using (_unitOfWork)
             {
                 _unitOfWork.BeginTransaction();
-                var data = await _usuarioService.VisualizarSeguidores(idUsuario);
+                var data = await _usuarioService.VisualizarSeguidores(idUsuario, pageIndex, pageSize);
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = data };
             }
         }
-
-        public async Task<ResponseViewModel> VisualizarSeguindo(int idUsuario)
+        public async Task<ResponseViewModel> VisualizarSeguindo(long idUsuario, int pageIndex, int pageSize)
         {
             using (_unitOfWork)
             {
                 _unitOfWork.BeginTransaction();
-                var data = await _usuarioService.VisualizarSeguindo(idUsuario);
+                var data = await _usuarioService.VisualizarSeguindo(idUsuario, pageIndex, pageSize);
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = data };
             }

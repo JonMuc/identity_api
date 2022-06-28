@@ -7,8 +7,8 @@ namespace Domain.Interfaces
     public interface IUsuarioRepository
     {
         Task<long> SeguirUsuario(CrzSeguirUsuario usuario);
-        Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario);
-        Task<IEnumerable<Usuario>> VisualizarSeguindo(long idUsuario);
+        Task<IEnumerable<Usuario>> VisualizarSeguidores(DataRequest request);
+        Task<IEnumerable<Usuario>> VisualizarSeguindo(DataRequest request);
         Task<Usuario> VisualizarPerfilUsuario(long idUsuario);
         Task<long> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo);
         Task<long> AdicionarUsuarioAsync(Usuario usuario);

@@ -2,7 +2,8 @@
 {
     public class DataRequest
     {
-        public string Filter { get; set; }
+        public string StringParam { get; set; }
+        public long LongParam{ get; set; }
         public long PageSize { get; set; }
         public long PageIndex { get; set; }
         public long IdBase { get; set; }

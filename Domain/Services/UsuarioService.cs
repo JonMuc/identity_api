@@ -88,14 +88,30 @@ namespace Domain.Services
             _usuarioValidation.VerificarExistenciaUsuario(result);
             return result;
         }
-         public async Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario)
+         public async Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario, int pageIndex, int pageSize)
         {
-            var result = await _usuarioRepository.VisualizarSeguidores(idUsuario);
+            var dataRequest = new DataRequest();
+            dataRequest.PageIndex = pageIndex;
+            if (pageSize == 0)
+            {
+                pageSize = 15;
+            }
+            dataRequest.PageSize = pageSize;
+            dataRequest.LongParam = idUsuario;
+            var result = await _usuarioRepository.VisualizarSeguidores(dataRequest);
             return result;
         }
-        public async Task<IEnumerable<Usuario>> VisualizarSeguindo(long idUsuario)
+        public async Task<IEnumerable<Usuario>> VisualizarSeguindo(long idUsuario, int pageIndex, int pageSize)
         {
-            var result = await _usuarioRepository.VisualizarSeguindo(idUsuario);
+            var dataRequest = new DataRequest();
+            dataRequest.PageIndex = pageIndex;
+            if (pageSize == 0)
+            {
+                pageSize = 15;
+            }
+            dataRequest.PageSize = pageSize;
+            dataRequest.LongParam = idUsuario;
+            var result = await _usuarioRepository.VisualizarSeguindo(dataRequest);
             return result;
         }
         public async Task<Usuario> VisualizarPerfilUsuario(long idUsuario)
@@ -113,7 +129,7 @@ namespace Domain.Services
             }
             dataRequest.PageSize = pageSize;
             //dataRequest.PageIndex = dataRequest.PageIndex * dataRequest.PageSize;
-            dataRequest.Filter = nomeUsuario;
+            dataRequest.StringParam = nomeUsuario;
             var result = await _usuarioRepository.BuscarUsuario(dataRequest);
             //_usuarioValidation.VerificarExistenciaUsuario(result);
             return result;

@@ -1,4 +1,4 @@
-
+*vshistory
 *.v2
 .vs/IdentityApi/v16/.suo
 *.cache
@@ -68,3 +68,6 @@ Api/Api.csproj.user
 Api/Api.csproj.user
 Api/Api.csproj.user
 Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
+Application/AppServices/.vshistory/UsuarioAppService.cs/2022-06-26_20_25_26_163.cs
+Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
+Api/Api.csproj.user

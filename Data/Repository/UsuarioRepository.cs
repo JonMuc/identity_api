@@ -75,32 +75,32 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryFirstOrDefaultAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<Usuario>> VisualizarSeguidores(long idUsuario)
+        public async Task<IEnumerable<Usuario>> VisualizarSeguidores(DataRequest request)
         {
             //SELECT CRZ_SEGUIR_USUARIO.IdUsuarioSeguidor FROM crz_seguir_usuario WHERE IdUsuarioSeguido = 10
             var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome, usuario.Id FROM crz_seguir_usuario crz
                         INNER JOIN TBL_USUARIO usuario on crz.IdUsuarioSeguidor = usuario.Id
-                        WHERE crz.IdUsuarioSeguido = @Id";
+                        WHERE crz.IdUsuarioSeguido = @LongParam ORDER BY Nome asc OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             var obj = new Usuario
             {
-                Id = idUsuario
+                Id = request.LongParam
             };
-            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, new { request.LongParam, request.PageSize, request.PageIndex, obj }, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<Usuario>> VisualizarSeguindo(long idUsuario)
+        public async Task<IEnumerable<Usuario>> VisualizarSeguindo(DataRequest request)
         {
             //SELECT CRZ_SEGUIR_USUARIO.IdUsuarioSeguidor FROM crz_seguir_usuario WHERE IdUsuarioSeguido = 10
             var sql = @" SELECT usuario.Descricao, usuario.NomeUsuario, usuario.Nome, usuario.Id FROM crz_seguir_usuario crz
                         INNER JOIN TBL_USUARIO usuario on crz.IdUsuarioSeguido = usuario.Id
-                        WHERE crz.IdUsuarioSeguidor = @Id";
+                        WHERE crz.IdUsuarioSeguidor = @LongParam ORDER BY Nome asc OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             var obj = new Usuario
             {
-                Id = idUsuario
+                Id = request.LongParam
             };
-            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, obj, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, new { request.LongParam, request.PageSize, request.PageIndex, obj }, _unitOfWork?.Transaction);
         }
 
         public async Task<Usuario> VisualizarPerfilUsuario(long idUsuario)
@@ -118,11 +118,11 @@ namespace Data.Repository
         }
 
         public async Task<IEnumerable<Usuario>> BuscarUsuario(DataRequest request) {
-            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @Filter + '%' ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
+            var sql = @" SELECT * FROM tbl_usuario WHERE NomeUsuario LIKE '%' + @StringParam + '%' ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
             var obj = new Usuario {
-                NomeUsuario = request.Filter
+                NomeUsuario = request.StringParam
             };
-            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, new { request.Filter, request.PageSize, request.PageIndex, obj }, _unitOfWork?.Transaction);
+            return await _unitOfWork.Connection.QueryAsync<Usuario>(sql, new { request.StringParam, request.PageSize, request.PageIndex, obj }, _unitOfWork?.Transaction);
         }
 
 

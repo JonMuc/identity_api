@@ -134,23 +134,23 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
-        [HttpGet("visualizar-seguidores/{idUsuario:int}")]
+        [HttpGet("visualizar-seguidores/{idUsuario:int}/{pageIndex}/{pageSize}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> VisualizarSeguidores(int idUsuario)
+        public async Task<IActionResult> VisualizarSeguidores(int idUsuario, int pageIndex, int pageSize)
         {
-            var response = await _usuarioAppService.VisualizarSeguidores(idUsuario);
+            var response = await _usuarioAppService.VisualizarSeguidores(idUsuario, pageIndex, pageSize);
             return Ok(response);
         }
 
-        [HttpGet("visualizar-seguindo/{idUsuario:int}")]
+        [HttpGet("visualizar-seguindo/{idUsuario:int}/{pageIndex}/{pageSize}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> VisualizarSeguindo(int idUsuario)
+        public async Task<IActionResult> VisualizarSeguindo(int idUsuario, int pageIndex, int pageSize)
         {
-            var response = await _usuarioAppService.VisualizarSeguindo(idUsuario);
+            var response = await _usuarioAppService.VisualizarSeguindo(idUsuario, pageIndex, pageSize);
             return Ok(response);
         }
 
