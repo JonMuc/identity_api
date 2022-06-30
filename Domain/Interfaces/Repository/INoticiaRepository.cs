@@ -19,5 +19,6 @@ namespace Domain.Interfaces
         Task<IEnumerable<Noticia>> ListarManchetesAsync(NoticiaRequest request);
         Task<IEnumerable<ViewNoticia>> ListarNoticias(NoticiaRequest request);
         Task<IEnumerable<ViewNoticia>> ListarManchetesTemp(DataRequest request);
+        Task<long> ObterIdNoticiaRecente();
     }
 }

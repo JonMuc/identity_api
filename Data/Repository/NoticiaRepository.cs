@@ -126,10 +126,18 @@ namespace Data.Repository
 						        (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
                                 (SELECT count(*) FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND TipoAvaliacao = 2 AND StatusRegistro = 0) AS QuantidadeDeslike
                         FROM tbl_noticia noti	 
+                        WHERE noti.Id < @IdBase
                        ORDER BY Id desc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";
             //ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
 
             var response = await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);
+            return response;
+        }
+
+        public async Task<long> ObterIdNoticiaRecente()
+        {
+            var sql = @"select top(1) Id from TBL_NOTICIA order by Id desc";
+            var response = await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, null, _unitOfWork?.Transaction);
             return response;
         }
     }
