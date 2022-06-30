@@ -43,14 +43,14 @@ namespace ApiCrud.Controllers
         }
 
         [ValidateUser]
-        [HttpGet("obter-comentario-noticia/{idNoticia:int}")]
+        [HttpGet("obter-comentario-noticia/{idNoticia:int}/{pageIndex}/{pageSize}")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarComentariosNoticiaAsync(int idNoticia)
+        public async Task<IActionResult> ListarComentariosNoticiaAsync(int idNoticia, int pageIndex, int pageSize)
         {
             var response = await _comentarioAppService.ListarComentariosNoticiaAsync(
-                new ComentarioRequest() { IdNoticia = idNoticia, IdUsuario = ObterUsuario().Id});
+                new ComentarioRequest() { IdNoticia = idNoticia, IdUsuario = ObterUsuario().Id, pageIndex = pageIndex, pageSize = pageSize});
             return Ok(response);
         }
 
@@ -61,7 +61,7 @@ namespace ApiCrud.Controllers
         public async Task<IActionResult> ListarComentariosNoticiaDeslogadoAsync(int idNoticia, int pageIndex, int pageSize)
         {
             var response = await _comentarioAppService.ListarComentariosNoticiaDeslogadoAsync(
-                new ComentarioRequest() { IdNoticia = idNoticia }, pageIndex, pageSize);
+                new ComentarioRequest() { IdNoticia = idNoticia, pageIndex = pageIndex, pageSize = pageSize });
             return Ok(response);
         }
 
@@ -73,19 +73,20 @@ namespace ApiCrud.Controllers
         public async Task<IActionResult> ListarComentariosComentarioAsync(int idComentario)
         {
             var request = new ComentarioRequest { IdComentario = idComentario, IdUsuario = ObterUsuario().Id };
-            var response = await _comentarioAppService.ListarComentariosComentarioAsync(request);
+            var response = await _comentarioAppService.ListarComentariosComentarioAsync(request, 0, 0);
             return Ok(response);
         }
 
-        [HttpGet("obter-comentarios-de-comentario-deslogado/{idComentario:int}")]
+        [HttpGet("obter-comentarios-de-comentario-deslogado/{idComentario:int}/{pageIndex}/{pageSize}")] //testar
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarComentariosComentarioDeslogadoAsync(int idComentario)
+        public async Task<IActionResult> ListarComentariosComentarioDeslogadoAsync(int idComentario, int pageIndex, int pageSize)
         {
-            var response = await _comentarioAppService.ListarComentariosComentarioDeslogadoAsync(idComentario);
+            var response = await _comentarioAppService.ListarComentariosComentarioDeslogadoAsync(idComentario, pageIndex, pageSize);
             return Ok(response);
         }
+
 
         [ValidateUser]
         [HttpGet("excluir-comentario-noticia/{idComentario:long}")]

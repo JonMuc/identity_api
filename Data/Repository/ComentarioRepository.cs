@@ -40,7 +40,7 @@ namespace Data.Repository
                         inner join TBL_USUARIO usua
                         on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia
 						and come.IdComentario = 0
-                        and come.StatusRegistro = 0";
+                        and come.StatusRegistro = 0 ORDER BY DataComentario asc OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
             return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
         }
 
@@ -55,7 +55,7 @@ namespace Data.Repository
                         inner join TBL_USUARIO usua
                         on come.IdCriadoPor = usua.Id WHERE come.IdNoticia = @IdNoticia 
                         and come.IdComentario = 0
-                        and come.StatusRegistro = 0 ORDER BY Nome asc OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
+                        and come.StatusRegistro = 0 ORDER BY DataComentario asc OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
             return await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
         }
 
@@ -65,7 +65,7 @@ namespace Data.Repository
             return await _unitOfWork.Connection.QueryAsync<Comentario>(sql, new { idComentario }, _unitOfWork?.Transaction);
         }
 
-        public async Task<IEnumerable<ViewComentario>> ListarComentariosComentarioAsync(ComentarioRequest request)
+        public async Task<IEnumerable<ViewComentario>> ListarComentariosComentarioAsync(ComentarioRequest request)  //testar
         {
             var sql = @" SELECT  come.Id, come.IdComentario ,come.Mensagem, come.CriadoEm AS DataComentario, usua.Id as IdUsuario, usua.Nome, usua.Foto as UrlFoto,
 						                            (SELECT count(*) FROM TBL_AVALIACAO WHERE IdComentario = come.Id AND TipoAvaliacao = 1 AND StatusRegistro = 0) AS QuantidadeLike,
@@ -76,7 +76,7 @@ namespace Data.Repository
                             ON come.IdCriadoPor = usua.Id
                             WHERE come.IdComentario = @IdComentario and
                             come.StatusRegistro = 0
-                            ORDER BY DataComentario ASC";
+                            ORDER BY DataComentario ASC OFFSET @PageIndex ROWS FETCH NEXT @PageSize ROWS ONLY";
 
             var response = await _unitOfWork.Connection.QueryAsync<ViewComentario>(sql, request, _unitOfWork?.Transaction);
             return response;
