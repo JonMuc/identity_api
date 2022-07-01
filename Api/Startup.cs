@@ -1,3 +1,4 @@
+using Api.Config;
 using Api.Middlewares;
 using IoC;
 using Microsoft.AspNetCore.Builder;
@@ -49,6 +50,7 @@ namespace Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
+                c.OperationFilter<HeaderFilter>();
             });
         }
 
