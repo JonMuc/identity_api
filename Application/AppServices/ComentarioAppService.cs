@@ -63,17 +63,15 @@ namespace Application.AppServices
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
 
-        public async Task<ResponseViewModel> ListarComentariosComentarioAsync(ComentarioRequest request, int pageIndex, int pageSize)
+        public async Task<ResponseViewModel> ListarComentariosComentarioAsync(ComentarioRequest request)
         {
-            request.pageSize = pageSize;
-            request.pageIndex = pageIndex;
             var response = await _comentarioRepository.ListarComentariosComentarioAsync(request);
             return new ResponseViewModel { Sucesso = true, Objeto = response };            
         }
 
-        public async Task<ResponseViewModel> ListarComentariosComentarioDeslogadoAsync(int idComentario, int pageIndex, int pageSize)
+        public async Task<ResponseViewModel> ListarComentariosComentarioDeslogadoAsync(ComentarioRequest request)
         {
-            var response = await _comentarioRepository.ListarComentariosComentarioAsync(new ComentarioRequest { IdComentario = idComentario });
+            var response = await _comentarioRepository.ListarComentariosComentarioAsync(request);
             return new ResponseViewModel { Sucesso = true, Objeto = response };
         }
     }
