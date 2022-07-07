@@ -34,6 +34,8 @@ namespace Application.AppServices
 
         public async Task<ResponseViewModel> ListarNoticias(NoticiaRequest request)
         {
+            request.PageIndex = request.PageIndex * request.PageSize;
+            request.IdBase = request.IdBase == 0 ? await _noticiaRepository.ObterIdNoticiaRecente() : request.IdBase;
             var result = await _noticiaRepository.ListarNoticias(request);
             foreach (ViewNoticia noticia in result)
             {

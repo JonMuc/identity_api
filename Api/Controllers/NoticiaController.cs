@@ -31,14 +31,14 @@ namespace ApiCrud.Controllers
         }
 
         [ValidateUser]
-        [HttpGet("listar-noticias")] //com a query melhorada
+        [HttpPost("listar-noticias")] //com a query melhorada
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarNoticias()
+        public async Task<IActionResult> ListarNoticias([FromBody] DataRequest request)
         {
             var usuario = ObterUsuario();
-            var response = await _noticiaAppService.ListarNoticias(new NoticiaRequest() { IdUsuario = usuario.Id});
+            var response = await _noticiaAppService.ListarNoticias(new NoticiaRequest() { IdUsuario = usuario.Id, IdBase = request.IdBase, PageIndex = request.PageIndex, PageSize = request.PageSize});
             return Ok(response);
         }
 

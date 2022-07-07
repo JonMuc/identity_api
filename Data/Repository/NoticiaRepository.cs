@@ -111,8 +111,9 @@ namespace Data.Repository
                                 (SELECT TipoAvaliacao FROM TBL_AVALIACAO WHERE IdNoticia = noti.Id AND IdUsuario = @IdUsuario AND StatusRegistro = 0) AS UsuarioAvaliacao,
                                 (SELECT count(*) FROM CRZ_NOTICIA_USUARIO WHERE IdUsuario = @IdUsuario AND IdNoticia = noti.Id AND StatusRegistro = 0) AS NoticiaFavorito,
                                 (SELECT Id FROM CRZ_NOTICIA_USUARIO WHERE IdUsuario = @IdUsuario AND IdNoticia = noti.Id) AS IdFavorito
-                        FROM tbl_noticia noti	 
-                        ORDER BY Id asc";            
+                        FROM tbl_noticia noti
+                        WHERE noti.Id < @IdBase
+                        ORDER BY Id desc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
                         //ORDER BY Id asc OFFSET @PageIndex ROWS FETCH NEXT  @PageSize  ROWS ONLY";            
                        
             var response = await _unitOfWork.Connection.QueryAsync<ViewNoticia>(sql, request, _unitOfWork?.Transaction);            
