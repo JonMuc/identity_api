@@ -58,15 +58,24 @@ namespace ApiCrud.Controllers
             return Ok(response);
         }
 
-        [HttpGet("listar-mensagens")]
+        //[HttpGet("listar-mensagens")]
+        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
+        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
+        //[ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
+        //public async Task<IActionResult> ListarMensagens(long idUsuarioRecebe)
+        //{
+        //    var response = await _chatAppService.ListarMensagens(ObterUsuario().Id, idUsuarioRecebe);
+        //    return Ok(response);
+        //}
+
+        [HttpGet("listar-conversas")]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> ListarMensagens(long idUsuarioEnvio, long idUsuarioRecebe)
+        public async Task<IActionResult> ListarConversas()
         {
-            var response = await _chatAppService.ListarMensagens(idUsuarioEnvio, idUsuarioRecebe);
+            var response = await _chatAppService.ListarConversas(ObterUsuario().Id);
             return Ok(response);
         }
-
     }
 }

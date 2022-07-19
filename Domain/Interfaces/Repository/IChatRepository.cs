@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using Domain.Models.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,5 +12,6 @@ namespace Domain.Interfaces
         Task DeletarChatAsync(long idChat);
         Task<Chat> AtualizarChatAsync(Chat chat);
         Task<List<Chat>> ListarMensagensAsync(long idUsuarioEnvio, long idUsuarioRecebe);
+        Task<IEnumerable<ChatLista>> ListarMensagensAsync(long idUsuario);
     }
 }

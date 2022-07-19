@@ -1,4 +1,5 @@
-﻿using Domain.Interfaces.Repository;
+﻿using Domain.Interfaces;
+using Domain.Interfaces.Repository;
 using Domain.Models;
 using Domain.Models.Enums;
 using Domain.Services;
@@ -12,10 +13,12 @@ namespace Application.AppServices
     public class ChatAppService : BaseAppService
     {        
         private readonly IChatService _chatService;
+        private readonly IChatRepository _chatRepository;
 
-        public ChatAppService(IUnitOfWork unitOfWork, IChatService chatService) : base(unitOfWork)
+        public ChatAppService(IUnitOfWork unitOfWork, IChatService chatService, IChatRepository chatRepository) : base(unitOfWork)
         {
             _chatService = chatService;
+            _chatRepository = chatRepository;
         }
         public async Task<ResponseViewModel> AdicionarChat(Chat chat)
         {
@@ -71,6 +74,12 @@ namespace Application.AppServices
                 _unitOfWork.CommitTransaction();
                 return new ResponseViewModel { Sucesso = true, Objeto = data };
             }
+        }
+
+        public async Task<ResponseViewModel> ListarConversas(long idUsuario) 
+        {
+            var data = await _chatRepository.ListarMensagensAsync(idUsuario);
+            return new ResponseViewModel { Sucesso = true, Objeto = data };
         }
     }
 }

@@ -2,6 +2,7 @@
 using Domain.Interfaces;
 using Domain.Interfaces.Repository;
 using Domain.Models;
+using Domain.Models.Dto;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -77,6 +78,16 @@ namespace Data.Repository
             };
 
             return (List<Chat>)await _unitOfWork.Connection.QueryAsync<Chat>(sql, obj, _unitOfWork?.Transaction);
+        }
+
+        public async Task<IEnumerable<ChatLista>> ListarMensagensAsync(long idUsuario)
+        {
+            var sql = @" select distinct u.Nome, u.Foto, u.Id from TBL_CHAT c
+                               inner join TBL_USUARIO u
+                               on c.IdUsuarioRecebe = u.Id
+                               where IdUsuarioEnvio = @idUsuario";
+
+            return  await _unitOfWork.Connection.QueryAsync<ChatLista>(sql, new { idUsuario }, _unitOfWork?.Transaction);
         }
     }
 }
