@@ -1,8 +1,8 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Domain.Models.Dto;
 using Domain.Util;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -46,7 +46,7 @@ namespace Domain.Validations
                 errosResponse.Add("Campo 'Senha' é obrigatório.");
             }
 
-            if (errosResponse.Count > 0)
+            if (errosResponse.Any())
             {
                 throw new ParametroException(errosResponse);
             }
@@ -115,43 +115,5 @@ namespace Domain.Validations
             return user;
         }
 
-        public async Task ValidarCriarUsuario(CriarContaUsuario usuario)
-        {
-            var errosResponse = new List<string>(0);
-
-            if (usuario.Nome == null || usuario.Nome == "")
-            {
-                errosResponse.Add("Campo 'Nome' é obrigatório.");
-            }
-            if (usuario.Senha != usuario.ConfirmarSenha)
-            {
-                errosResponse.Add("As senhas não conferem.");
-            }
-            if (usuario.Email == null || usuario.Email == "")
-            {
-                errosResponse.Add("Campo 'Email' é obrigatório.");
-            }
-            if (usuario.Senha == null || usuario.Senha == "")
-            {
-                errosResponse.Add("Campo 'Senha' é obrigatório.");
-            }
-            if (usuario.Email != null && usuario.Email != "" && await _usuarioRepository.VerificarExistenciaEmail(usuario.Email))
-            {
-                errosResponse.Add("Este e-mail já esta cadastrado.");
-            }
-            if (await _usuarioRepository.VerificarExistenciaNomeUser(usuario.NomeUsuario))
-            {
-                errosResponse.Add("Este nome de usuario já está cadastrado.");
-            }
-            if (!validarNomeUSer.IsMatch(usuario.NomeUsuario))
-            {
-                errosResponse.Add("Nome de usuario invalido.");
-            }
-
-            if (errosResponse.Count > 0)
-            {
-                throw new ParametroException(errosResponse);
-            }
-        }
     }
 }

@@ -22,14 +22,6 @@ namespace Data.Repository
             return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, request, _unitOfWork?.Transaction);
         }
 
-        public async Task<long> SeguirUsuario(CrzSeguirUsuario usuario)
-        {
-            var sql = @" INSERT INTO crz_seguir_usuario (IdUsuarioSeguidor, IdUsuarioSeguido)
-                                    VALUES (@Id, @IdUsuarioSeguido)
-                         SELECT @@IDENTITY";
-
-            return await _unitOfWork.Connection.ExecuteScalarAsync<long>(sql, usuario, _unitOfWork?.Transaction);
-        }
 
         public async Task<long> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo)
         {

@@ -1,6 +1,5 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
-using Domain.Models.Dto;
 using Domain.Models.Request;
 using Domain.Validations;
 using System;
@@ -22,15 +21,6 @@ namespace Domain.Services
             _usuarioValidation = usuarioValidation;
             _usuarioRepository = usuarioRepository;
             _awsApiService = awsApiService;
-        }
-
-        public async Task<long> SeguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
-        {
-            var entity = new CrzSeguirUsuario();
-            entity.Id = idUsuarioSeguidor;
-            entity.IdUsuarioSeguido = idUsuarioSeguido;
-            var result = await _usuarioRepository.SeguirUsuario(entity);
-            return result;
         }
 
         public async Task<long> DeseguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
@@ -59,19 +49,6 @@ namespace Domain.Services
             var result = await _usuarioRepository.AtualizarUsuarioAsync(usuario);
 
             return result;
-        }
-
-        public async Task<Usuario> CriarUsuarioStep(CriarContaUsuario request)
-        {
-            await _usuarioValidation.ValidarCriarUsuario(request);
-            var usuario = new Usuario();
-            usuario.Email = request.Email;
-            usuario.Senha = CryptographyHelper.EncryptString(request.Senha);
-            usuario.CriadoEm = DateTime.Now;
-            usuario.NomeUsuario = request.NomeUsuario;
-            usuario.Nome = request.Nome;
-            usuario.Id = await _usuarioRepository.AdicionarUsuarioAsync(usuario);
-            return usuario;
         }
 
         public async Task DeletarUsuarioById(long idUsuario)

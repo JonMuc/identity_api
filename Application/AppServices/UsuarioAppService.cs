@@ -1,7 +1,6 @@
 ﻿using Application.ModelsDto;
 using Domain.Interfaces.Repository;
 using Domain.Models;
-using Domain.Models.Dto;
 using Domain.Models.Request;
 using Domain.Services;
 using System.Threading.Tasks;
@@ -122,32 +121,10 @@ namespace Application.AppServices
             }
         }
 
-        public async Task<ResponseViewModel> CriarUsuarioStep(CriarContaUsuario request)
-        {
-            using (_unitOfWork)
-            {
-                _unitOfWork.BeginTransaction();
-                var response = await _usuarioService.CriarUsuarioStep(request);
-                _unitOfWork.CommitTransaction();
-                return new ResponseViewModel { Sucesso = true, Objeto = response };
-            }
-        }
-
         public async Task<ResponseViewModel> UploadImagemAsync(UploadImagemRequest request)
         {
             var response = await _usuarioService.UploadImagemAsync(request);
             return new ResponseViewModel { Sucesso = true, Objeto = response };
-        }
-
-        public async Task<ResponseViewModel> SeguirUsuario(long idUsuarioSeguido, long idUsuarioSeguidor)
-        {
-            using (_unitOfWork)
-            {
-                _unitOfWork.BeginTransaction();
-                var result = await _usuarioService.SeguirUsuario(idUsuarioSeguido, idUsuarioSeguidor);
-                _unitOfWork.CommitTransaction();
-                return new ResponseViewModel { Sucesso = true, Objeto = result };
-            }
         }
 
         public async Task<ResponseViewModel> DeseguirUsuario(long idUsuarioDeseguido, long idUsuarioDeseguindo)

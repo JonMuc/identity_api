@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ApiCrud.Controllers
 {
-    [ApiController, Route("login")]
+    [ApiController, Route("api/login")]
     public class LoginController : ControllerBase
     {
         private readonly LoginAppService _loginAppService;
@@ -22,7 +22,7 @@ namespace ApiCrud.Controllers
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.InternalServerError)]
-        public async Task<IActionResult> SalvarUsuarioStep([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var response = await _loginAppService.Login(request);
             return Ok(response);
