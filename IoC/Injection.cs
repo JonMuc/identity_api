@@ -27,7 +27,7 @@ namespace IoC
             services.AddTransient<IPushService, PushService>();
 
             // Validations
-            services.AddTransient<LoginValidation>();
+            //services.AddTransient<LoginValidation>();
             services.AddTransient<UsuarioValidation>();
 
             // AppServices

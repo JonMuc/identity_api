@@ -71,3 +71,20 @@ Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
 Application/AppServices/.vshistory/UsuarioAppService.cs/2022-06-26_20_25_26_163.cs
 Api/Properties/PublishProfiles/noticia-api-dev - Web Deploy.pubxml.user
 Api/Api.csproj.user
+/.vs/IdentityApi/FileContentIndex
+/Application/obj/Debug
+/Data/obj/Debug
+/Domain/obj/Debug
+/IoC/obj/Debug
+/Jobs/obj/Debug/net8.0
+/Util/obj/Debug/net8.0
+/.github/workflows/main_noticia-api-dev.yml
+/Api/obj
+/Api/obj/Debug/net6.0/Api.AssemblyInfo.cs
+/.vs/SafeCarApi/v17/.suo
+*.vsidx
+/Application/obj/Debug/net6.0/Application.AssemblyInfo.cs
+/Data/obj/Debug/net6.0/Data.AssemblyInfo.cs
+/Domain/obj/Debug/net6.0/Domain.AssemblyInfo.cs
+/IoC/obj/Debug/net6.0/IoC.AssemblyInfo.cs
+/Util/obj/Debug/net6.0/Util.AssemblyInfo.cs

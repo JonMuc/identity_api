@@ -1,26 +1,37 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
 using Domain.Models.Request;
-using Domain.Validations;
+using Domain.Util;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Util.Jwt;
+using Util.Criptografia;
 
 namespace Domain.Services
 {
     public class LoginService : ILoginService
     {
-        private readonly LoginValidation _loginValidation;
         private readonly IUsuarioRepository _usuarioRepository;
 
-        public LoginService(LoginValidation loginValidation, IUsuarioRepository usuarioRepository)
+        public LoginService(IUsuarioRepository usuarioRepository)
         {
-            _loginValidation = loginValidation;
             _usuarioRepository = usuarioRepository;
         }
 
         public async Task<Usuario> LoginAsync(LoginRequest request)
         {
-            return await _loginValidation.LoginUsuarioAsync(request);
+            var errosResponse = new List<string>(0);
+            var usuario = await _usuarioRepository.GetUsuarioByEmailAsync(request.Email);
+            if (usuario == null)
+            {
+                errosResponse.Add("Email não encontrado.");
+                throw new ParametroException(errosResponse);
+            }
+            if (CryptographyHelper.DecryptString(usuario.Senha) != request.Senha)
+            {
+                errosResponse.Add("Email e senha não conferem.");
+                throw new ParametroException(errosResponse);
+            }
+            return usuario;
         }
     }
 }
